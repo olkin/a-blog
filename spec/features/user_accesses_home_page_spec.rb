@@ -8,8 +8,7 @@ feature 'Accessing home page ' do
   end
 
   scenario 'is successful for signed-in users' do
-    # TODO: use factory_bot
-    user = User.create(email: 'tom.hanks@example.com', password: 'password')
+    user = create(:user, email: 'tom.hanks@example.com', password: 'password')
 
     sign_in_as(user)
     visit root_path

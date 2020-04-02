@@ -2,6 +2,9 @@ name: Run tests
 
 env:
   RUBY_VERSION: 2.7
+  POSTGRES_USER: a_blog
+  POSTGRES_PASSWORD: 'a_blog'
+  POSTGRES_DB: postgres
 
 on: [push]
 

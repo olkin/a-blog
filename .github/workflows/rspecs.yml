@@ -13,8 +13,8 @@ jobs:
         postgres:
           image: postgres:10.8
           env:
-            POSTGRES_USER: a_blog
-            POSTGRES_PASSWORD: a_blog
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
             POSTGRES_DB: postgres
           ports:
           - 5432:5432

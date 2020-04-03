@@ -59,8 +59,8 @@ test:
   <<: *default
   host: localhost
   database: a_blog_test
-  username: user_a_blog_test
-  password: password_a_blog_test
+  username: postgres
+  password: postgres
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is

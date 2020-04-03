@@ -6,7 +6,6 @@ env:
   PGUSER: postgres
   PGPASSWORD: postgres
 
-
 on: [push]
 
 jobs:

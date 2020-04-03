@@ -1,11 +1,21 @@
 # README
 
+
+* Ruby version 2.7
+
+Heroku: https://vb-blog.herokuapp.com
+
+Rails 5.2
+
+Postgres 12.2
+
+-----
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
 Things you may want to cover:
 
-* Ruby version
 
 * System dependencies
 

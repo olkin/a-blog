@@ -1,12 +1,5 @@
-Welcome, <%= current_user.email %>
-
 <h2>Add new post</h2>
 <%= render 'posts/form', post: Post.new %>
 
 <h2>Existing posts</h2>
-<% @posts.each do |post| %>
-    <div>
-        <h3><%= post.title %></h3>
-        <%= post.body %>
-    </div>
-<% end %>
+<%= render @posts %>

@@ -13,6 +13,6 @@ feature 'Accessing home page ' do
     sign_in_as(user)
     visit root_path
     expect(page).to have_content 'Welcome, tom.hanks@example.com'
-    expect(page).to have_content 'Signed in as: tom.hanks@example.com'
+    expect(page).to have_button 'Sign out'
   end
 end

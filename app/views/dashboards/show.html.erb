@@ -1,0 +1,4 @@
+Welcome, <%= current_user.email %>
+
+<h2>Add new post</h2>
+<%= render 'posts/form', post: Post.new %>

@@ -2,9 +2,15 @@ class PostsController < ApplicationController
   before_action :require_login
 
   def create
-    Post.create!(post_params.merge(user: current_user))
+    @post = current_user.posts.build(post_params)
 
-    redirect_back(fallback_location: root_path)
+    if @post.save
+      redirect_to root_path
+    else
+      flash[:error] = 'Oopsie'
+
+      render :edit
+    end
   end
 
   private

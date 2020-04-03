@@ -59,7 +59,7 @@ test:
   <<: *default
   host: localhost
   database: a_blog_test
-  username: postgres
+  # username: pilipolkin
   password: postgres
 
 # As with config/secrets.yml, you never want to store sensitive information,

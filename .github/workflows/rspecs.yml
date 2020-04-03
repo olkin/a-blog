@@ -2,6 +2,10 @@ name: Run tests
 
 env:
   RUBY_VERSION: 2.7
+  PGHOST: localhost
+  PGUSER: postgres
+  PGPASSWORD: postgres
+
 
 on: [push]
 
@@ -34,10 +38,6 @@ jobs:
           gem install bundler
           bundler install
       - name: Create database
-        env:
-          PGHOST: localhost
-          PGUSER: postgres
-          PGPASSWORD: postgres
         run: |
           bundler exec rails db:create RAILS_ENV=test
           bundler exec rails db:migrate RAILS_ENV=test

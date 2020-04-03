@@ -2,9 +2,6 @@ name: Run tests
 
 env:
   RUBY_VERSION: 2.7
-#  POSTGRES_USER: a_blog
-#  POSTGRES_PASSWORD: 'a_blog'
-#  POSTGRES_DB: a_blog_test
 
 on: [push]
 
@@ -16,8 +13,8 @@ jobs:
         postgres:
           image: postgres:10.8
           env:
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: postgres
+            POSTGRES_USER: a_blog
+            POSTGRES_PASSWORD: a_blog
             POSTGRES_DB: postgres
           ports:
           - 5432:5432

@@ -59,6 +59,7 @@ test:
   <<: *default
   database: a_blog_test
   host: localhost
+  username: a_blog
   password: abc
 
 # As with config/secrets.yml, you never want to store sensitive information,

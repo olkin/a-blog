@@ -11,7 +11,7 @@ feature 'Creating a blog post' do
     fill_in 'Body', with: 'ABC, here we come!'
     click_button 'Create Post'
 
-    expect(page).to have_css('h2', text: 'First one!')
+    expect(page).to have_css('h3', text: 'First one!')
     expect(page).to have_content 'ABC, here we come!'
     expect(page).to have_button 'Create Post'
   end

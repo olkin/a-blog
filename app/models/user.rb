@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   # TODO: move to some sort of service class
   def follow(another_user)
-    another_user.followers << self
+    another_user.followers << self unless another_user.followers.include?(self)
   end
 
   def follows?(another_user)

@@ -14,6 +14,10 @@ class User < ApplicationRecord
     another_user.followers << self unless another_user.followers.include?(self)
   end
 
+  def unfollow(another_user)
+    another_user.followers.destroy(self)
+  end
+
   def follows?(another_user)
     another_user.followers.include?(self)
   end

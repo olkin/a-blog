@@ -12,8 +12,10 @@ feature 'Following a user' do
     visit user_path(user2)
 
     click_on 'Follow'
-    expect(page).to have_content 'Following'
     expect(page).not_to have_link 'Follow'
+
+    click_on 'Unfollow'
+    expect(page).not_to have_link 'Unfollow'
   end
 
   scenario 'is not successful for same user' do

@@ -16,4 +16,14 @@ describe 'User associations' do
       end
     end
   end
+
+  # describe '#followers' do
+  #   subject { user.followers }
+  #
+  #   let(:user2) { create :user }
+  #
+  #   let!(:follower_entry) { create :followers_users, user: user, follower: user2 }
+  #
+  #   it { is_expected.to eq [user2] }
+  # end
 end

@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-feature 'Accesing dashboard page' do
+feature 'Accesing profile page' do
   given(:user) { create(:user, email: 'friend@example.com') }
   given!(:post) { create(:post, user: user, title: 'What am I going to do today?', body: 'program!') }
 
-  scenario 'shows existing posts' do
+  scenario 'shows existing posts of requested user' do
     visit user_path(user)
 
     expect(page).to have_content 'friend@example.com'

@@ -1,34 +1,13 @@
-# README
+# PLAYGROUND BLOG 
 
+To start blogging let's first create a blog (and meantime play with some new ideas and technologies).
+This is a blog **in progress**. Pushes to master are automatically deployed to Heroku: https://vb-blog.herokuapp.com.
+
+Versions used:
 
 * Ruby version 2.7
-
-* Heroku: https://vb-blog.herokuapp.com
-
 * Rails 5.2
-
 * Postgres 12.2
 
------
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This repository has automatic Actions (I'm soooo proud):
+- on push to a PR tests run automatically. Yay!

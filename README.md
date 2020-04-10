@@ -3,11 +3,11 @@
 
 * Ruby version 2.7
 
-Heroku: https://vb-blog.herokuapp.com
+* Heroku: https://vb-blog.herokuapp.com
 
-Rails 5.2
+* Rails 5.2
 
-Postgres 12.2
+* Postgres 12.2
 
 -----
 

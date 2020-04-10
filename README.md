@@ -1,3 +1,5 @@
+![Run tests](https://github.com/olkin/a-blog/workflows/Run%20tests/badge.svg?branch=master)
+
 # PLAYGROUND BLOG 
 
 To start blogging let's first create a blog (and meantime play with some new ideas and technologies).

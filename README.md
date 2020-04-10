@@ -1,4 +1,4 @@
-![Run tests](https://github.com/olkin/a-blog/workflows/Run%20tests/badge.svg?branch=master)
+![Run tests](https://github.com/olkin/a-blog/workflows/Run%20tests/badge.svg?event=push)
 
 # PLAYGROUND BLOG 
 

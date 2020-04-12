@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Anonym user accessing home page ' do
   scenario 'is successful' do
     visit root_path
-    expect(page).to have_content 'Wohoo'
+    expect(page).to have_content 'Welcome'
     expect(page).to have_content 'Sign in'
   end
 
@@ -13,7 +13,6 @@ feature 'Anonym user accessing home page ' do
 
     scenario 'is successful' do
       visit root_path
-      expect(page).to have_content 'Newsfeed'
       expect(page).to have_content 'You should see me'
       expect(page).not_to have_content 'You should not see me'
     end

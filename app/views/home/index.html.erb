@@ -1,4 +1,8 @@
-<h1>Wohoo! Something exciting is on the way!</h1>
+<h1>Welcome, welcome.</h1>
 
-<h2>Newsfeed</h2>
-<%= render @posts %>
+<% if @posts %>
+  <h2>Here is what happened recently</h2>
+  <%= render @posts %>
+<% else %>
+  Nothing exciting happened yet. Check back soon!
+<% end %>

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Creating a blog post' do
+feature 'signed in user creating a blog post' do
   given(:user) { create :user }
 
   background do
@@ -8,9 +8,24 @@ feature 'Creating a blog post' do
     visit signed_in_root_path
   end
 
-  scenario 'is successful for signed in user' do
+  scenario 'is successful' do
+    fill_in 'Title', with: 'First system message'
+    fill_in 'Body', with: 'Even anonymous users will see me. Yay!'
+    select 'system', from: 'Kind'
+    click_button 'Create Post'
+
+    expect(page).to have_field('Title')
+    expect(page).to have_field('Body')
+    expect(page).to have_css('h3', text: 'First system message')
+    expect(page).to have_content 'Even anonymous users will see me. Yay!'
+    expect(page).to have_button 'Create Post'
+    expect(page).to have_css('.post.post__system')
+  end
+
+  scenario 'is successful for system messages' do
     fill_in 'Title', with: 'First one!'
     fill_in 'Body', with: 'ABC, here we come!'
+
     click_button 'Create Post'
 
     expect(page).to have_field('Title')

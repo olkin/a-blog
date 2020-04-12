@@ -1,9 +1,13 @@
 <%= form_for post do |f| %>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
 
-    <%= f.label :body %>
-    <%= f.text_field :body %>
+  <%= f.label :body %>
+  <%= f.text_field :body %>
 
-    <%= f.submit %>
+  <%= f.label :kind %>
+  <!--  TODO: this field should only be visible to admins/system users -->
+  <%= f.select :kind, options_for_select(Post::KINDS), include_blank: true %>
+
+  <%= f.submit %>
 <% end %>

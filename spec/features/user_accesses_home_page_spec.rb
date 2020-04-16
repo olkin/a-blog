@@ -1,16 +1,13 @@
 require 'rails_helper'
 
-feature 'Accessing home page ' do
-  scenario 'is successful for non signed-in users' do
-    visit root_path
-    expect(page).to have_content 'Wohoo'
-    expect(page).to have_content 'Sign in'
+feature 'Accessing home page for signed-in users' do
+  given(:user) { create(:user, email: 'tom.hanks@example.com') }
+
+  background do
+    sign_in_as(user)
   end
 
-  scenario 'is successful for signed-in users' do
-    user = create(:user, email: 'tom.hanks@example.com', password: 'password')
-
-    sign_in_as(user)
+  scenario 'is successful ' do
     visit root_path
     expect(page).to have_content 'Welcome, tom.hanks@example.com'
     expect(page).to have_button 'Sign out'

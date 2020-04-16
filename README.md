@@ -7,7 +7,7 @@ This is a blog **in progress**. Pushes to master are automatically deployed to H
 
 Versions used:
 
-* Ruby version 2.7
+* Ruby version 2.7.1
 * Rails 5.2
 * Postgres 12.2
 

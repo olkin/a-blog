@@ -10,4 +10,8 @@
   <%= f.select :kind, Post::KINDS, include_blank: true %>
 
   <%= f.submit %>
+
+  <% if post.persisted? %>
+    <%= link_to 'Delete', post, method: :delete, confirm: 'Are you sure?' %>
+  <% end %>
 <% end %>

@@ -8,9 +8,7 @@ describe DashboardsController do
   end
 
   describe 'GET #show' do
-    let!(:post) { create :post, user: user }
-
-    it 'assigns posts' do
+    it 'is successful' do
       get :show
 
       expect(response).to have_http_status :ok

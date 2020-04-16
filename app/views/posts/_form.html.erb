@@ -7,7 +7,11 @@
 
   <%= f.label :kind %>
   <!--  TODO: this field should only be visible to admins/system users -->
-  <%= f.select :kind, options_for_select(Post::KINDS), include_blank: true %>
+  <%= f.select :kind, Post::KINDS, include_blank: true %>
 
   <%= f.submit %>
+
+  <% if post.persisted? %>
+    <%= link_to 'Delete', post, method: :delete, confirm: 'Are you sure?' %>
+  <% end %>
 <% end %>

@@ -1,5 +1,7 @@
 <div class="post post__<%= post.kind %>">
   <%= post.created_at.to_s(:short) %>
+  <%= link_to 'Edit', edit_post_path(post) %>
+  <%= link_to 'Delete', post_path(post), method: :delete, confirm: 'Are you sure?' %>
   <h3><%= post.title %></h3>
   <%= post.body %>
 </div>

@@ -6,6 +6,6 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  resources :posts, only: [:create, :edit]
+  resources :posts, only: [:create, :edit, :destroy, :update]
   resources :users, only: [:show]
 end

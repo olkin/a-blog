@@ -1,5 +1,11 @@
-<h2>Add new post</h2>
-<%= render 'posts/form', post: Post.new %>
+<% if @posts %>
+  <h2>Newsfeed</h2>
+  <%= render @posts %>
+<% else %>
+  No posts yet
+<% end %>
 
-<h2>Existing posts</h2>
-<%= render @posts %>
+<%= content_for :right_sidebar do %>
+  <h2>New post</h2>
+  <%= render 'posts/form', post: Post.new %>
+<% end %>

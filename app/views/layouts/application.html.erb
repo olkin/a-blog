@@ -15,8 +15,8 @@
 
   <body>
 
-    <div class="grid-x">
-      <div class="cell small-1 medium-2 large-3">
+    <div class="grid-x grid-padding-x">
+      <div class="cell small-1 medium-2 large-2">
       </div>
       <div class="cell small-10 medium-8 large-6">
         <% flash.each do |key, value| %>
@@ -27,12 +27,15 @@
 
         <% if signed_in? %>
           Welcome, <%= current_user.email %>
-          <%= button_to 'Sign out', sign_out_path, method: :delete %>
+          <%= link_to 'Sign out', sign_out_path, method: :delete %>
         <% else %>
           <%= link_to 'Sign in', sign_in_path %>
         <% end %>
 
         <%= yield %>
+      </div>
+      <div class="cell small-3">
+        <%= yield(:right_sidebar) %>
       </div>
     </div>
   </body>

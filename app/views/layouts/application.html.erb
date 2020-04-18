@@ -1,29 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>ABlog</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "A+Blog" %></title>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
   </head>
 
   <body>
 
-    <div id="flash">
-    <% flash.each do |key, value| %>
-        <div class="flash <%= key %>"><%= value %></div>
-    <% end %>
+    <div class="grid-x grid-padding-x">
+      <div class="cell small-1 medium-2 large-2">
+      </div>
+      <div class="cell small-10 medium-8 large-6">
+        <% flash.each do |key, value| %>
+            <div class="callout <%= key %>">
+              <%= value %>
+            </div>
+        <% end %>
+
+        <% if signed_in? %>
+          Welcome, <%= current_user.email %>
+          <%= link_to 'Sign out', sign_out_path, method: :delete %>
+        <% else %>
+          <%= link_to 'Sign in', sign_in_path %>
+        <% end %>
+
+        <%= yield %>
+      </div>
     </div>
-
-    <% if signed_in? %>
-      Welcome, <%= current_user.email %>
-      <%= button_to 'Sign out', sign_out_path, method: :delete %>
-    <% else %>
-      <%= link_to 'Sign in', sign_in_path %>
-    <% end %>
-
-    <%= yield %>
   </body>
 </html>

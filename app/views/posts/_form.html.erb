@@ -3,13 +3,13 @@
   <%= f.text_field :title %>
 
   <%= f.label :body %>
-  <%= f.text_field :body %>
+  <%= f.text_area :body %>
 
   <%= f.label :kind %>
   <!--  TODO: this field should only be visible to admins/system users -->
   <%= f.select :kind, Post::KINDS, include_blank: true %>
 
-  <%= f.submit %>
+  <%= f.submit class: 'button' %>
 
   <% if post.persisted? %>
     <%= link_to 'Delete', post, method: :delete, confirm: 'Are you sure?' %>

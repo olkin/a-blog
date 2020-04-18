@@ -5,7 +5,5 @@
   No posts yet
 <% end %>
 
-<%= content_for :right_sidebar do %>
-  <h2>New post</h2>
-  <%= render 'posts/form', post: Post.new %>
-<% end %>
+<h2>New post</h2>
+<%= render 'posts/form', post: Post.new %>

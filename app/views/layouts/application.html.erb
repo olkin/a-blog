@@ -20,8 +20,11 @@
       </div>
       <div class="cell small-10 medium-8 large-6">
         <% flash.each do |key, value| %>
-            <div class="callout <%= key %>">
+            <div class="callout <%= key %>" data-closable>
               <%= value %>
+              <button class="close-button" aria-label="Close alert" type="button" data-close>
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
         <% end %>
 

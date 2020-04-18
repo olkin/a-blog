@@ -1,4 +1,4 @@
-<% if @posts %>
+<% if @posts.present? %>
   <h2>Recent posts</h2>
   <%= render @posts %>
 <% else %>

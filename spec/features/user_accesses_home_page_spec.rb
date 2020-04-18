@@ -10,6 +10,6 @@ feature 'Accessing home page for signed-in users' do
   scenario 'is successful ' do
     visit root_path
     expect(page).to have_content 'Welcome, tom.hanks@example.com'
-    expect(page).to have_button 'Sign out'
+    expect(page).to have_link 'Sign out'
   end
 end

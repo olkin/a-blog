@@ -16,14 +16,14 @@
   <body>
 
     <div class="grid-x">
-      <div class="cell small-2">
+      <div class="cell small-1 medium-2 large-3">
       </div>
-      <div class="cell small-8">
-        <div id="flash">
+      <div class="cell small-10 medium-8 large-6">
         <% flash.each do |key, value| %>
-            <div class="flash <%= key %>"><%= value %></div>
+            <div class="callout <%= key %>">
+              <%= value %>
+            </div>
         <% end %>
-        </div>
 
         <% if signed_in? %>
           Welcome, <%= current_user.email %>

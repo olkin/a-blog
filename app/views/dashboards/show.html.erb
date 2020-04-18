@@ -1,3 +1,5 @@
+<p><a data-open="newPostModal">Add new post</a></p>
+
 <% if @posts %>
   <h2>Newsfeed</h2>
   <%= render @posts %>
@@ -5,5 +7,10 @@
   No posts yet
 <% end %>
 
-<h2>New post</h2>
-<%= render 'posts/form', post: Post.new %>
+<div class="reveal" id="newPostModal" data-reveal>
+  <h2>New post</h2>
+  <%= render 'posts/form', post: Post.new %>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>

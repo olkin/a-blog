@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'signed in user deleting own post' do
+feature 'signed in user deleting own post', js: true do
   given(:user) { create :user }
   given!(:post) { create :post, user: user, title: 'Old post', body: 'Old body' }
 

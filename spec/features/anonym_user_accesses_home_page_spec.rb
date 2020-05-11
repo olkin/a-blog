@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Anonym user accessing home page ' do
+feature 'Anonym user accessing home page', js: true do
   scenario 'is successful' do
     visit root_path
     expect(page).to have_content 'Welcome'

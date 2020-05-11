@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Accesing dashboard page' do
+feature 'Accesing dashboard page', js: true do
   given(:user) { create(:user) }
   given!(:post) { create(:post, user: user, title: 'We are the champions!', body: 'my friend') }
 

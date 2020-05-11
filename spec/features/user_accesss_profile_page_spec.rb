@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Accesing profile page' do
+feature 'Accesing profile page', js: true do
   given(:user) { create(:user, email: 'friend@example.com') }
   given!(:post) { create(:post, user: user, title: 'What am I going to do today?', body: 'program!') }
 

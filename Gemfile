@@ -45,13 +45,17 @@ gem 'clearance'
 gem 'foundation-rails'
 gem 'autoprefixer-rails'
 
+gem 'webpacker'
+gem 'react-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 4.0.0'
-  gem 'capybara'
   gem 'database_cleaner'
   gem 'factory_bot_rails'
+  gem 'capybara'
+  gem 'selenium-webdriver'
 end
 
 group :development do

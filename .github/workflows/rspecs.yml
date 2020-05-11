@@ -5,6 +5,7 @@ env:
   PGHOST: localhost
   PGUSER: postgres
   PGPASSWORD: postgres
+  NODE_VERSION: 14
 
 on: [push]
 
@@ -33,7 +34,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
-          node-version: '14'
+          node-version: ${{ env.NODE_VERSION }}
       - name: Install postgres client
         run: sudo apt-get install libpq-dev
       - name: Install dependencies

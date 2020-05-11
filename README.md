@@ -11,5 +11,9 @@ Versions used:
 * Rails 5.2
 * Postgres 12.2
 
+* Node 14.1.0
+* Yarn 1.22.4
+* React 2.6.1
+
 This repository has automatic Actions (I'm soooo proud):
 - on push to a PR tests run automatically. Yay!

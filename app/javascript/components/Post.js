@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 class Post extends React.Component {
     render () {
         return (
-            <div class="post">
+            <div className="post">
                 <h3>{this.props.title}</h3>
                 <p>
                     {this.props.body}

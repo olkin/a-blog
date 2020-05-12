@@ -1,11 +1,6 @@
 <p><a data-open="newPostModal">Add new post</a></p>
 
-<% if @posts %>
-  <h2>Newsfeed</h2>
-  <%= render @posts %>
-<% else %>
-  No posts yet
-<% end %>
+<%= react_component("Posts") %>
 
 <div class="reveal" id="newPostModal" data-reveal>
   <h2>New post</h2>

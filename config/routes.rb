@@ -8,4 +8,10 @@ Rails.application.routes.draw do
 
   resources :posts, only: [:create, :edit, :destroy, :update]
   resources :users, only: [:show]
+
+  namespace :api do
+    namespace :v1 do
+      resources :posts, only: [:index]
+    end
+  end
 end

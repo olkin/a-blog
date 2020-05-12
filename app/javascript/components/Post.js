@@ -25,7 +25,6 @@ class Post extends React.Component {
                 throw new Error("Network response was not ok.");
             })
             .then(() => this.props.onPostDeleted(this.props.id))
-            .then(() => this.props.history.push("/posts"))
             .catch(error => console.log(error.message));
     }
 

@@ -1,11 +1,11 @@
 class Api::V1::PostsController < ApplicationController
   def index
-    @posts = Post.system.reorder(created_at: :desc)
+    @posts = Post.reorder(created_at: :desc)
     render json: @posts
   end
 
   def create
-    @post = Post.create!(post_params)
+    @post = Post.create!(post_params.merge(user: User.first)) # TODO: have to get current user!
     if @post
       render json: @post
     else

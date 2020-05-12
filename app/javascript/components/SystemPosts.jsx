@@ -1,5 +1,6 @@
 import React from "react";
 import Post from './Post';
+import { Link } from "react-router-dom";
 
 function NoPosts() {
     return   <>
@@ -56,6 +57,9 @@ class SystemPosts extends React.Component {
         const { posts } = this.state;
         return(
             <>
+                <Link to="/posts/new">
+                    Create New Post
+                </Link>
                 {posts.length > 0
                     ? <AllPosts
                         posts={posts}

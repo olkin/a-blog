@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import PostForm from "./PostForm";
 
 class NewPost extends React.Component {
     constructor(props) {
@@ -24,7 +24,7 @@ class NewPost extends React.Component {
         const url = "/api/v1/posts";
         const { title, body } = this.state;
 
-        if (body.length == 0)
+        if (body.length === 0)
             return;
 
         const jsonBody = {
@@ -61,33 +61,10 @@ class NewPost extends React.Component {
         return (
             <div>
                 <h1>Add new Post</h1>
-                <form onSubmit={this.onSubmit}>
-                    <div>
-                        <label htmlFor="postTitle">Title</label>
-                        <input
-                            type="text"
-                            name="title"
-                            id="postTitle"
-                            onChange={this.onChange}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="postBody">Body</label>
-                        <input
-                            type="text"
-                            name="body"
-                            id="postBody"
-                            required
-                            onChange={this.onChange}
-                        />
-                    </div>
-                    <button type="submit" className="button">
-                        Create Post
-                    </button>
-                    <Link to="/posts">
-                        Back to posts
-                    </Link>
-                </form>
+                <PostForm
+                    onChange={this.onChange}
+                    onSubmit={this.onSubmit}
+                />
             </div>
         );
     }

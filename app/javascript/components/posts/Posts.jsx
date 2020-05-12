@@ -6,7 +6,7 @@ function NoPosts() {
     return   <>
         <h1>Welcome, welcome.</h1>
         Nothing exciting happened yet. Check back soon!
-        </>;
+    </>;
 }
 
 function AllPosts(props) {
@@ -19,14 +19,14 @@ function AllPosts(props) {
                       body={post.body}
                       title={post.title}
                       onPostDeleted={props.onPostDeleted}
-                      />
+                />
             )}
         </>
     );
 }
 
 // This is super same as Posts.jsx
-class SystemPosts extends React.Component {
+class Posts extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -70,4 +70,4 @@ class SystemPosts extends React.Component {
         )
     }
 }
-export default SystemPosts;
+export default Posts;

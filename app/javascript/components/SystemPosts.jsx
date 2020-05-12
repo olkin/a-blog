@@ -2,13 +2,16 @@ import React from "react";
 import Post from './Post';
 
 function NoPosts() {
-    return <>No posts yet</>;
+    return   <>
+        <h1>Welcome, welcome.</h1>
+        Nothing exciting happened yet. Check back soon!
+        </>;
 }
 
 function AllPosts(props) {
     return (
         <>
-            <h2>Newsfeed</h2>
+            <h2>Recent posts</h2>
             {props.posts.map((post) =>
                 <Post key={post.id} body={post.body} title={post.title}/>
             )}
@@ -16,7 +19,8 @@ function AllPosts(props) {
     );
 }
 
-class Posts extends React.Component {
+// This is super same as Posts.jsx
+class SystemPosts extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -34,7 +38,7 @@ class Posts extends React.Component {
                 throw new Error("Network response was not ok.");
             })
             .then(response => this.setState({ posts: response }))
-            // .catch(() => this.props.history.push("/"));
+        // .catch(() => this.props.history.push("/"));
     }
 
     render() {
@@ -43,10 +47,9 @@ class Posts extends React.Component {
             <>
                 {posts.length > 0
                     ? <AllPosts posts={posts}/>
-                    : <NoPosts />
-                }
+                    : <NoPosts />}
             </>
         )
     }
 }
-export default Posts;
+export default SystemPosts;

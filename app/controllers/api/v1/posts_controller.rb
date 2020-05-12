@@ -1,6 +1,6 @@
 class Api::V1::PostsController < ApplicationController
   def index
-    @posts = Post.all.reorder(created_at: :desc)
+    @posts = Post.system.reorder(created_at: :desc)
     render json: @posts
   end
 

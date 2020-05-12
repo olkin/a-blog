@@ -10,7 +10,7 @@ function AllPosts(props) {
         <>
             <h2>Newsfeed</h2>
             {props.posts.map((post) =>
-                <Post key={post.id} body={post.body} title={post.title}/>
+                <Post key={post.id} id={post.id} body={post.body} title={post.title}/>
             )}
         </>
     );

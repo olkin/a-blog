@@ -13,7 +13,12 @@ function AllPosts(props) {
         <>
             <h2>Recent posts</h2>
             {props.posts.map((post) =>
-                <Post key={post.id} body={post.body} title={post.title}/>
+                <Post key={post.id}
+                      id={post.id}
+                      body={post.body}
+                      title={post.title}
+                      onPostDeleted={props.onPostDeleted}
+                      />
             )}
         </>
     );
@@ -26,7 +31,13 @@ class SystemPosts extends React.Component {
         this.state = {
             posts: []
         };
+        this.onPostDeleted = this.onPostDeleted.bind(this);
     }
+
+    onPostDeleted = (post_id) => {
+        const newPosts = this.state.posts.filter(post => post.id !== post_id);
+        this.setState({posts: newPosts});
+    };
 
     componentDidMount() {
         const url = "/api/v1/posts";
@@ -46,7 +57,10 @@ class SystemPosts extends React.Component {
         return(
             <>
                 {posts.length > 0
-                    ? <AllPosts posts={posts}/>
+                    ? <AllPosts
+                        posts={posts}
+                        onPostDeleted={this.onPostDeleted}
+                    />
                     : <NoPosts />}
             </>
         )

@@ -5,6 +5,6 @@ import App from "../components/App";
 document.addEventListener("DOMContentLoaded", () => {
     render(
         <App />,
-        document.body.appendChild(document.createElement("div"))
+        document.getElementById('main_area').appendChild(document.createElement("div"))
     );
 });

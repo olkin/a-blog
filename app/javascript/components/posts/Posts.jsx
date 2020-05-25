@@ -1,24 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Post from './Post';
 import { Link } from "react-router-dom";
 
 function NoPosts() {
-    return   <>
+    return (
+    <>
         <h1>Welcome, welcome.</h1>
         Nothing exciting happened yet. Check back soon!
-    </>;
+    </>);
 }
 
-function AllPosts(props) {
+function AllPosts({posts, onPostDeleted}) {
     return (
         <>
             <h2>Recent posts</h2>
-            {props.posts.map((post) =>
+            {posts.map((post) =>
                 <Post key={post.id}
                       id={post.id}
                       body={post.body}
                       title={post.title}
-                      onPostDeleted={props.onPostDeleted}
+                      onPostDeleted={onPostDeleted}
                 />
             )}
         </>
@@ -26,21 +27,15 @@ function AllPosts(props) {
 }
 
 // This is super same as Posts.jsx
-class Posts extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            posts: []
-        };
-        this.onPostDeleted = this.onPostDeleted.bind(this);
-    }
+function Posts() {
+    const [posts, setPosts] = useState([]);
 
-    onPostDeleted = (post_id) => {
-        const newPosts = this.state.posts.filter(post => post.id !== post_id);
-        this.setState({posts: newPosts});
+    const onPostDeleted = (post_id) => {
+        const newPosts = posts.filter(post => post.id !== post_id);
+        setPosts(newPosts);
     };
 
-    componentDidMount() {
+    useEffect(() => {
         const url = "/api/v1/posts";
         fetch(url)
             .then(response => {
@@ -49,25 +44,23 @@ class Posts extends React.Component {
                 }
                 throw new Error("Network response was not ok.");
             })
-            .then(response => this.setState({ posts: response }))
+            .then(response => setPosts(response))
         // .catch(() => this.props.history.push("/"));
-    }
+    }, []);
 
-    render() {
-        const { posts } = this.state;
-        return(
-            <>
-                <Link to="/posts/new">
-                    Create New Post
-                </Link>
-                {posts.length > 0
-                    ? <AllPosts
-                        posts={posts}
-                        onPostDeleted={this.onPostDeleted}
-                    />
-                    : <NoPosts />}
-            </>
-        )
-    }
+    return (
+        <>
+            <Link to="/posts/new">
+                Create New Post
+            </Link>
+            {posts.length > 0
+                ? <AllPosts
+                    posts={posts}
+                    onPostDeleted={onPostDeleted}
+                />
+                : <NoPosts/>
+            }
+        </>
+    );
 }
 export default Posts;

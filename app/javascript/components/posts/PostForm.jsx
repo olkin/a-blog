@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-function PostForm({onChange, onSubmit}) {
+function PostForm({onChange, onSubmit, post}) {
     return (
         <form onSubmit={onSubmit}>
             <div>
@@ -11,6 +11,7 @@ function PostForm({onChange, onSubmit}) {
                     name="title"
                     id="postTitle"
                     onChange={onChange}
+                    value={post?.title}
                 />
             </div>
             <div>
@@ -21,10 +22,11 @@ function PostForm({onChange, onSubmit}) {
                     id="postBody"
                     required
                     onChange={onChange}
+                    value={post?.body}
                 />
             </div>
             <button type="submit" className="button">
-                Create Post
+                Save
             </button>
             <Link to="/posts">
                 Back to posts

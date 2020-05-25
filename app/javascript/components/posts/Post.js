@@ -2,17 +2,15 @@ import React from "react"
 import PropTypes from "prop-types"
 import {Link} from "react-router-dom";
 
-class Post extends React.Component {
-    constructor(props) {
-        super(props);
-        this.deletePost = this.deletePost.bind(this);
+function Post({id, title, body, onPostDeleted}) {
+    const urls = {
+        destroy: `/api/v1/posts/${id}`,
+        edit: `/api/v1/posts/${id}/edit`
     }
 
-    deletePost() {
-        // const url = `/api/v1/posts/${this.props.id}`;
+    const deletePost = () => {
         const token = document.querySelector('meta[name="csrf-token"]').content;
-        const url = `/api/v1/posts/${this.props.id}`;
-        fetch(url, {
+        fetch(urls.destroy, {
             method: "DELETE",
             headers: {
                 "X-CSRF-Token": token,
@@ -25,33 +23,27 @@ class Post extends React.Component {
                 }
                 throw new Error("Network response was not ok.");
             })
-            .then(() => this.props.onPostDeleted(this.props.id))
+            .then(() => onPostDeleted(id))
             .catch(error => console.log(error.message));
     }
 
+    return (
+        <div className="post">
+            <h3>{title}</h3>
+            <p>
+                {body}
+            </p>
+            <p>
+                <Link to={urls.edit}>
+                    Edit
+                </Link>
 
-
-    render () {
-        const editUrl = `/posts/${this.props.id}/edit`;
-
-        return (
-            <div className="post">
-                <h3>{this.props.title}</h3>
-                <p>
-                    {this.props.body}
-                </p>
-                <p>
-                    <Link to={editUrl} >
-                        Edit
-                    </Link>
-
-                    <a onClick={this.deletePost}>
-                        Delete
-                    </a>
-                </p>
-            </div>
-        );
-    }
+                <a onClick={deletePost}>
+                    Delete
+                </a>
+            </p>
+        </div>
+    );
 }
 
 Post.propTypes = {
@@ -59,4 +51,4 @@ Post.propTypes = {
     body: PropTypes.string.isRequired
 };
 
-export default Post
+export default Post;

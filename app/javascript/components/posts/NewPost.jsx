@@ -2,15 +2,9 @@ import React, {useState} from "react";
 import PostForm from "./PostForm";
 
 function NewPost(props) {
-    const [state, setState] = useState({ title: '', body: ''});
-
-    const onChange = (e) =>
-        setState({ ...state, [e.target.name]: e.target.value });
-
     const postsUrl = '/api/v1/posts';
-    const onSubmit = (e) => {
-        e.preventDefault();
-        const { title, body } = state;
+    const onSubmit = (post) => {
+        const { title, body } = post;
 
         if (body.length === 0)
             return;
@@ -49,8 +43,7 @@ function NewPost(props) {
         <div>
             <h1>Add new Post</h1>
             <PostForm
-                onChange={onChange}
-                onSubmit={onSubmit}
+                onFormSubmit={onSubmit}
             />
         </div>
     );

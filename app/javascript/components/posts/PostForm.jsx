@@ -1,7 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
 
-function PostForm({onChange, onSubmit, post}) {
+function PostForm({onFormSubmit, post}) {
+    const [state, setState] = useState({ title: post?.title, body: post?.body});
+
+    const onChange = (e) =>
+        setState({ ...state, [e.target.name]: e.target.value });
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        onFormSubmit(state);
+    }
+
     return (
         <form onSubmit={onSubmit}>
             <div>
@@ -11,7 +21,7 @@ function PostForm({onChange, onSubmit, post}) {
                     name="title"
                     id="postTitle"
                     onChange={onChange}
-                    value={post?.title}
+                    value={state.title}
                 />
             </div>
             <div>
@@ -22,7 +32,7 @@ function PostForm({onChange, onSubmit, post}) {
                     id="postBody"
                     required
                     onChange={onChange}
-                    value={post?.body}
+                    value={state.body}
                 />
             </div>
             <button type="submit" className="button">

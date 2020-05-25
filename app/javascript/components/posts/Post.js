@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 function Post({id, title, body, onPostDeleted}) {
     const urls = {
         destroy: `/api/v1/posts/${id}`,
-        edit: `/api/v1/posts/${id}/edit`
+        edit: `/posts/${id}/edit`
     }
 
     const deletePost = () => {

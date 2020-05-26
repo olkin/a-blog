@@ -17,6 +17,29 @@
 
 // console.log('Hello World from Webpacker')
 // Support component names relative to this directory:
-var componentRequireContext = require.context("components", true);
-var ReactRailsUJS = require("react_ujs");
-ReactRailsUJS.useContext(componentRequireContext);
+// var componentRequireContext = require.context("components", true);
+// var ReactRailsUJS = require("react_ujs");
+// ReactRailsUJS.useContext(componentRequireContext);
+
+import React from "react";
+import ReactDOM from "react-dom";
+//import { Provider } from "react-redux";
+//import { createStore, applyMiddleware } from "redux";
+import { BrowserRouter } from "react-router-dom";
+import App from "../components/App";
+//import reducers from "./reducers";
+
+//const createStoreWithMiddleware = applyMiddleware()(createStore);
+
+//import "./style/main.scss";
+
+function main() {
+    ReactDOM.render(
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>,
+        document.querySelector(".app-wrapper")
+    );
+}
+
+document.addEventListener("DOMContentLoaded", main);

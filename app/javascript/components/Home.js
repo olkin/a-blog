@@ -11,11 +11,12 @@ function Home(props) {
 
     const handleLogout = () => {
         axios.delete('http://localhost:3000/logout',
-            {withCredentials: true})
-            .then(() => props.handleLogout())
-            .catch(error => {
-                console.log('logout error', error)
-            })
+            {withCredentials: true}
+        ).then(() => {
+            props.handleLogout()
+        }).catch(error => {
+            console.log('logout error', error)
+        })
     }
 
     return (

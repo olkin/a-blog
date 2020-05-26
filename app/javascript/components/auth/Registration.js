@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 
-const Registration = () => {
+const Registration = (props) => {
     const [formData, setFormData] = useState({email: '', password: ''});
     //const [registrationErrors, setRegistrationErrors] = useState('');
 
@@ -11,7 +11,9 @@ const Registration = () => {
             {user: formData},
             {withCredentials: true}
         ).then(response => {
-            console.log("registration response", response)
+            if (response.data.status === 'created') {
+                props.handleSuccessfulAuth(response.data);
+            }
         }).catch(error => {
             console.log("registration error", error)
         })

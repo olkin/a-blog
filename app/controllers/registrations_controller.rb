@@ -6,7 +6,7 @@ class RegistrationsController < ApplicationController
 
     if user
       session[:user_id] = user.id
-      render json: { user: user }, status: :created
+      render json: { user: user, status: :created }, status: :created
     else
       render json: {}, status: :unprocessable_entity
     end

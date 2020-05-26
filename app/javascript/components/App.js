@@ -31,6 +31,11 @@ const App = () => {
         setUser(data.user);
     }
 
+    const handleLogout = () => {
+        setLoggedInStatus('NOT_LOGGED_IN');
+        setUser({});
+    }
+
     return (
         <div className='app'>
             <BrowserRouter>
@@ -41,6 +46,7 @@ const App = () => {
                         render={props => (
                             <Home {...props}
                                   handleLogin={handleLogin}
+                                  handleLogout={handleLogout}
                                   loggedInStatus={loggedInStatus} />
                         )}
                     />

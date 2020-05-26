@@ -48,13 +48,6 @@ function EditPost(props) {
             .catch(error => console.log(error.message));
     }
 
-
-// stripHtmlEntities(str) {
-//     return String(str)
-//         .replace(/</g, "&lt;")
-//         .replace(/>/g, "&gt;");
-// }
-
     return (
         <div>
             <h1>Edit Post</h1>

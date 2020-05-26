@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  constraints Clearance::Constraints::SignedIn.new do
-    root to: 'dashboards#show', as: :signed_in_root
-  end
+  resources :sessions, only: [:create]
+  root to: 'home#index'
 
-  root 'home#index'
 
-  resources :posts, only: [:create, :edit, :destroy, :update]
-  resources :users, only: [:show]
+
+    # resources :posts, only: [:create, :edit, :destroy, :update]
 end

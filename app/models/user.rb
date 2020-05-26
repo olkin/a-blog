@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  include Clearance::User
+  has_secure_password
 
+  validates :email, presence: true, uniqueness: true
   has_many :posts, dependent: :destroy
 end

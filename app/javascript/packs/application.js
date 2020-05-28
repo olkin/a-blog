@@ -27,7 +27,7 @@ import ReactDOM from "react-dom";
 //import { createStore, applyMiddleware } from "redux";
 import { BrowserRouter } from "react-router-dom";
 import App from "../components/App";
-//import reducers from "./reducers";
+// import reducers from "./reducers";
 
 //const createStoreWithMiddleware = applyMiddleware()(createStore);
 

@@ -1,7 +1,4 @@
 import React from 'react';
-import Registration from "./auth/Registration";
-import Login from "./auth/Login";
-import axios from 'axios';
 
 function Home() {
     return (

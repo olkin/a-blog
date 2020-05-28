@@ -18,7 +18,6 @@ const Login = (props) => {
         }).catch(error => {
             console.log("login error", error)
         })
-
         event.preventDefault();
     }
 

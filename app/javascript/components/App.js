@@ -50,14 +50,14 @@ const App = () => {
             <Switch>
                 <Route exact path='/' component={Home}/>
                 <Route exact
-                       path='/signin'
+                       path='/sign_in'
                        render={props => (
                                <Login {...props}
                                       handleSuccessfulAuth={handleLogin}
                                />
                            )}
                 />
-                <Route exact path='/signup' render={props => (
+                <Route exact path='/sign_up' render={props => (
                         <Registration {...props}
                                handleSuccessfulAuth={handleLogin}
                         />

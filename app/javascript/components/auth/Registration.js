@@ -51,7 +51,7 @@ const Registration = (props) => {
 
               <button type='submit' className="button">Register</button>
           </form>
-          <Link to='/signin'>Sign in</Link>
+          <Link to='/sign_in'>Sign in</Link>
       </div>
     );
 }

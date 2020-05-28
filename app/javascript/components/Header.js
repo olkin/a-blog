@@ -22,10 +22,10 @@ function Header(props) {
                     : <></>
                 }
                 {props.userSignedIn
-                    ? <li><Link to="/" onClick={handleLogout}>Logout</Link></li>
+                    ? <li><Link to="/" onClick={handleLogout}>Sign out</Link></li>
                     : <>
-                        <li><Link to='/signin'>Sign in</Link></li>
-                        <li><Link to='/signup'>Sign up</Link></li>
+                        <li><Link to='/sign_in'>Sign in</Link></li>
+                        <li><Link to='/sign_up'>Sign up</Link></li>
                     </>
                 }
             </ul>

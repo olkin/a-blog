@@ -48,9 +48,9 @@ const Login = (props) => {
                     required
                 />
 
-                <button type='submit' className="button">Login</button>
+                <button type='submit' className="button">Sign in</button>
             </form>
-            <Link to='/signup'>Sign up</Link>
+            <Link to='/sign_up'>Sign up</Link>
         </div>
     );
 }

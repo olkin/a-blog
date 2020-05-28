@@ -1,12 +1,16 @@
 import React, {useState, useEffect} from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {BrowserRouter, Switch, Route, useHistory} from 'react-router-dom';
 import Home from "./Home";
-import Dashboard from "./Dashboard";
 import axios from 'axios';
+import Header from "./Header";
+import Login from "./auth/Login";
+import Registration from "./auth/Registration";
 
 const App = () => {
     const [loggedInStatus, setLoggedInStatus] = useState('NOT_LOGGED_IN');
     const [user, setUser] = useState({});
+
+    const history = useHistory();
 
     const checkLoginStatus = () => {
         axios.get('http://localhost:3000/logged_in',
@@ -29,34 +33,36 @@ const App = () => {
     const handleLogin = (data) => {
         setLoggedInStatus('LOGGED_IN');
         setUser(data.user);
+        history.push('/');
     }
 
     const handleLogout = () => {
         setLoggedInStatus('NOT_LOGGED_IN');
         setUser({});
+        history.push('/');
     }
+
+    const userSignedIn = () => loggedInStatus === 'LOGGED_IN';
 
     return (
         <div className='app'>
             <BrowserRouter>
+                <Header userSignedIn={userSignedIn()} handleLogout={handleLogout} user={user}/>
                 <Switch>
-                    <Route
-                        exact
-                        path={'/'}
-                        render={props => (
-                            <Home {...props}
-                                  handleLogin={handleLogin}
-                                  handleLogout={handleLogout}
-                                  loggedInStatus={loggedInStatus} />
-                        )}
+                    <Route exact path='/' component={Home}/>
+                    <Route exact
+                           path='/signin'
+                           render={props => (
+                                   <Login {...props}
+                                          handleSuccessfulAuth={handleLogin}
+                                   />
+                               )}
                     />
-                    <Route
-                        exact
-                        path={'/dashboard'}
-                        render={props => (
-                            <Dashboard {...props} loggedInStatus={loggedInStatus} />
-                        )}
-                    />
+                    <Route exact path={'/signup'} render={props => (
+                            <Registration {...props}
+                                   handleSuccessfulAuth={handleLogin}
+                            />
+                        )}/>
                 </Switch>
             </BrowserRouter>
         </div>

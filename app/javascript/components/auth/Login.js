@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 const Login = (props) => {
     const [formData, setFormData] = useState({email: '', password: ''});
@@ -28,6 +29,7 @@ const Login = (props) => {
 
     return (
         <div>
+            <h1>Sign in</h1>
             <form onSubmit={handleSubmit}>
                 <input
                     type='email'
@@ -49,6 +51,7 @@ const Login = (props) => {
 
                 <button type='submit' className="button">Login</button>
             </form>
+            <Link to='/signup'>Sign up</Link>
         </div>
     );
 }

@@ -1,7 +1,7 @@
 class Api::V1::PostsController < ApplicationController
   def index
-    posts = Post.system
-    render json: { posts: posts }
+    posts = Post.all
+    render json: posts
   end
   #
   # def create
@@ -33,18 +33,14 @@ class Api::V1::PostsController < ApplicationController
   #   end
   # end
   #
-  # def destroy
-  #   # TODO: check if this user can destroy
-  #   @post = Post.find(params[:id])
-  #
-  #   if @post.destroy!
-  #     flash[:success] = 'Post was successfully removed'
-  #   else
-  #     flash[:error] = 'Post could not be removed'
-  #   end
-  #
-  #   redirect_to root_path
-  # end
+  def destroy
+    # TODO: check if this user can destroy
+    post = Post.find(params[:id])
+
+    post.destroy!
+
+    render json: { }
+  end
   #
   # private
   #

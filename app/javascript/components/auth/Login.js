@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 
 const Login = (props) => {
     const [formData, setFormData] = useState({email: '', password: ''});
-    //const [loginErrors, setLoginErrors] = useState('');
+    const [loginErrors, setLoginErrors] = useState('');
 
     const handleSubmit = (event) => {
         axios.post(
@@ -17,6 +17,7 @@ const Login = (props) => {
             }
         }).catch(error => {
             console.log("login error", error)
+            setLoginErrors('Email or password didn not match');
         })
         event.preventDefault();
     }
@@ -29,6 +30,11 @@ const Login = (props) => {
     return (
         <div>
             <h1>Sign in</h1>
+            { loginErrors.length > 0
+                ? <div>{loginErrors}</div>
+                : <></>
+            }
+
             <form onSubmit={handleSubmit}>
                 <input
                     type='email'

@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 
 const Registration = (props) => {
     const [formData, setFormData] = useState({email: '', password: ''});
-    //const [registrationErrors, setRegistrationErrors] = useState('');
+    const [registrationErrors, setRegistrationErrors] = useState('');
 
     const handleSubmit = (event) => {
         axios.post(
@@ -17,6 +17,7 @@ const Registration = (props) => {
             }
         }).catch(error => {
             console.log("registration error", error)
+            setRegistrationErrors('Account already registered');
         })
 
         event.preventDefault();
@@ -30,6 +31,10 @@ const Registration = (props) => {
     return (
       <div>
           <h1>Sign up</h1>
+          { registrationErrors.length > 0
+              ? <div>{registrationErrors}</div>
+              : <></>
+          }
           <form onSubmit={handleSubmit}>
               <input
                   type='email'

@@ -1,22 +1,15 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from "react";
 
-class Post extends React.Component {
-    render () {
-        return (
-            <div className="post">
-                <h3>{this.props.title}</h3>
-                <p>
-                    {this.props.body}
-                </p>
+function Post({post}) {
+    return (
+        <div>
+            <h3>{post.title || '...'}</h3>
+            <div>by {post.user_id}</div>
+            <div>
+                {post.body}
             </div>
-        );
-    }
+        </div>
+    );
 }
 
-Post.propTypes = {
-    title: PropTypes.string,
-    body: PropTypes.string.isRequired
-};
-
-export default Post
+export default Post;

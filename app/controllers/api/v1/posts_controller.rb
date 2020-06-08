@@ -1,5 +1,8 @@
 class Api::V1::PostsController < ApplicationController
-  # before_action :require_login
+  def index
+    posts = Post.system
+    render json: { posts: posts }
+  end
   #
   # def create
   #   @post = current_user.posts.build(post_params)

@@ -7,5 +7,10 @@ Rails.application.routes.draw do
   get :sign_up, to: 'home#index'
   root to: 'home#index'
 
-    # resources :posts, only: [:create, :edit, :destroy, :update]
+  namespace :api do
+    namespace :v1 do
+      resources :posts, only: [:index]
+      #resources :posts, only: [:create, :edit, :destroy, :update]
+    end
+  end
 end

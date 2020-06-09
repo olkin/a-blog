@@ -7,23 +7,18 @@ class Api::V1::PostsController < ApplicationController
   def show
     render json: Post.find(params[:id])
   end
-  #
-  # def create
-  #   @post = current_user.posts.build(post_params)
-  #
-  #   if @post.save
-  #     redirect_to root_path
-  #   else
-  #     flash[:error] = 'Oopsie'
-  #     render :edit
-  #   end
-  # end
-  #
-  # def edit
-  #   # TODO: check if this user can edit
-  #   post = Post.find(params[:id])
-  # end
-  #
+
+  def create
+    current_user = User.last # TODO: read user
+    post = current_user.posts.build(post_params)
+
+    if post.save
+      render json: post, status: :created
+    else
+      render json: { error: post.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
   def update
     # TODO: check if this user can update
     post = Post.find(params[:id])

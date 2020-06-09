@@ -5,7 +5,6 @@ import axios from "axios";
 function EditPost(props) {
     const [post, setPost] = useState(null);
     const postUrl = `/api/v1/posts/${props.match.params.id}`;
-    const postsUrl = '/api/v1/posts';
 
     useEffect(() => {
         fetch(postUrl)

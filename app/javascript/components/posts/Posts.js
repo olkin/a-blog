@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import Post from "./Post";
+import {Link} from "react-router-dom";
 
 function NoPosts() {
     return (
@@ -45,6 +46,9 @@ function Posts() {
 
     return (
         <>
+        <Link to="/posts/new">
+            Create New Post
+        </Link>
         {posts.length > 0
             ?
             <AllPosts

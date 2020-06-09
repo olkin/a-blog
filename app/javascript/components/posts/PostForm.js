@@ -32,7 +32,7 @@ function PostForm({onFormSubmit, post}) {
                     id="postBody"
                     required
                     onChange={onChange}
-                    value={state.body}
+                    value={state.body || ''}
                 />
             </div>
             <button type="submit" className="button">

@@ -46,9 +46,11 @@ function Posts() {
 
     return (
         <>
-        <Link to="/posts/new">
-            Create New Post
-        </Link>
+        <div>
+            <Link to="/posts/new">
+                Create New Post
+            </Link>
+        </div>
         {posts.length > 0
             ?
             <AllPosts

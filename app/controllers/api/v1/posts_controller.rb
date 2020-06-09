@@ -24,7 +24,7 @@ class Api::V1::PostsController < ApplicationController
     # TODO: check if this user can update
     @post.update(post_params)
 
-    render json: post
+    render json: @post
   end
   #
   def destroy

@@ -8,7 +8,7 @@ import Registration from "./auth/Registration";
 import EditPost from "./posts/EditPost";
 import NewPost from "./posts/NewPost";
 
-const App = () => {
+function App() {
     const [loggedInStatus, setLoggedInStatus] = useState('NOT_LOGGED_IN');
     const [user, setUser] = useState({});
 

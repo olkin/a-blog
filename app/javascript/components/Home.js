@@ -1,12 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Posts from "./posts/Posts";
 import {Link} from "react-router-dom";
+import userContext from "./userContext";
 
 function Home() {
+    const userInfo = useContext(userContext);
+
     return (
       <div>
-
-          <h1>Welcome</h1>
+          <h1>Welcome, {userInfo.user.email} </h1>
           <div>
                    <Link to="/posts/new">
                        Create New Post

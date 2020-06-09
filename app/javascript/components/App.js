@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, createContext} from 'react';
 import {Switch, Route, useHistory} from 'react-router-dom';
 import Home from "./Home";
 import axios from 'axios';
@@ -7,6 +7,7 @@ import Login from "./auth/Login";
 import Registration from "./auth/Registration";
 import EditPost from "./posts/EditPost";
 import NewPost from "./posts/NewPost";
+import userContext from "./userContext";
 
 function App() {
     const [loggedInStatus, setLoggedInStatus] = useState('NOT_LOGGED_IN');
@@ -47,7 +48,7 @@ function App() {
     const userSignedIn = () => loggedInStatus === 'LOGGED_IN';
 
     return (
-        <div>
+        <userContext.Provider value={{user: user}}>
             <Header userSignedIn={userSignedIn()} handleLogout={handleLogout} user={user}/>
             <Switch>
                 <Route exact path='/' component={Home}/>
@@ -68,7 +69,7 @@ function App() {
                 <Route path="/posts/new" exact component={NewPost} />
                 <Route path="/posts/:id/edit" exact component={EditPost} />
             </Switch>
-        </div>
+        </userContext.Provider>
     );
 }
 

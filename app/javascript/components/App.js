@@ -7,10 +7,20 @@ import Login from "./auth/Login";
 import Registration from "./auth/Registration";
 import EditPost from "./posts/EditPost";
 import NewPost from "./posts/NewPost";
+import withListLoading from "./withListLoading";
+import List from "./List";
+import '../styles/App.css';
 
 const App = () => {
     const [loggedInStatus, setLoggedInStatus] = useState('NOT_LOGGED_IN');
     const [user, setUser] = useState({});
+
+    const ListLoading = withListLoading(List);
+    const [appState, setAppState] = useState({
+        loading: false,
+        repos: null,
+    });
+
 
     const history = useHistory();
 
@@ -30,7 +40,27 @@ const App = () => {
         })
     }
 
-    useEffect(checkLoginStatus, []);
+    const loadRepos = () => {
+        const apiUrl = `https://api.github.com/users/hacktivist123/repos`;
+        // fetch(apiUrl)
+        //     .then((res) => res.json())
+        //     .then((repos) => {
+        //         setAppState({ loading: false, repos: repos });
+        //     });
+
+        axios.get(apiUrl)
+            .then((repos) => {
+                const allRepos = repos.data;
+                setAppState({loading: false, repos: allRepos});
+            });
+    }
+
+    useEffect(checkLoginStatus, [])
+
+    useEffect(() => {
+        setAppState({ loading: true, repos: null });
+        loadRepos();
+    }, [setAppState]);
 
     const handleLogin = (data) => {
         setLoggedInStatus('LOGGED_IN');
@@ -48,6 +78,13 @@ const App = () => {
 
     return (
         <div>
+            <div className='container'>
+                <h1>My Repositories</h1>
+            </div>
+            <div className='repo-container'>
+                <ListLoading isLoading={appState.loading} repos={appState.repos} />
+            </div>
+
             <Header userSignedIn={userSignedIn()} handleLogout={handleLogout} user={user}/>
             <Switch>
                 <Route exact path='/' component={Home}/>

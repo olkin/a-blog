@@ -1,16 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import Post from "./Post";
-import {Link} from "react-router-dom";
 
-function NoPosts() {
-    return (
-        <>
-            Nothing exciting happened yet. Check back soon!
-        </>);
-}
-
-function AllPosts({posts, onPostDeleted}) {
+function PostsList({posts, onPostDeleted}) {
     return (
         <>
             <h2>Recent posts</h2>
@@ -25,43 +17,31 @@ function AllPosts({posts, onPostDeleted}) {
 }
 
 function Posts() {
-    const [posts, setPosts] = useState([]);
+    const [postsState, setPostsState] = useState({posts: [], loading: null});
 
     const loadPosts = () => {
         axios.get('http://localhost:3000/api/v1/posts',
             {withCredentials: true}
         ).then(response => {
-            setPosts(response.data);
+            setPostsState({loading: false, posts: response.data});
         }).catch(error => {
             console.log("posts error", error)
         })
     }
 
-    useEffect(loadPosts, []);
+    useEffect(() => {
+        setPostsState({...postsState, loading: true});
+        loadPosts();
+        }, [setPostsState]);
 
     const onPostDeleted = (post_id) => {
-        const newPosts = posts.filter(post => post.id !== post_id);
-        setPosts(newPosts);
+        const newPosts = postsState.posts.filter(post => post.id !== post_id);
+        setPostsState({...postsState, posts: newPosts});
     };
 
-    return (
-        <>
-        <div>
-            <Link to="/posts/new">
-                Create New Post
-            </Link>
-        </div>
-        {posts.length > 0
-            ?
-            <AllPosts
-                posts={posts}
-                onPostDeleted={onPostDeleted}
-            />
-            : <NoPosts />
-        }
-        </>
-
-    );
+    if (postsState.loading == null || postsState.loading) return <>Loading...</>;
+    if (postsState.posts.length == 0) return <>No public posts</>;
+    return <PostsList posts={postsState.posts} onPostDeleted={onPostDeleted}/>;
 }
 
 export default Posts;

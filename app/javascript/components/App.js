@@ -1,12 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {Switch, Route, useHistory, BrowserRouter} from 'react-router-dom';
-import Home from "./Home";
+import {useHistory} from 'react-router-dom';
 import axios from 'axios';
-import Header from "./Header";
-import Login from "./auth/Login";
-import Registration from "./auth/Registration";
-import EditPost from "./posts/EditPost";
-import NewPost from "./posts/NewPost";
+import AppRoutes from "../routes/AppRoutes";
 
 const App = () => {
     const [loggedInStatus, setLoggedInStatus] = useState('NOT_LOGGED_IN');
@@ -44,32 +39,12 @@ const App = () => {
         history.push('/');
     }
 
-    const userSignedIn = () => loggedInStatus === 'LOGGED_IN';
-
-    return (
-        <BrowserRouter>
-            <Header userSignedIn={userSignedIn()} handleLogout={handleLogout} user={user}/>
-            <Switch>
-                <Route exact path='/' component={Home}/>
-                <Route exact
-                       path='/sign_in'
-                       render={props => (
-                               <Login {...props}
-                                      handleSuccessfulAuth={handleLogin}
-                               />
-                           )}
-                />
-                <Route exact path='/sign_up' render={props => (
-                        <Registration {...props}
-                               handleSuccessfulAuth={handleLogin}
-                        />
-                    )}/>
-                <Route path="/posts" exact component={Home} />
-                <Route path="/posts/new" exact component={NewPost} />
-                <Route path="/posts/:id/edit" exact component={EditPost} />
-            </Switch>
-        </BrowserRouter>
-    );
+    return <AppRoutes
+        handleLogout={handleLogout}
+        handleLogin={handleLogin}
+        user={user}
+        loggedInStatus={loggedInStatus}
+    />
 }
 
 export default App;

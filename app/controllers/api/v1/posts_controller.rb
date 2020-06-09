@@ -1,11 +1,12 @@
 class Api::V1::PostsController < ApplicationController
+  before_action :set_post, only: [:destroy, :update, :show]
   def index
-    posts = Post.all
+    posts = Post.order(created_at: :desc)
     render json: posts
   end
 
   def show
-    render json: Post.find(params[:id])
+    render json: @post
   end
 
   def create
@@ -21,17 +22,14 @@ class Api::V1::PostsController < ApplicationController
 
   def update
     # TODO: check if this user can update
-    post = Post.find(params[:id])
-    post.update(post_params)
+    @post.update(post_params)
 
     render json: post
   end
   #
   def destroy
     # TODO: check if this user can destroy
-    post = Post.find(params[:id])
-
-    post.destroy!
+    @post.destroy!
 
     render json: { }
   end
@@ -40,5 +38,9 @@ class Api::V1::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :body, :kind)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 end

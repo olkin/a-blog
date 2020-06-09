@@ -1,5 +1,6 @@
 import React from "react"
 import {Link} from "react-router-dom";
+import axios from "axios";
 
 function Post(props) {
     const {id, title, body} = props.post;
@@ -10,22 +11,15 @@ function Post(props) {
     }
 
     const deletePost = () => {
-        const token = document.querySelector('meta[name="csrf-token"]').content;
-        fetch(urls.destroy, {
-            method: "DELETE",
-            headers: {
-                "X-CSRF-Token": token,
-                "Content-Type": "application/json"
-            }
+        //const token = document.querySelector('meta[name="csrf-token"]').content;
+        axios.delete(
+            urls.destroy,
+            {withCredentials: true}
+        ).then(() => {
+            props.onPostDeleted(id);
+        }).catch(error => {
+            console.log("login error", error)
         })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error("Network response was not ok.");
-            })
-            .then(() => props.onPostDeleted(id))
-            .catch(error => console.log(error.message));
     }
 
     return (

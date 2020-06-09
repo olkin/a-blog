@@ -5,6 +5,7 @@ import axios from 'axios';
 import Header from "./Header";
 import Login from "./auth/Login";
 import Registration from "./auth/Registration";
+import EditPost from "./posts/EditPost";
 
 const App = () => {
     const [loggedInStatus, setLoggedInStatus] = useState('NOT_LOGGED_IN');
@@ -62,6 +63,7 @@ const App = () => {
                                handleSuccessfulAuth={handleLogin}
                         />
                     )}/>
+                <Route path="/posts/:id/edit" exact component={EditPost} />
             </Switch>
         </div>
     );

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import axios from "axios";
+import ThemeToggler from "./ThemeToggler";
 
 function Header(props) {
     const handleLogout = () => {
@@ -29,6 +30,8 @@ function Header(props) {
                     </>
                 }
             </ul>
+
+            <ThemeToggler />
         </div>
     )
 }

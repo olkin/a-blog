@@ -7,12 +7,16 @@ import Login from "./auth/Login";
 import Registration from "./auth/Registration";
 import EditPost from "./posts/EditPost";
 import NewPost from "./posts/NewPost";
+import ThemeContext from "./ThemeContext";
+import Main from "./Main";
 
 const App = () => {
     const [loggedInStatus, setLoggedInStatus] = useState('NOT_LOGGED_IN');
     const [user, setUser] = useState({});
+    const themeHook = useState("light");
 
     const history = useHistory();
+
 
     const checkLoginStatus = () => {
         axios.get('http://localhost:3000/logged_in',
@@ -47,8 +51,9 @@ const App = () => {
     const userSignedIn = () => loggedInStatus === 'LOGGED_IN';
 
     return (
-        <div>
+        <ThemeContext.Provider value={themeHook}>
             <Header userSignedIn={userSignedIn()} handleLogout={handleLogout} user={user}/>
+            <Main />
             <Switch>
                 <Route exact path='/' component={Home}/>
                 <Route exact
@@ -68,7 +73,7 @@ const App = () => {
                 <Route path="/posts/new" exact component={NewPost} />
                 <Route path="/posts/:id/edit" exact component={EditPost} />
             </Switch>
-        </div>
+        </ThemeContext.Provider>
     );
 }
 

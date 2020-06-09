@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Switch, Route, useHistory} from 'react-router-dom';
+import {Switch, Route, useHistory, BrowserRouter} from 'react-router-dom';
 import Home from "./Home";
 import axios from 'axios';
 import Header from "./Header";
@@ -47,7 +47,7 @@ const App = () => {
     const userSignedIn = () => loggedInStatus === 'LOGGED_IN';
 
     return (
-        <div>
+        <BrowserRouter>
             <Header userSignedIn={userSignedIn()} handleLogout={handleLogout} user={user}/>
             <Switch>
                 <Route exact path='/' component={Home}/>
@@ -68,7 +68,7 @@ const App = () => {
                 <Route path="/posts/new" exact component={NewPost} />
                 <Route path="/posts/:id/edit" exact component={EditPost} />
             </Switch>
-        </div>
+        </BrowserRouter>
     );
 }
 

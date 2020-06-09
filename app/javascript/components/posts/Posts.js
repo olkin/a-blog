@@ -40,7 +40,7 @@ function Posts() {
     };
 
     if (postsState.loading == null || postsState.loading) return <>Loading...</>;
-    if (postsState.posts.length == 0) return <>No public posts</>;
+    if (postsState.posts.length === 0) return <>No public posts</>;
     return <PostsList posts={postsState.posts} onPostDeleted={onPostDeleted}/>;
 }
 

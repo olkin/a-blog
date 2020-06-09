@@ -64,6 +64,7 @@ const App = () => {
                                handleSuccessfulAuth={handleLogin}
                         />
                     )}/>
+                <Route path="/posts" exact component={Home} />
                 <Route path="/posts/new" exact component={NewPost} />
                 <Route path="/posts/:id/edit" exact component={EditPost} />
             </Switch>

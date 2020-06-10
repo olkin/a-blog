@@ -13,7 +13,7 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def create
-    post = current_user.posts.build(post_params)
+    post = Post.new(post_params.merge(user: current_user))
 
     if post.save
       render json: post, status: :created

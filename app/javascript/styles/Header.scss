@@ -1,0 +1,15 @@
+$navigation-color: #009999;
+
+.top-bar {
+    background: $navigation-color;
+    padding: 0;
+
+    .menu {
+        background: $navigation-color;
+        color: white;
+
+        a {
+            color: inherit;
+        }
+    }
+}

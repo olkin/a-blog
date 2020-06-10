@@ -1,9 +1,11 @@
-import React from "react"
+import React, {useContext} from "react"
 import {Link} from "react-router-dom";
 import axios from "axios";
+import userContext from "../userContext";
 
 function Post(props) {
-    const {id, title, body} = props.post;
+    const {id, title, body, user_id} = props.post;
+    const userInfo = useContext(userContext);
 
     const urls = {
         destroy: `/api/v1/posts/${id}`,
@@ -22,21 +24,27 @@ function Post(props) {
         })
     }
 
+    const canUpdate = () => userInfo.user.id === user_id;
+
     return (
         <div className="post">
             <h3>{title}</h3>
             <p>
                 {body}
             </p>
-            <p>
-                <Link to={urls.edit}>
-                    Edit
-                </Link>
+            { canUpdate()
+                ?   <p>
+                    <Link to={urls.edit}>
+                        Edit
+                    </Link>
 
-                <a onClick={deletePost}>
-                    Delete
-                </a>
-            </p>
+                    <a onClick={deletePost}>
+                        Delete
+                    </a>
+                </p>
+                : <></>
+            }
+
         </div>
     );
 }

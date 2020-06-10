@@ -45,8 +45,6 @@ function App() {
         history.push('/');
     }
 
-    const userSignedIn = () => loggedInStatus === 'LOGGED_IN';
-
     return (
         <userContext.Provider value={{user: user}}>
             <Header handleLogout={handleLogout}/>

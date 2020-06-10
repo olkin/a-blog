@@ -3,6 +3,7 @@ module CurrentUserConcern
 
   included do
     before_action :set_current_user
+    attr_reader :current_user
   end
 
   def set_current_user

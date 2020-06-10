@@ -1,5 +1,8 @@
 class Api::V1::PostsController < ApplicationController
+  include CurrentUserConcern
+
   before_action :set_post, only: [:destroy, :update, :show]
+
   def index
     posts = Post.order(created_at: :desc)
     render json: posts
@@ -10,7 +13,6 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def create
-    current_user = User.last # TODO: read user
     post = current_user.posts.build(post_params)
 
     if post.save

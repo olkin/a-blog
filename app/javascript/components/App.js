@@ -49,7 +49,7 @@ function App() {
 
     return (
         <userContext.Provider value={{user: user}}>
-            <Header userSignedIn={userSignedIn()} handleLogout={handleLogout} user={user}/>
+            <Header handleLogout={handleLogout}/>
             <Switch>
                 <Route exact path='/' component={Home}/>
                 <Route exact

@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
 import axios from "axios";
+import userContext from "./userContext";
 
 function Header(props) {
+    const userInfo = useContext(userContext);
+
     const handleLogout = () => {
         axios.delete('http://localhost:3000/logout',
             {withCredentials: true}
@@ -17,11 +20,7 @@ function Header(props) {
         <div>
             <ul>
                 <li><Link to='/'>Home</Link></li>
-                {props.userSignedIn && props.user
-                    ? <li>Welcome, {props.user.email}</li>
-                    : <></>
-                }
-                {props.userSignedIn
+                {userInfo.user.email
                     ? <li><Link to="/" onClick={handleLogout}>Sign out</Link></li>
                     : <>
                         <li><Link to='/sign_in'>Sign in</Link></li>

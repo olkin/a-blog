@@ -8,7 +8,7 @@ function Home() {
 
     return (
       <div>
-          <h1>Welcome, {userInfo.user.email} </h1>
+          <h1>Welcome, {userInfo.user.email || 'Guest'} </h1>
           <div>
                    <Link to="/posts/new">
                        Create New Post

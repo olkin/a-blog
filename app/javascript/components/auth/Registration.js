@@ -8,7 +8,7 @@ function Registration(props) {
 
     const handleSubmit = (event) => {
         axios.post(
-            'http://localhost:3000/registrations',
+            '/registrations',
             {user: formData},
             {withCredentials: true}
         ).then(response => {

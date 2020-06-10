@@ -7,7 +7,7 @@ function Header(props) {
     const userInfo = useContext(userContext);
 
     const handleLogout = () => {
-        axios.delete('http://localhost:3000/logout',
+        axios.delete('/logout',
             {withCredentials: true}
         ).then(() => {
             props.handleLogout()

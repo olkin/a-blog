@@ -20,7 +20,7 @@ function Posts() {
     const [postsState, setPostsState] = useState({posts: [], loading: null});
 
     const loadPosts = () => {
-        axios.get('http://localhost:3000/api/v1/posts',
+        axios.get('/api/v1/posts',
             {withCredentials: true}
         ).then(response => {
             setPostsState({loading: false, posts: response.data});

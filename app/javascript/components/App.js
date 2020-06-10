@@ -16,7 +16,7 @@ function App() {
     const history = useHistory();
 
     const checkLoginStatus = () => {
-        axios.get('http://localhost:3000/logged_in',
+        axios.get('/logged_in',
             {withCredentials: true}
         ).then(response => {
             if (response.data.logged_in && loggedInStatus === 'NOT_LOGGED_IN') {

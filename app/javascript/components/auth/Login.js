@@ -8,7 +8,7 @@ function Login(props) {
 
     const handleSubmit = (event) => {
         axios.post(
-            'http://localhost:3000/sessions',
+            '/sessions',
             {user: formData},
             {withCredentials: true}
         ).then(response => {

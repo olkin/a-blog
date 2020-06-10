@@ -1,14 +1,10 @@
 import React, {useState, useEffect, createContext} from 'react';
-import {Switch, Route, useHistory} from 'react-router-dom';
-import Home from "./Home";
+import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 import Header from "./Header";
-import Login from "./auth/Login";
-import Registration from "./auth/Registration";
-import EditPost from "./posts/EditPost";
-import NewPost from "./posts/NewPost";
 import userContext from "./userContext";
 import Footer from "./Footer";
+import Main from "./Main";
 import Hero from "./Hero";
 
 function App() {
@@ -51,25 +47,7 @@ function App() {
         <userContext.Provider value={{user: user}}>
             <Header handleLogout={handleLogout}/>
             <Hero />
-            <Switch>
-                <Route exact path='/' component={Home}/>
-                <Route exact
-                       path='/sign_in'
-                       render={props => (
-                               <Login {...props}
-                                      handleSuccessfulAuth={handleLogin}
-                               />
-                           )}
-                />
-                <Route exact path='/sign_up' render={props => (
-                        <Registration {...props}
-                               handleSuccessfulAuth={handleLogin}
-                        />
-                    )}/>
-                <Route path="/posts" exact component={Home} />
-                <Route path="/posts/new" exact component={NewPost} />
-                <Route path="/posts/:id/edit" exact component={EditPost} />
-            </Switch>
+            <Main handleLogin={handleLogin}/>
             <Footer />
         </userContext.Provider>
     );

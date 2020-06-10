@@ -8,6 +8,8 @@ import Registration from "./auth/Registration";
 import EditPost from "./posts/EditPost";
 import NewPost from "./posts/NewPost";
 import userContext from "./userContext";
+import Footer from "./Footer";
+import Hero from "./Hero";
 
 function App() {
     const [loggedInStatus, setLoggedInStatus] = useState('NOT_LOGGED_IN');
@@ -48,6 +50,7 @@ function App() {
     return (
         <userContext.Provider value={{user: user}}>
             <Header handleLogout={handleLogout}/>
+            <Hero />
             <Switch>
                 <Route exact path='/' component={Home}/>
                 <Route exact
@@ -67,6 +70,7 @@ function App() {
                 <Route path="/posts/new" exact component={NewPost} />
                 <Route path="/posts/:id/edit" exact component={EditPost} />
             </Switch>
+            <Footer />
         </userContext.Provider>
     );
 }

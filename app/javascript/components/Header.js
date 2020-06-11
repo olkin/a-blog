@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import axios from "axios";
 import userContext from "./userContext";
 import '../styles/Header.scss'
-import '../styles/AppStyles.scss'
+import '../styles/GlobalStyles.scss'
 
 function Header(props) {
     const userInfo = useContext(userContext);
@@ -23,13 +23,13 @@ function Header(props) {
             <div className="title-bar show-for-small-only">
                 <div className="title-bar-left">
                     <button className="menu-icon" type="button" data-open="mobile-menu"></button>
-                    <span className="title-bar-title">Home</span>
+                    <span className="title-bar-title">MENU</span>
                 </div>
             </div>
             <div className="top-bar nav-desktop show-for-medium">
                 <div className="wrap">
                     <div className="top-bar-left">
-                        <h3 className="site-logo"><Link to='/'>Home</Link></h3>
+                        <h3 className="site-logo"><Link to='/'>Match Point</Link></h3>
                     </div>
                     <div className="top-bar-right">
                         <ul className="menu menu-desktop">

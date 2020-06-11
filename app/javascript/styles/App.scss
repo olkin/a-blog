@@ -1,0 +1,20 @@
+@import '../../assets/stylesheets/colors';
+
+#mobile-menu{
+  background-color: $primary-theme-background-color;
+  padding: 10px;
+
+  li {
+    list-style: none;
+  }
+
+  a {
+    color: rgba(255,255,255,0.8);
+    font-weight: bold;
+    line-height: 2;
+
+    &:hover {
+      color: rgba(255,255,255,1);
+    }
+  }
+}

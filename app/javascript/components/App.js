@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import Main from "./Main";
 import Hero from "./Hero";
 import MobileMenu from "./MobileMenu";
+import '../styles/App.scss'
 
 function App() {
     const [loggedInStatus, setLoggedInStatus] = useState('NOT_LOGGED_IN');

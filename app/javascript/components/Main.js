@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/AppStyles.scss'
+import '../styles/GlobalStyles.scss'
 import {Route, Switch} from "react-router-dom";
 import Home from "./Home";
 import Login from "./auth/Login";

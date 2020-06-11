@@ -1,12 +1,12 @@
 import React from 'react';
 import '../styles/Hero.scss'
-import '../styles/AppStyles.scss'
+import '../styles/GlobalStyles.scss'
 
 function Footer() {
     return (
         <section className="hero">
             <div className="wrap">
-                <h1>Welcome to Home</h1>
+                <h1>Welcome to Match Point</h1>
                 <p>
                     Cat ipsum dolor sit amet,
                     lie in the sink all day but i vomit in the bed in the middle of the night. I want to go outside let me go outside nevermind inside is better scoot butt on the rug meowwww ask for petting,

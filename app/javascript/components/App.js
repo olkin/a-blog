@@ -1,11 +1,12 @@
 import React, {useState, useEffect, createContext} from 'react';
-import {Route, Switch, useHistory} from 'react-router-dom';
+import {Link, Route, Switch, useHistory} from 'react-router-dom';
 import axios from 'axios';
 import Header from "./Header";
 import userContext from "./userContext";
 import Footer from "./Footer";
 import Main from "./Main";
 import Hero from "./Hero";
+import MobileMenu from "./MobileMenu";
 
 function App() {
     const [loggedInStatus, setLoggedInStatus] = useState('NOT_LOGGED_IN');
@@ -44,14 +45,21 @@ function App() {
     }
 
     return (
-        <userContext.Provider value={{user: user}}>
-            <Header handleLogout={handleLogout}/>
-            <Switch>
-                <Route exact path='/' component={Hero}/>
-            </Switch>
-            <Main handleLogin={handleLogin}/>
-            <Footer />
-        </userContext.Provider>
+        <div className="off-canvas-wrapper">
+            <div className="off-canvas position-left" id="mobile-menu" data-off-canvas>
+                <MobileMenu />
+            </div>
+            <div className="off-canvas-content" data-off-canvas-content>
+                <userContext.Provider value={{user: user}}>
+                    <Header handleLogout={handleLogout}/>
+                    <Switch>
+                        <Route exact path='/' component={Hero}/>
+                    </Switch>
+                    <Main handleLogin={handleLogin}/>
+                    <Footer />
+                </userContext.Provider>
+            </div>
+        </div>
     );
 }
 

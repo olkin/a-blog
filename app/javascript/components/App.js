@@ -1,5 +1,5 @@
 import React, {useState, useEffect, createContext} from 'react';
-import {useHistory} from 'react-router-dom';
+import {Route, Switch, useHistory} from 'react-router-dom';
 import axios from 'axios';
 import Header from "./Header";
 import userContext from "./userContext";
@@ -46,7 +46,9 @@ function App() {
     return (
         <userContext.Provider value={{user: user}}>
             <Header handleLogout={handleLogout}/>
-            <Hero />
+            <Switch>
+                <Route exact path='/' component={Hero}/>
+            </Switch>
             <Main handleLogin={handleLogin}/>
             <Footer />
         </userContext.Provider>

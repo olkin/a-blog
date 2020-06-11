@@ -15,14 +15,14 @@ function Main(props) {
                     <Route exact path='/' component={Home}/>
                     <Route exact
                            path='/sign_in'
-                           render={props => (
-                               <Login {...props}
+                           render={loginProps => (
+                               <Login {...loginProps}
                                       handleSuccessfulAuth={props.handleLogin}
                                />
                            )}
                     />
-                    <Route exact path='/sign_up' render={props => (
-                        <Registration {...props}
+                    <Route exact path='/sign_up' render={registrationProps => (
+                        <Registration {...registrationProps}
                                       handleSuccessfulAuth={props.handleLogin}
                         />
                     )}/>

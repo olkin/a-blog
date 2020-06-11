@@ -19,17 +19,17 @@ function Header(props) {
     }
 
     return (
-        <div className="top-bar">
+        <div className="top-bar nav-desktop">
             <div className="wrap">
                 <div className="top-bar-left">
-                    <h3><Link to='/'>Home</Link></h3>
+                    <h3 className="site-logo"><Link to='/'>Home</Link></h3>
                 </div>
                 <div className="top-bar-right">
-                    <ul className="menu">
+                    <ul className="menu menu-desktop">
                         {userInfo.user.email
                             ?
                             <>
-                                <li>Welcome, {userInfo.user.email} </li>
+                                {/*<li> Welcome, {userInfo.user.email} </li>*/}
                                 <li><Link to="/" onClick={handleLogout}>Sign out</Link></li>
                             </>
                             : <>

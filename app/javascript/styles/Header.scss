@@ -1,16 +1,34 @@
-.top-bar {
-    //padding: 2em;
-    color: white;
+.nav-desktop {
+    height: 80px;
+    padding: 0;
+
+    .menu-desktop {
+        line-height: 80px;
+    }
+}
+
+.site-logo {
+    line-height: 80px;
 
     a {
-        color: inherit;
+        color: white;
     }
+}
 
-    .menu {
-        color: inherit;
+.menu-desktop > li > a {
+    display: inline-block;
+    line-height: 80px;
+    padding-top: 0;
+    padding-bottom: 0;
+    color: white;
 
-        a {
-            color: inherit;
-        }
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+}
+
+@media (max-width: 700px) {
+    .nav-desktop {
+        display: none;
     }
 }

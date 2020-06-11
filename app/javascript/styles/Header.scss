@@ -1,3 +1,5 @@
+@import '../../assets/stylesheets/colors';
+
 .nav-desktop {
     height: 80px;
     padding: 0;
@@ -11,7 +13,7 @@
     line-height: 80px;
 
     a {
-        color: white;
+        color: $primary-theme-background-text;
     }
 }
 
@@ -20,7 +22,7 @@
     line-height: 80px;
     padding-top: 0;
     padding-bottom: 0;
-    color: white;
+    color: $primary-theme-background-text;
 
     &:hover {
         background-color: rgba(255, 255, 255, 0.1);

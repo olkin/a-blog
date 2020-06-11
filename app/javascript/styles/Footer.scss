@@ -1,0 +1,11 @@
+@import '../../assets/stylesheets/colors';
+
+footer {
+  background-color: $primary-theme-background-color;
+  padding: 80px 0px;
+
+  a {
+    color: $primary-theme-background-text;
+    display: block;
+  }
+}

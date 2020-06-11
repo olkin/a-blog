@@ -6,6 +6,7 @@ import Login from "./auth/Login";
 import Registration from "./auth/Registration";
 import NewPost from "./posts/NewPost";
 import EditPost from "./posts/EditPost";
+import '../styles/Main.scss'
 
 function Main(props) {
     return (

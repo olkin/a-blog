@@ -27,7 +27,11 @@ function Header(props) {
                 <div className="top-bar-right">
                     <ul className="menu">
                         {userInfo.user.email
-                            ? <li><Link to="/" onClick={handleLogout}>Sign out</Link></li>
+                            ?
+                            <>
+                                <li>Welcome, {userInfo.user.email} </li>
+                                <li><Link to="/" onClick={handleLogout}>Sign out</Link></li>
+                            </>
                             : <>
                                 <li><Link to='/sign_in'>Sign in</Link></li>
                                 <li><Link to='/sign_up'>Sign up</Link></li>

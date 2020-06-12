@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
 import axios from "axios";
 import userContext from "./userContext";
-import '../styles/Header.scss';
+import './Header.scss';
 import '../styles/GlobalStyles.scss';
 
 function Header(props) {

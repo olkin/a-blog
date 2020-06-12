@@ -14,6 +14,7 @@
     "websocket-extensions": "^0.1.4"
   },
   "devDependencies": {
+    "css-loader": "^3.5.3",
     "webpack-dev-server": "^3.11.0"
   }
 }

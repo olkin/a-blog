@@ -7,19 +7,20 @@ function Home() {
     const userInfo = useContext(userContext);
 
     return (
-        <div>
-            <h1>Welcome, {userInfo.user.email || 'Guest'} </h1>
-            {userInfo.user.email
-                ?
-                <div>
-                    <Link to="/posts/new">
-                        Create New Post
+        <div className="grid-x">
+            <div className="cell large-8">
+                {userInfo.user.email
+                    ?
+                    <Link to="/posts/new" className="button">
+                        New Post
                     </Link>
-                </div>
-                : <></>
-            }
+                    : <></>
+                }
 
-            <Posts/>
+                <Posts/>
+            </div>
+            <div className="cell large-4">
+            </div>
         </div>
     );
 }

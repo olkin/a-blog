@@ -1,0 +1,20 @@
+@import '../../assets/stylesheets/colors';
+
+.card-divider {
+  display: block;
+  a {
+    color: $primary-theme-background-color;
+  }
+
+  .card-title {
+    float: left;
+  }
+}
+
+.available-actions {
+  float: right;
+
+  i {
+    margin-left: 10px;
+  }
+}

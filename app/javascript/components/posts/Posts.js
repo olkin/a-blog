@@ -5,7 +5,6 @@ import Post from "./Post";
 function PostsList({posts, onPostDeleted}) {
     return (
         <>
-            <h2>Recent posts</h2>
             {posts.map((post) =>
                 <Post key={post.id}
                       post={post}

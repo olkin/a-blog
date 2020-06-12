@@ -2,6 +2,7 @@ import React, {useContext} from "react"
 import {Link} from "react-router-dom";
 import axios from "axios";
 import userContext from "../userContext";
+import '../../styles/Post.scss'
 
 function Post(props) {
     const {id, title, body, user_id} = props.post;
@@ -27,24 +28,33 @@ function Post(props) {
     const canUpdate = () => userInfo.user.id === user_id;
 
     return (
-        <div className="post">
-            <h3>{title}</h3>
-            <p>
-                {body}
-            </p>
-            { canUpdate()
-                ?   <p>
-                    <Link to={urls.edit}>
-                        Edit
-                    </Link>
+        <div className="card">
+            <div className="card-divider">
+                <h4 className="card-title">
+                    {title}
+                </h4>
+                {canUpdate()
+                    ? <div className='available-actions'>
+                        <span>
+                            <Link to={urls.edit}>
+                                <i className="fa fa-edit" />
+                        </Link>
+                        </span>
+                        <span>
+                        <a onClick={deletePost}>
+                             <i className="fa fa-trash" />
+                        </a>
+                        </span>
+                    </div>
 
-                    <a onClick={deletePost}>
-                        Delete
-                    </a>
+                    : <></>
+                }
+            </div>
+            <div className="card-section">
+                <p>
+                    {body}
                 </p>
-                : <></>
-            }
-
+            </div>
         </div>
     );
 }

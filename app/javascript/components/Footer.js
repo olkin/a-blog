@@ -3,7 +3,7 @@ import '../styles/Footer.scss'
 
 function Footer() {
     return (
-        <footer>
+        <div className="footer">
             <div className="wrap">
                 <div className="grid-x grid-padding-x small-up-1 medium-up-3">
                     <div className="cell">
@@ -26,7 +26,7 @@ function Footer() {
                     </div>
                 </div>
             </div>
-        </footer>
+        </div>
     )
 }
 

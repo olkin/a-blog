@@ -10,9 +10,9 @@ function Footer() {
                 <h1>Welcome to Match Point</h1>
                 <ul>
                     <li>Find a tournament. Participate. Improve your skills <InProgressLabel /></li>
-                    <li>Find teammates <InProgressLabel /></li>
-                    <li>Find a team looking for you <InProgressLabel /></li>
-                    <li>Sign in to customize your feed <InProgressLabel /></li>
+                    <li>Find teammates. Get social <InProgressLabel /></li>
+                    <li>Find a team looking for you. Make them happy <InProgressLabel /></li>
+                    <li>Sign in to customize your feed. Make us happy <InProgressLabel /></li>
                 </ul>
             </div>
         </section>

@@ -5,7 +5,15 @@ function Event(props) {
         <div className="card">
             <div className="card-divider">
                 <h4 className="card-title">
-                    [{props.event.start_date}] {props.event.name}
+                    <strong>
+                        {new Intl.DateTimeFormat("en-US", {
+                            weekday: 'short',
+                            month: "short",
+                            day: "numeric"
+                        }).format(new Date(props.event.start_date))}
+                    </strong>
+
+                    {props.event.name}
                 </h4>
             </div>
             <div className="card-section">

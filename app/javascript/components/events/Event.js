@@ -17,6 +17,7 @@ function Event(props) {
                     </div>
                 </div>
             </div>
+
             <div className="event-card__details">
                 <h6 className='event-card__date-range'>{formattedDate}</h6>
                 <div className="grid-x">

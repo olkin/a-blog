@@ -39,6 +39,10 @@ $event-card-header-background-color: #56524b;
   }
 }
 
+.event-card__image {
+  margin-top: 5px;
+}
+
 .event-card__details{
   background: #f0f0f0;
   border-left: 1px solid #ddd;

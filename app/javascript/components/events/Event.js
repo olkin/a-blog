@@ -21,8 +21,16 @@ function Event(props) {
                 <h6 className='event-card__date-range'>{formattedDate}</h6>
                 <div className="grid-x">
                     <div className='cell small-12 medium-9 event-card__content'>
-                        <h6 className="event-card__title">{props.event.name}</h6>
-                        <p>{props.event.info}</p>
+                        <div className="grid-x">
+                            <div className="cell small-4 medium-2">
+                                <img className="travel-feature-card-image"
+                                     alt="No image"/>
+                            </div>
+                            <div className="cell small-8 medium-10">
+                                <h6 className="event-card__title">{props.event.name}</h6>
+                                <p>{props.event.info}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

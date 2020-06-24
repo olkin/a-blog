@@ -23,8 +23,9 @@ function Event(props) {
                     <div className='cell small-12 medium-9 event-card__content'>
                         <div className="grid-x">
                             <div className="cell small-4 medium-2">
-                                <img className="travel-feature-card-image"
-                                     alt="No image"/>
+                                {/*<img className="travel-feature-card-image"*/}
+                                {/*     src=""*/}
+                                {/*     alt=""/>*/}
                             </div>
                             <div className="cell small-8 medium-10">
                                 <h6 className="event-card__title">{props.event.name}</h6>

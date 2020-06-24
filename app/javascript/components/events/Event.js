@@ -2,6 +2,10 @@ import React from 'react';
 import '../../styles/Event.scss'
 
 function Event(props) {
+    const formattedDate = new Intl.DateTimeFormat('en',
+        { weekday: 'short', month: 'short', day: '2-digit' })
+        .format(new Date(props.event.start_date));
+
     return (
         <div className="event-card">
             <div className="event-card__header icon beach-icon">
@@ -14,7 +18,7 @@ function Event(props) {
                 </div>
             </div>
             <div className="event-card__details">
-                <h6 className='event-card__date-range'>{props.event.start_date.toString()}</h6>
+                <h6 className='event-card__date-range'>{formattedDate}</h6>
                 <div className="grid-x">
                     <div className='cell small-12 medium-9 event-card__content'>
                         <h6 className="event-card__title">{props.event.name}</h6>

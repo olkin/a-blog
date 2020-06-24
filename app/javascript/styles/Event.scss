@@ -1,0 +1,61 @@
+@import '../../assets/stylesheets/colors';
+
+$event-card-header-font-color: black;
+$event-card-header-background-color: #56524b;
+
+.event-card__header {
+  margin-top: 30px;
+  background-color: $primary-theme-background-color;
+  padding: 10px 15px 5px 45px;
+  position: relative;
+
+  &.icon:after {
+    font: normal normal normal 14px/1 FontAwesome;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+  }
+
+  &.beach-icon:after {
+    font-family: FontAwesome;
+    //top:0;
+    //left:-5px;
+    //padding-right:10px;
+    content: "\f185";
+  }
+
+  .event-card__subtitle {
+    float: left;
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-size: 1em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+}
+
+.event-card__details{
+  background: #f0f0f0;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 20px;
+  //color: $primary-theme-background-color;
+}
+
+.event-card__title {
+  font-weight: 500;
+  font-size: 1.25em;
+  color: $event-card-header-font-color;
+}
+
+.event-card__date-range {
+  font-size: 0.9em;
+  font-weight: 700;
+  color: $event-card-header-font-color;
+}

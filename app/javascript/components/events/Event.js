@@ -1,25 +1,26 @@
 import React from 'react';
+import '../../styles/Event.scss'
 
 function Event(props) {
     return (
-        <div className="card">
-            <div className="card-divider">
-                <h4 className="card-title">
-                    <strong>
-                        {new Intl.DateTimeFormat("en-US", {
-                            weekday: 'short',
-                            month: "short",
-                            day: "numeric"
-                        }).format(new Date(props.event.start_date))}
-                    </strong>
-
-                    {props.event.name}
-                </h4>
+        <div className="event-card">
+            <div className="event-card__header icon beach-icon">
+                <div className="grid-x">
+                    <div className="cell medium-12">
+                        <h4 className="event-card__subtitle">
+                            Tournament
+                        </h4>
+                    </div>
+                </div>
             </div>
-            <div className="card-section">
-                <p>
-                    {props.event.info}
-                </p>
+            <div className="event-card__details">
+                <h6 className='event-card__date-range'>{props.event.start_date.toString()}</h6>
+                <div className="grid-x">
+                    <div className='cell small-12 medium-9 event-card__content'>
+                        <h6 className="event-card__title">{props.event.name}</h6>
+                        <p>{props.event.info}</p>
+                    </div>
+                </div>
             </div>
         </div>
     );

@@ -1,23 +1,8 @@
-import React, {useContext} from 'react';
-import userContext from "./userContext";
+import React from 'react';
 import Events from "./events/Events";
 
 function Home() {
-    const userInfo = useContext(userContext);
-
-    return (
-    <>
-                {/*{userInfo.user.email*/}
-                {/*    ?*/}
-                {/*    <Link to="/posts/new" className="button">*/}
-                {/*        New Post*/}
-                {/*    </Link>*/}
-                {/*    : <></>*/}
-                {/*}*/}
-
-                <Events/>
-</>
-    );
+    return <Events/>
 }
 
 export default Home;

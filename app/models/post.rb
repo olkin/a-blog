@@ -1,9 +1,4 @@
 class Post < ApplicationRecord
-  KINDS = [:system]
-
   belongs_to :user
-
-  validates :body, presence: true
-
-  scope :system, ->{ where kind: :system }
+  belongs_to :postable, polymorphic: true
 end

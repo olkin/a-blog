@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  belongs_to :user
+  include Postable
 
   validates :name, :start_date, :info, presence: true
 

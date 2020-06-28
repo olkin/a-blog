@@ -18,9 +18,9 @@ function App() {
         axios.get('/logged_in',
             {withCredentials: true}
         ).then(response => {
-            if (response.data.logged_in && !user.email ) {
+            if (response.data.logged_in && !isLoggedIn() ) {
                 setUser(response.data.user);
-            } else if (!response.data.logged_in) {
+            } else if (!response.data.logged_in && isLoggedIn()) {
                 setUser({});
             }
         }).catch(error => {
@@ -40,6 +40,8 @@ function App() {
         history.push('/');
     }
 
+    const isLoggedIn = () => user.email?.length > 0;
+
     return (
         <div className="off-canvas-wrapper">
             <div className="off-canvas position-left" id="mobile-menu" data-off-canvas>
@@ -48,9 +50,13 @@ function App() {
             <div className="off-canvas-content" data-off-canvas-content>
                 <userContext.Provider value={{user: user}}>
                     <Header handleLogout={handleLogout}/>
-                    <Switch>
-                        <Route exact path='/' component={Hero}/>
-                    </Switch>
+                    { isLoggedIn()
+                        ? <></>
+                        :
+                        <Switch>
+                            <Route exact path='/' component={Hero}/>
+                        </Switch>
+                    }
                     <Main handleLogin={handleLogin}/>
                     <Footer />
                 </userContext.Provider>

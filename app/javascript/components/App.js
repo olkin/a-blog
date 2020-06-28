@@ -10,7 +10,6 @@ import MobileMenu from "./MobileMenu";
 import '../styles/App.scss'
 
 function App() {
-    const [loggedInStatus, setLoggedInStatus] = useState('NOT_LOGGED_IN');
     const [user, setUser] = useState({});
 
     const history = useHistory();
@@ -19,11 +18,9 @@ function App() {
         axios.get('/logged_in',
             {withCredentials: true}
         ).then(response => {
-            if (response.data.logged_in && loggedInStatus === 'NOT_LOGGED_IN') {
-                setLoggedInStatus('LOGGED_IN');
+            if (response.data.logged_in && !user.email ) {
                 setUser(response.data.user);
-            } else if (!response.data.logged_in && loggedInStatus === 'LOGGED_IN') {
-                setLoggedInStatus('NOT_LOGGED_IN');
+            } else if (!response.data.logged_in) {
                 setUser({});
             }
         }).catch(error => {
@@ -34,13 +31,11 @@ function App() {
     useEffect(checkLoginStatus, []);
 
     const handleLogin = (data) => {
-        setLoggedInStatus('LOGGED_IN');
         setUser(data.user);
         history.push('/');
     }
 
     const handleLogout = () => {
-        setLoggedInStatus('NOT_LOGGED_IN');
         setUser({});
         history.push('/');
     }

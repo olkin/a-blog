@@ -6,6 +6,8 @@ import Login from "./auth/Login";
 import Registration from "./auth/Registration";
 import NewPost from "./posts/NewPost";
 import EditPost from "./posts/EditPost";
+import Actions from "./Actions";
+import NewEvent from "./events/NewEvent";
 import '../styles/Main.scss'
 
 function Main(props) {
@@ -32,9 +34,12 @@ function Main(props) {
                             <Route path="/posts" exact component={Home}/>
                             <Route path="/posts/new" exact component={NewPost}/>
                             <Route path="/posts/:id/edit" exact component={EditPost}/>
+
+                            <Route path="/events/new" exact component={NewEvent}/>
                         </Switch>
                     </div>
                     <div className="cell large-4">
+                        <Actions />
                     </div>
                 </div>
             </div>

@@ -7,10 +7,12 @@ Rails.application.routes.draw do
   get :sign_up, to: 'home#index'
   root to: 'home#index'
 
+  resources :events, to: 'home#index'
+
   namespace :api do
     namespace :v1 do
       resources :posts, only: [:index, :destroy, :show, :update, :create]
-      resources :events, only: [:index]
+      resources :events, only: [:index, :create]
     end
   end
 end

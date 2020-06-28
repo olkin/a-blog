@@ -8,3 +8,9 @@
 * {
   outline: none;
 }
+
+.button--with-icon {
+  > .far, .fa {
+    margin-right: .5rem;
+  }
+}

@@ -17,11 +17,12 @@ ActiveRecord::Schema.define(version: 2020_06_22_190235) do
 
   create_table "events", force: :cascade do |t|
     t.string "name"
+    t.bigint "user_id"
     t.text "info"
     t.date "start_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|

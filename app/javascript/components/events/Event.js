@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../styles/Event.scss'
+import Avatar from "react-avatar";
 
 function Event(props) {
     const formattedDate = new Intl.DateTimeFormat('en',
@@ -24,9 +25,7 @@ function Event(props) {
                     <div className='cell small-12 medium-9 event-card__content'>
                         <div className="grid-x">
                             <div className="cell small-4 medium-2">
-                                {/*<img className="travel-feature-card-image"*/}
-                                {/*     src=""*/}
-                                {/*     alt=""/>*/}
+                                <Avatar className="event-card__image" size={50} name={props.event.user.email}/>
                             </div>
                             <div className="cell small-8 medium-10">
                                 <h6 className="event-card__title">{props.event.name}</h6>

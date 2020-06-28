@@ -1,6 +1,8 @@
 class Api::V1::EventsController < ApplicationController
   include CurrentUserConcern
 
+  before_action :set_event, only: [:destroy]
+
   def index
     events = Event.upcoming.order(:start_date)
     render json: events, include: :user
@@ -16,9 +18,20 @@ class Api::V1::EventsController < ApplicationController
     end
   end
 
+  def destroy
+    # TODO: check if this user can destroy
+    @event.destroy!
+
+    render json: { }
+  end
+
   private
 
   def event_params
     params.require(:event).permit(:name, :info, :start_date)
+  end
+
+  def set_event
+    @event = Event.find(params[:id])
   end
 end

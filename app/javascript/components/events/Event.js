@@ -1,11 +1,34 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import '../../styles/Event.scss'
 import Avatar from "react-avatar";
+import userContext from "../userContext";
+import {Link} from "react-router-dom";
+import axios from "axios";
 
 function Event(props) {
     const formattedDate = new Intl.DateTimeFormat('en',
-        { weekday: 'short', month: 'short', day: '2-digit', timeZone: 'UTC' })
+        {weekday: 'short', month: 'short', day: '2-digit', timeZone: 'UTC'})
         .format(new Date(props.event.start_date));
+
+    const userInfo = useContext(userContext);
+    const canUpdate = () => userInfo.user.id === props.event.user_id;
+
+    const urls = {
+        destroy: `/api/v1/events/${props.event.id}`,
+        edit: `/api/v1/events/${props.event.id}/edit`
+    }
+
+    const deleteEvent = () => {
+        //const token = document.querySelector('meta[name="csrf-token"]').content;
+        axios.delete(
+            urls.destroy,
+            {withCredentials: true}
+        ).then(() => {
+            props.onEventDeleted(props.event.id);
+        }).catch(error => {
+            console.log("login error", error)
+        })
+    }
 
     return (
         <div className="event-card">
@@ -15,6 +38,23 @@ function Event(props) {
                         <h4 className="event-card__subtitle">
                             Tournament
                         </h4>
+
+                        {canUpdate()
+                            ? <div className='available-actions'>
+                        <span>
+                            <Link to={urls.edit}>
+                                <i className="fa fa-edit"/>
+                        </Link>
+                        </span>
+                                <span>
+                        <a onClick={deleteEvent}>
+                             <i className="fa fa-trash"/>
+                        </a>
+                        </span>
+                            </div>
+
+                            : <></>
+                        }
                     </div>
                 </div>
             </div>

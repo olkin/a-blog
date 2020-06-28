@@ -63,3 +63,13 @@ $event-card-header-background-color: #56524b;
   font-weight: 700;
   color: $event-card-header-font-color;
 }
+
+.available-actions {
+  float: right;
+
+  i {
+    margin-left: 10px;
+    color: #fff;
+  }
+}
+

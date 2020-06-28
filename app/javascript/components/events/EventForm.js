@@ -1,11 +1,22 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-function EventForm({onFormSubmit, post}) {
-    const [state, setState] = useState({ name: post?.name, info: post?.info});
+function EventForm({onFormSubmit, event}) {
+    const [state, setState] = useState({
+        name: event?.name,
+        info: event?.info,
+        start_date: event?.start_date || new Date()
+    });
 
-    const onChange = (e) =>
-        setState({ ...state, [e.target.name]: e.target.value });
+    const onChange = (e) => {
+        setState({...state, [e.target.name]: e.target.value});
+    }
+
+    const onDateChange = date => {
+        setState({...state, start_date: date});
+    };
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -34,6 +45,13 @@ function EventForm({onFormSubmit, post}) {
                     required
                     onChange={onChange}
                     value={state.info || ''}
+                />
+            </div>
+            <div>
+                {/*<label htmlFor="eventInfo">Info</label>*/}
+                <DatePicker
+                    selected={state.start_date}
+                    onChange={onDateChange}
                 />
             </div>
             <button type="submit" className="button">

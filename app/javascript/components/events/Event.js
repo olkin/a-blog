@@ -4,7 +4,7 @@ import Avatar from "react-avatar";
 
 function Event(props) {
     const formattedDate = new Intl.DateTimeFormat('en',
-        { weekday: 'short', month: 'short', day: '2-digit' })
+        { weekday: 'short', month: 'short', day: '2-digit', timeZone: 'UTC' })
         .format(new Date(props.event.start_date));
 
     return (

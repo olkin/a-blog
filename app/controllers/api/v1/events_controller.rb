@@ -7,7 +7,7 @@ class Api::V1::EventsController < ApplicationController
   end
 
   def create
-    event = Event.new(event_params.merge(user: current_user, start_date: 3.days.from_now))
+    event = Event.new(event_params.merge(user: current_user))
 
     if event.save
       render json: event, status: :created
@@ -19,6 +19,6 @@ class Api::V1::EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :info)
+    params.require(:event).permit(:name, :info, :start_date)
   end
 end

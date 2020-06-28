@@ -6,14 +6,15 @@ function NewEvent(props) {
     const eventsUrl = '/api/v1/events';
     
     const onSubmit = (event) => {
-        const {name, info} = event;
+        const {name, info, start_date} = event;
 
         if (name.length === 0)
             return;
 
         const jsonBody = {
             name,
-            info
+            info,
+            start_date
         };
 
         axios.post(

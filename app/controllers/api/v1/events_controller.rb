@@ -12,9 +12,6 @@ class Api::V1::EventsController < ApplicationController
     Rails.logger.info '*MEOW+' * 20
     Rails.logger.info current_user.inspect
     Rails.logger.info @current_user.inspect
-    Rails.logger.info session.inspect
-    Rails.logger.info session.loaded?
-    session['init'] = 123
     Rails.logger.info session.loaded?
 
 

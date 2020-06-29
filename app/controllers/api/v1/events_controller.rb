@@ -1,7 +1,7 @@
 class Api::V1::EventsController < ApplicationController
   include CurrentUserConcern
 
-  before_action :set_event, only: [:destroy]
+  before_action :set_event, only: [:destroy, :show, :update]
 
   def index
     events = Event.upcoming.order(:start_date)
@@ -16,6 +16,15 @@ class Api::V1::EventsController < ApplicationController
     else
       render json: { error: event.errors.full_messages }, status: :unprocessable_entity
     end
+  end
+
+  def show
+    render json: @event
+  end
+
+  def update
+    @event.update(event_params)
+    render json: @event
   end
 
   def destroy

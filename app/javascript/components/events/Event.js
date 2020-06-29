@@ -15,7 +15,7 @@ function Event(props) {
 
     const urls = {
         destroy: `/api/v1/events/${props.event.id}`,
-        edit: `/api/v1/events/${props.event.id}/edit`
+        edit: `/events/${props.event.id}/edit`
     }
 
     const deleteEvent = () => {

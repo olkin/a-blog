@@ -7,7 +7,7 @@ function EventForm({onFormSubmit, event}) {
     const [state, setState] = useState({
         name: event?.name,
         info: event?.info,
-        start_date: event?.start_date || new Date()
+        start_date: event? new Date(event.start_date) : new Date()
     });
 
     const onChange = (e) => {
@@ -30,7 +30,7 @@ function EventForm({onFormSubmit, event}) {
                 <input
                     type="text"
                     name="name"
-                    id="postName"
+                    id="eventName"
                     onChange={onChange}
                     value={state.name || ''}
                 />

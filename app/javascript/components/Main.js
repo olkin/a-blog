@@ -8,6 +8,7 @@ import NewPost from "./posts/NewPost";
 import EditPost from "./posts/EditPost";
 import Actions from "./Actions";
 import NewEvent from "./events/NewEvent";
+import EditEvent from "./events/EditEvent";
 import '../styles/Main.scss'
 
 function Main(props) {
@@ -36,6 +37,7 @@ function Main(props) {
                             <Route path="/posts/:id/edit" exact component={EditPost}/>
 
                             <Route path="/events/new" exact component={NewEvent}/>
+                            <Route path="/events/:id/edit" exact component={EditEvent}/>
                         </Switch>
                     </div>
                     <div className="cell large-4">

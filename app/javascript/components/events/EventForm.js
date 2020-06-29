@@ -51,6 +51,7 @@ function EventForm({onFormSubmit, event}) {
             <div>
                 {/*<label htmlFor="eventInfo">Info</label>*/}
                 <DatePicker
+                    dateFormat="E, MMM d"
                     selected={state.start_date}
                     onChange={onDateChange}
                 />

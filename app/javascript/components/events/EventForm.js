@@ -32,6 +32,7 @@ function EventForm({onFormSubmit, event}) {
                     type="text"
                     name="name"
                     id="eventName"
+                    required
                     onChange={onChange}
                     value={state.name || ''}
                 />

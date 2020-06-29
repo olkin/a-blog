@@ -7,9 +7,13 @@ module CurrentUserConcern
   end
 
   def set_current_user
-    return unless session[:user_id]
-
-    @current_user = User.find(session[:user_id])
+    Rails.logger.info '#set_current_user'
+    if session[:user_id]
+      @current_user = User.find(session[:user_id])
+      Rails.logger.info "Current user: #{@current_user.id}"
+    else
+      Rails.logger.info 'unknown user'
+    end
   end
 
   private

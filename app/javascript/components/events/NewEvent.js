@@ -8,7 +8,7 @@ function NewEvent(props) {
     const onSubmit = (event) => {
         const {name, info, start_date} = event;
 
-        if (name.length === 0)
+        if (event.name.length === 0)
             return;
 
         const jsonBody = {

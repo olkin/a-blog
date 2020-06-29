@@ -12,6 +12,7 @@ class Api::V1::EventsController < ApplicationController
     Rails.logger.info '*MEOW+' * 20
     Rails.logger.info current_user.inspect
     Rails.logger.info @current_user.inspect
+    Rails.logger.info session.inspect
 
     event = Event.new(event_params.merge(user: current_user))
 

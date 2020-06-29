@@ -8,6 +8,8 @@ class SessionsController < ApplicationController
 
     if user
       session[:user_id] = user.id
+      Rails.logger.info 'Saving session!!!!'
+      Rails.logger.info session[:user_id]
       render json: {
           logged_in: true,
           user: user

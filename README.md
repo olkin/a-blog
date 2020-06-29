@@ -3,7 +3,7 @@
 # PLAYGROUND BLOG 
 
 To start blogging let's first create a blog (and meantime play with some new ideas and technologies).
-This is a blog **in progress**. Pushes to master are automatically deployed to Heroku: https://vb-blog.herokuapp.com.
+This is a blog **in progress**. Pushes to master are automatically deployed to Heroku: https://yyc-match-point.herokuapp.com.
 
 Versions used:
 

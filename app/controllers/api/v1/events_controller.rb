@@ -9,6 +9,9 @@ class Api::V1::EventsController < ApplicationController
   end
 
   def create
+    Rails.logger.info '*MEOW+' * 20
+    Rails.logger.info current_user.inspect
+
     event = Event.new(event_params.merge(user: current_user))
 
     if event.save

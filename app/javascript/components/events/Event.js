@@ -36,7 +36,7 @@ function Event(props) {
                 <div className="grid-x">
                     <div className="cell medium-12">
                         <h4 className="event-card__subtitle">
-                            Tournament
+                            Tournament {props.event.format}
                         </h4>
 
                         {canUpdate()

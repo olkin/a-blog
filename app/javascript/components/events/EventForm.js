@@ -3,16 +3,11 @@ import {Link} from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
+import eventFormats from "./EventFormats";
 
-const formatOptions = [
-    {value: 'women_2s', label: 'Women 2s'},
-    {value: 'men_2s', label: 'Men 2s'},
-    {value: 'coed_2s', label: 'Coed 2s'},
-    {value: 'coed_3s', label: 'Coed 3s'},
-    {value: 'coed_4s', label: 'Coed 4s'},
-    {value: 'kids', label: 'Kids'},
-    {value: null, label: 'Other'}
-]
+const formatOptions = Object.entries(eventFormats).map(([value, label]) => {
+    return {value: value, label: label};
+});
 
 function EventForm({onFormSubmit, event}) {
     const [state, setState] = useState({
@@ -22,8 +17,8 @@ function EventForm({onFormSubmit, event}) {
 
     const [startDate, setStartDate] = useState(event? new Date(event.start_date) : new Date());
 
-    const initialFormat = event.format
-        ? formatOptions.find((option) => option.value == event.format )
+    const initialFormat = event?.format
+        ? formatOptions.find((option) => option.value === event.format )
         : null;
     const [formatOption, setFormatOption] = useState(initialFormat);
 
@@ -46,7 +41,9 @@ function EventForm({onFormSubmit, event}) {
 
     return (
         <form onSubmit={onSubmit}>
+            <label htmlFor="eventFormat">Game format</label>
             <Select
+                id='eventFormat'
                 value={formatOption}
                 onChange={onFormatChange}
                 options={formatOptions}

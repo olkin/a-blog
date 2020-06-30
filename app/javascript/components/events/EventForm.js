@@ -10,6 +10,7 @@ const formatOptions = [
     {value: 'coed_2s', label: 'Coed 2s'},
     {value: 'coed_3s', label: 'Coed 3s'},
     {value: 'coed_4s', label: 'Coed 4s'},
+    {value: 'kids', label: 'Kids'},
     {value: null, label: 'Other'}
 ]
 
@@ -20,7 +21,11 @@ function EventForm({onFormSubmit, event}) {
     });
 
     const [startDate, setStartDate] = useState(event? new Date(event.start_date) : new Date());
-    const [formatOption, setFormatOption] = useState(null);
+
+    const initialFormat = event.format
+        ? formatOptions.find((option) => option.value == event.format )
+        : null;
+    const [formatOption, setFormatOption] = useState(initialFormat);
 
     const onChange = (e) => {
         setState({...state, [e.target.name]: e.target.value});

@@ -19,14 +19,36 @@ $event-card-header-background-color: #56524b;
     top: 50%;
     transform: translateY(-50%);
     color: white;
-  }
 
-  &.beach-icon:after {
     font-family: "Font Awesome 5 Free";
     //top:0;
     //left:-5px;
     //padding-right:10px;
     content: "\f5ca";
+  }
+
+  &.icon-coed_2s:after {
+    content: "\f7bd";
+  }
+
+  &.icon-kids:after {
+    content: "\f77d";
+  }
+
+  &.icon-coed_3s:after {
+    content: "\f0c0";
+  }
+
+  &.icon-women_2s:after {
+    content: "\f182";
+  }
+
+  &.icon-men_2s:after {
+    content: "\f183";
+  }
+
+  &.icon-coed_4s:after {
+    content: "\f524";
   }
 
   .event-card__subtitle {

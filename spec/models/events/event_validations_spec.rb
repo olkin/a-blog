@@ -21,9 +21,9 @@ describe 'Event validations' do
     it { is_expected.to be_invalid }
   end
 
-  context 'without start date' do
+  context 'of a wrong format' do
     before do
-      event.start_date = nil
+      event.format = 'unknown'
     end
 
     it { is_expected.to be_invalid }

@@ -5,5 +5,8 @@ FactoryBot.define do
     sequence(:info) { |n| "Info ##{n}" }
     start_date { 3.days.from_now }
 
+    trait :past do
+      start_date { 3.days.ago }
+    end
   end
 end

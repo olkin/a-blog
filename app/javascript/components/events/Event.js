@@ -4,6 +4,7 @@ import Avatar from "react-avatar";
 import userContext from "../userContext";
 import {Link} from "react-router-dom";
 import axios from "axios";
+import eventFormats from "./EventFormats";
 
 function Event(props) {
     const formattedDate = new Intl.DateTimeFormat('en',
@@ -36,7 +37,9 @@ function Event(props) {
                 <div className="grid-x">
                     <div className="cell medium-12">
                         <h4 className="event-card__subtitle">
-                            Beach volleyball
+                            {props.event.format
+                                ? `${eventFormats[props.event.format]} volleyball`|| 'Volleyball event'
+                                : 'Volleyball event'}
                         </h4>
                         {canUpdate()
                             ? <div className='available-actions'>

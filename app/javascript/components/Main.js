@@ -4,8 +4,6 @@ import {Route, Switch} from "react-router-dom";
 import Home from "./Home";
 import Login from "./auth/Login";
 import Registration from "./auth/Registration";
-import NewPost from "./posts/NewPost";
-import EditPost from "./posts/EditPost";
 import Actions from "./Actions";
 import NewEvent from "./events/NewEvent";
 import EditEvent from "./events/EditEvent";
@@ -33,8 +31,6 @@ function Main(props) {
                                 />
                             )}/>
                             <Route path="/posts" exact component={Home}/>
-                            <Route path="/posts/new" exact component={NewPost}/>
-                            <Route path="/posts/:id/edit" exact component={EditPost}/>
 
                             <Route path="/events/new" exact component={NewEvent}/>
                             <Route path="/events/:id/edit" exact component={EditEvent}/>

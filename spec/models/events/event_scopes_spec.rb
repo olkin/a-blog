@@ -6,7 +6,7 @@ describe 'Event scopes' do
   let!(:old_event) { create :event, start_date: 1.day.ago }
 
   it 'returns correct events based on start date' do
-    expect(Event.upcoming).to match_array [future_event, today_event]
+    expect(Event.future).to match_array [future_event, today_event]
     expect(Event.past).to eq [old_event]
   end
 end

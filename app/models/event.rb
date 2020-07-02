@@ -5,6 +5,6 @@ class Event < ApplicationRecord
   validates :name, :start_date, :info, presence: true
   validates :format, inclusion: {in: FORMATS}, allow_blank: true
 
-  scope :upcoming, ->{ where("start_date >= ?", Time.zone.now) }
+  scope :future, ->{ where("start_date >= ?", Time.zone.now) }
   scope :past, -> { where("start_date < ?", Time.zone.now) }
 end

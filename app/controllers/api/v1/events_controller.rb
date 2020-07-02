@@ -4,7 +4,7 @@ class Api::V1::EventsController < ApplicationController
   before_action :set_event, only: [:destroy, :show, :update]
 
   def index
-    events = Event.upcoming.order(:start_date)
+    events = Event.future.order(:start_date)
     render json: events, include: :user
   end
 
@@ -23,21 +23,31 @@ class Api::V1::EventsController < ApplicationController
   end
 
   def update
-    @event.update(event_params)
-    render json: @event
+    if @event.update(event_params)
+      render json: @event, status: :ok
+    else
+      render json: { error: @event.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def destroy
-    # TODO: check if this user can destroy
-    @event.destroy!
-
-    render json: { }
+    if can_destroy?
+      @event.destroy!
+      render json: @event, status: :ok
+    else
+      render json: { }, status: :unprocessable_entity
+    end
   end
 
   private
 
   def event_params
     params.require(:event).permit(:name, :info, :start_date, :format)
+  end
+
+  def can_destroy?
+    # TODO: add abilities
+    current_user == @event.user
   end
 
   def set_event

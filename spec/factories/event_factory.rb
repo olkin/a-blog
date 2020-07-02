@@ -8,5 +8,9 @@ FactoryBot.define do
     trait :past do
       start_date { 3.days.ago }
     end
+
+    trait :future do
+      start_date { 3.days.from_now }
+    end
   end
 end

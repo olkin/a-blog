@@ -126,13 +126,6 @@ describe Api::V1::EventsController do
     it 'is successful' do
       expect { create_event }.to change { Event.count }.by(1)
 
-      created_event = Event.last
-      expect(created_event.name).to eq 'Best event ever'
-      expect(created_event.info).to eq 'Join'
-      expect(created_event.format).to eq 'coed_3s'
-      expect(created_event.user_id).to eq user.id
-      expect(created_event.start_date).to eq Date.new(2020,7,9)
-
       json_response = JSON.parse(response.body)
       expect(json_response['name']).to eq 'Best event ever'
       expect(json_response['info']).to eq 'Join'

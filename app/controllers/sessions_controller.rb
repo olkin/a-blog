@@ -1,17 +1,12 @@
 class SessionsController < ApplicationController
   include CurrentUserConcern
 
-  def create
-    user = User
-               .find_by(email: params[:user][:email])
-               .try(:authenticate, params[:user][:password])
+  before_action :set_user, only: :create
 
-    if user
-      session[:user_id] = user.id
-      render json: {
-          logged_in: true,
-          user: user
-      }, status: :created
+  def create
+    if @user && @user.authenticate(params[:user][:password])
+      session[:user_id] = @user.id
+      render json: { logged_in: true, user: @user }, status: :created
     else
       render json: { }, status: :unauthorized
     end
@@ -19,17 +14,20 @@ class SessionsController < ApplicationController
 
   def logged_in
     if @current_user
-      render json: {
-          logged_in: true,
-          user: @current_user
-      }
+      render json: { logged_in: true }, status: :ok
     else
-      render json: { logged_in: false }
+      render json: { logged_in: false }, status: :ok
     end
   end
 
   def logout
     reset_session
     render json: { logged_out: true }, status: :ok
+  end
+
+  private
+
+  def set_user
+    @user = User.find_by(email: params[:user][:email])
   end
 end

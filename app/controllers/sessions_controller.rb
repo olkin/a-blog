@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 
   def logged_in
     if current_user
-      render json: { logged_in: true }, status: :ok
+      render json: { logged_in: true, user: current_user }, status: :ok
     else
       render json: { logged_in: false }, status: :ok
     end

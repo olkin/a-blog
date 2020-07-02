@@ -38,6 +38,7 @@ describe SessionsController do
 
         json_response = JSON.parse(response.body)
         expect(json_response['logged_in']).to eq true
+        expect(json_response['user']['email']).to eq 'existingemail@abc.com'
       end
     end
 

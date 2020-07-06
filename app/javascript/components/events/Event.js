@@ -5,6 +5,7 @@ import userContext from "../userContext";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import eventFormats from "../translations/EventFormats";
+import eventTiers from "../translations/EventTiers";
 
 function Event(props) {
     const formattedDate = new Intl.DateTimeFormat('en',
@@ -30,6 +31,9 @@ function Event(props) {
             console.log("login error", error)
         })
     }
+
+    const availableTiers = props.event.tiers || [];
+    const availableTiersDisplay = () => availableTiers.map(format => eventTiers[format] || 'Unknown').join(', ');
 
     return (
         <div className="event-card">
@@ -72,6 +76,12 @@ function Event(props) {
                             <div className="cell small-8 medium-10">
                                 <h6 className="event-card__title">{props.event.name}</h6>
                                 <p>{props.event.info}</p>
+                                {availableTiers.length > 0
+                                ?
+                                    <p><strong>Tiers:</strong> {availableTiersDisplay()}</p>
+                                :
+                                        <></>
+                                }
                             </div>
                         </div>
                     </div>

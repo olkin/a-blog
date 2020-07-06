@@ -42,7 +42,7 @@ class Api::V1::EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :info, :start_date, :format)
+    params.require(:event).permit(:name, :info, :start_date, :format, tiers: [])
   end
 
   def can_destroy?

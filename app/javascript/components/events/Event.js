@@ -4,7 +4,7 @@ import Avatar from "react-avatar";
 import userContext from "../userContext";
 import {Link} from "react-router-dom";
 import axios from "axios";
-import eventFormats from "./EventFormats";
+import eventFormats from "../translations/EventFormats";
 
 function Event(props) {
     const formattedDate = new Intl.DateTimeFormat('en',

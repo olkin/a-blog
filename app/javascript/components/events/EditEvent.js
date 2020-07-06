@@ -19,7 +19,7 @@ function EditEvent(props) {
     }, []);
 
     const onSubmit = (event) => {
-        const {name, info, start_date, format} = event;
+        const {name, info, start_date, format, tiers} = event;
 
         if (name.length === 0)
             return;
@@ -28,8 +28,11 @@ function EditEvent(props) {
             name,
             info,
             start_date,
-            format
+            format,
+            tiers
         };
+
+        console.log(jsonBody);
 
         axios.put(
             eventUrl,

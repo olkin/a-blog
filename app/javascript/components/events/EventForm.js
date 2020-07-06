@@ -3,7 +3,8 @@ import {Link} from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
-import eventFormats from "./EventFormats";
+import eventFormats from "../translations/EventFormats";
+import eventTiers from "../translations/EventTiers";
 
 const formatOptions = Object.entries(eventFormats).map(([value, label]) => {
     return {value: value, label: label};
@@ -14,6 +15,8 @@ function EventForm({onFormSubmit, event}) {
         name: event?.name,
         info: event?.info
     });
+
+    const [availableTiers, setAvailableTiers] = useState(event?.tiers || []);
 
     const [startDate, setStartDate] = useState(event? new Date(event.start_date) : new Date());
 
@@ -34,9 +37,23 @@ function EventForm({onFormSubmit, event}) {
         setFormatOption(selectedOption);
     };
 
+    const onTiersChange = event => {
+        const target = event.target;
+
+        let currentValues = availableTiers;
+        const value = target.value;
+
+        currentValues = currentValues.filter(item => item !== value)
+        if(target.checked) {
+            currentValues.push(value);
+        }
+
+        setAvailableTiers(currentValues);
+    }
+
     const onSubmit = (e) => {
         e.preventDefault();
-        onFormSubmit({...state, start_date: startDate, format: formatOption?.value});
+        onFormSubmit({...state, start_date: startDate, format: formatOption?.value, tiers: availableTiers});
     }
 
     return (
@@ -72,6 +89,26 @@ function EventForm({onFormSubmit, event}) {
                     value={state.info || ''}
                 />
             </div>
+            <fieldset>
+                <legend>What tiers are available?</legend>
+                <ul>
+                {Object.entries(eventTiers).map(([value, label]) => {
+                    return (
+                        <li key={value}>
+                            <input
+                                type="checkbox"
+                                name="eventTiers[]"
+                                value={value}
+                                onChange={onTiersChange}
+                                checked={availableTiers.includes(value)}
+                                id={value}/>
+                            <label htmlFor={value}>{label}</label>
+                        </li>
+                    );
+                })
+                }
+                </ul>
+            </fieldset>
             <div>
                 <label htmlFor="eventStartDate">Event Date</label>
                 <DatePicker

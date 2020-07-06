@@ -5,22 +5,10 @@ import axios from "axios";
 function NewEvent(props) {
     const eventsUrl = '/api/v1/events';
     
-    const onSubmit = (event) => {
-        const {name, info, start_date, format} = event;
-
-        if (name.length === 0)
-            return;
-
-        const jsonBody = {
-            name,
-            info,
-            start_date,
-            format
-        };
-
+    const onSubmit = (eventParams) => {
         axios.post(
             eventsUrl,
-            {event: jsonBody},
+            {event: eventParams},
             {withCredentials: true}
         ).then(() => {
             props.history.push(`/`);

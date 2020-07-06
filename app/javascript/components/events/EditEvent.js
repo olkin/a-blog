@@ -18,35 +18,16 @@ function EditEvent(props) {
         // .catch(() => this.props.history.push("/"));
     }, []);
 
-    const onSubmit = (event) => {
-        const {name, info, start_date, format, tiers} = event;
-
-        if (name.length === 0)
-            return;
-
-        const jsonBody = {
-            name,
-            info,
-            start_date,
-            format,
-            tiers
-        };
-
+    const onSubmit = (eventParams) => {
         axios.put(
             eventUrl,
-            { event: jsonBody },
+            { event: eventParams },
             { withCredentials: true }
         ).then(() => {
             props.history.push(`/`);
         }).catch(error => {
             console.log("login error", error)
         })
-
-        //const token = document.querySelector('meta[name="csrf-token"]').content;
-        //     headers: {
-        //         "X-CSRF-Token": token,
-        //         "Content-Type": "application/json"
-        //     },
     }
 
     return (

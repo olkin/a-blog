@@ -53,6 +53,7 @@ function EventForm({onFormSubmit, event}) {
 
     const onSubmit = (e) => {
         e.preventDefault();
+
         onFormSubmit({...state, start_date: startDate, format: formatOption?.value, tiers: availableTiers});
     }
 

@@ -38,10 +38,9 @@ function EventForm({onFormSubmit, event}) {
 
     const onTiersChange = event => {
         const target = event.target;
-
-        let currentValues = availableTiers;
         const value = target.value;
 
+        let currentValues = availableTiers;
         currentValues = currentValues.filter(item => item !== value)
         if(target.checked) {
             currentValues.push(value);

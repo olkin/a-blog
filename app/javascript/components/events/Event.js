@@ -4,8 +4,7 @@ import Avatar from "react-avatar";
 import userContext from "../userContext";
 import {Link} from "react-router-dom";
 import axios from "axios";
-import eventFormats from "../translations/EventFormats";
-import eventTiers from "../translations/EventTiers";
+import {EVENT_FORMATS, EVENT_TIERS} from "../constants/EventConstants";
 
 function Event(props) {
     const formattedDate = new Intl.DateTimeFormat('en',
@@ -33,7 +32,9 @@ function Event(props) {
     }
 
     const availableTiers = props.event.tiers || [];
-    const availableTiersDisplay = () => availableTiers.map(format => eventTiers[format] || 'Unknown').join(', ');
+    const availableTiersDisplay = () => {
+        return availableTiers.map(tier => EVENT_TIERS[tier] || 'Unknown').join(', ')
+    }
 
     return (
         <div className="event-card">
@@ -42,7 +43,7 @@ function Event(props) {
                     <div className="cell medium-12">
                         <h4 className="event-card__subtitle">
                             {props.event.format
-                                ? `${eventFormats[props.event.format]} volleyball`|| 'Volleyball event'
+                                ? `${EVENT_FORMATS[props.event.format]} volleyball`|| 'Volleyball event'
                                 : 'Volleyball event'}
                         </h4>
                         {canUpdate()

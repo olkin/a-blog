@@ -4,7 +4,7 @@ class Api::V1::EventsController < ApplicationController
   before_action :set_event, only: [:destroy, :show, :update]
 
   def index
-    events = Event.future.order(:start_date)
+    events = Event.future.order(:start_date, :id)
     render json: events, include: :user
   end
 

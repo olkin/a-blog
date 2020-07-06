@@ -1,6 +1,5 @@
 class Event < ApplicationRecord
   FORMATS = ['women_2s', 'men_2s', 'coed_2s', 'coed_3s', 'coed_4s', 'kids', 'other']
-  TIERS = ['competitive', 'intermidiate', 'intermediate_plus', 'recreational']
 
   belongs_to :user
 

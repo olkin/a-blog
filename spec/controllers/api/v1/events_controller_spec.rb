@@ -76,7 +76,11 @@ describe Api::V1::EventsController do
   describe 'PUT #update' do
     subject(:update_event) {  put :update, params: {
         id: event.to_param,
-        event: { name: 'Updated Name', info: 'Updated Info', format: 'coed_2s', start_date: '1991-07-09' }
+        event: { name: 'Updated Name',
+                 info: 'Updated Info',
+                 format: 'coed_2s',
+                 start_date: '1991-07-09',
+                 tiers: ['intermediate', 'rec']}
     } }
 
     let(:event) { create :event }
@@ -88,6 +92,7 @@ describe Api::V1::EventsController do
       expect(event.name).to eq 'Updated Name'
       expect(event.info).to eq 'Updated Info'
       expect(event.format).to eq 'coed_2s'
+      expect(event.tiers).to eq ['intermediate', 'rec']
       expect(event.start_date).to eq Date.new(1991, 7, 9)
 
       expect(response).to have_http_status :ok
@@ -105,6 +110,7 @@ describe Api::V1::EventsController do
         expect(event.name).not_to eq 'Updated Name'
         expect(event.info).not_to eq 'Updated Info'
         expect(event.format).not_to eq 'coed_2s'
+        expect(event.tiers).to eq []
         expect(event.start_date).not_to eq Date.new(1991, 7, 9)
 
         expect(response).to have_http_status :unprocessable_entity
@@ -114,7 +120,11 @@ describe Api::V1::EventsController do
 
   describe 'POST #create' do
     subject(:create_event) { post :create, params: {
-        event: { name: 'Best event ever', info: 'Join', format: 'coed_3s', start_date: '2020-07-09' } }
+        event: { name: 'Best event ever',
+                 info: 'Join',
+                 format: 'coed_3s',
+                 start_date: '2020-07-09',
+                 tiers: ['intermediate+', 'rec']} }
     }
 
     let(:user) { create :user }
@@ -131,6 +141,7 @@ describe Api::V1::EventsController do
       expect(json_response['info']).to eq 'Join'
       expect(json_response['format']).to eq 'coed_3s'
       expect(json_response['start_date']).to eq '2020-07-09'
+      expect(json_response['tiers']).to eq ['intermediate+', 'rec']
 
       expect(response).to have_http_status :created
     end

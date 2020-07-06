@@ -32,8 +32,6 @@ function EditEvent(props) {
             tiers
         };
 
-        console.log(jsonBody);
-
         axios.put(
             eventUrl,
             { event: jsonBody },

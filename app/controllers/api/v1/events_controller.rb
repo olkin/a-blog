@@ -42,7 +42,6 @@ class Api::V1::EventsController < ApplicationController
   private
 
   def event_params
-    # TODO: filter unknown tiers
     params.require(:event).permit(:name, :info, :start_date, :format, tiers: [])
   end
 

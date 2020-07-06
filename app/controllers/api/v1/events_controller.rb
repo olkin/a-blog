@@ -42,6 +42,7 @@ class Api::V1::EventsController < ApplicationController
   private
 
   def event_params
+    # TODO: check user input
     params.require(:event).permit(:name, :info, :start_date, :format, tiers: [])
   end
 

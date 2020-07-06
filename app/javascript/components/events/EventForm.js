@@ -3,10 +3,9 @@ import {Link} from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
-import eventFormats from "../translations/EventFormats";
-import eventTiers from "../translations/EventTiers";
+import {EVENT_FORMATS, EVENT_TIERS} from '../constants/EventConstants'
 
-const formatOptions = Object.entries(eventFormats).map(([value, label]) => {
+const formatOptions = Object.entries(EVENT_FORMATS).map(([value, label]) => {
     return {value: value, label: label};
 });
 
@@ -93,7 +92,7 @@ function EventForm({onFormSubmit, event}) {
             <fieldset>
                 <legend>What tiers are available?</legend>
                 <ul>
-                {Object.entries(eventTiers).map(([value, label]) => {
+                {Object.entries(EVENT_TIERS).map(([value, label]) => {
                     return (
                         <li key={value}>
                             <input

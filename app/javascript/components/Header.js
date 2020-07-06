@@ -29,7 +29,7 @@ function Header(props) {
             <div className="top-bar nav-desktop show-for-medium">
                 <div className="wrap">
                     <div className="top-bar-left">
-                        <h3 className="site-logo"><Link to='/'>Match Point</Link></h3>
+                        <h3 className="site-logo"><Link to='/'>N&B</Link></h3>
                     </div>
                     <div className="top-bar-right">
                         <ul className="menu menu-desktop">

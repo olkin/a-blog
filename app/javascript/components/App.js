@@ -50,13 +50,13 @@ function App() {
             <div className="off-canvas-content" data-off-canvas-content>
                 <userContext.Provider value={{user: user}}>
                     <Header handleLogout={handleLogout}/>
-                    { isLoggedIn()
-                        ? <></>
-                        :
-                        <Switch>
-                            <Route exact path='/' component={Hero}/>
-                        </Switch>
-                    }
+                    {/*{ isLoggedIn()*/}
+                    {/*    ? <></>*/}
+                    {/*    :*/}
+                    {/*    <Switch>*/}
+                    {/*        <Route exact path='/' component={Hero}/>*/}
+                    {/*    </Switch>*/}
+                    {/*}*/}
                     <Main handleLogin={handleLogin}/>
                     <Footer />
                 </userContext.Provider>

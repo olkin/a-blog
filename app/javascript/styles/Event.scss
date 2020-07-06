@@ -61,6 +61,31 @@ $event-card-header-background-color: #56524b;
   }
 }
 
+.event-card__header--women_2s {
+  background-color: pink;
+}
+
+.event-card__header--men_2s {
+  background-color: navy;
+}
+
+.event-card__header--coed_2s {
+  background-color: green;
+}
+
+.event-card__header--coed_3s {
+  background-color: yellowgreen;
+}
+
+.event-card__header--coed_4s {
+  background-color: lightseagreen;
+}
+
+.event-card__header--kids {
+  background-color: saddlebrown;
+}
+
+
 .event-card__image {
   margin-top: 5px;
 }

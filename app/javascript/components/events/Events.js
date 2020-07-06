@@ -5,7 +5,7 @@ import Event from "./Event";
 function EventsList({events, onEventDeleted}) {
     return (
         <>
-        <h1>Upcoming volleyball events</h1>
+        <h2>Events</h2>
             {events.map((event) =>
                 <Event key={event.id}
                        event={event}

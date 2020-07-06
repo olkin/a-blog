@@ -44,7 +44,7 @@ function Event(props) {
 
     return (
         <div className="event-card">
-            <div className={`event-card__header icon icon-${props.event.format}`}>
+            <div className={`event-card__header event-card__header--${props.event.format} icon icon-${props.event.format}`}>
                 <div className="grid-x">
                     <div className="cell medium-12">
                         <h4 className="event-card__subtitle">

@@ -31,10 +31,16 @@ function Event(props) {
         })
     }
 
-    const availableTiers = props.event.tiers || [];
     const availableTiersDisplay = () => {
-        return availableTiers.map(tier => EVENT_TIERS[tier] || 'Unknown').join(', ')
+        const availableTiers = props.event.tiers || [];
+        return availableTiers.length > 0
+            ? availableTiers.map(tier => EVENT_TIERS[tier] || 'Unknown').join(', ')
+            : 'N/A'
     }
+
+    const eventSubtitle =  props.event.format
+        ? `${EVENT_FORMATS[props.event.format]} volleyball`|| 'Volleyball event'
+        : 'Volleyball event'
 
     return (
         <div className="event-card">
@@ -42,9 +48,7 @@ function Event(props) {
                 <div className="grid-x">
                     <div className="cell medium-12">
                         <h4 className="event-card__subtitle">
-                            {props.event.format
-                                ? `${EVENT_FORMATS[props.event.format]} volleyball`|| 'Volleyball event'
-                                : 'Volleyball event'}
+                            {eventSubtitle}
                         </h4>
                         {canUpdate()
                             ? <div className='available-actions'>
@@ -77,12 +81,9 @@ function Event(props) {
                             <div className="cell small-8 medium-10">
                                 <h6 className="event-card__title">{props.event.name}</h6>
                                 <p>{props.event.info}</p>
-                                {availableTiers.length > 0
-                                ?
-                                    <p><strong>Tiers:</strong> {availableTiersDisplay()}</p>
-                                :
-                                        <></>
-                                }
+                                <div className='event__details'>
+                                    <span>Tiers: </span>{availableTiersDisplay()}
+                                </div>
                             </div>
                         </div>
                     </div>

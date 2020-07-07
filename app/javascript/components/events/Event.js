@@ -66,13 +66,11 @@ function Event(props) {
                         <h4 className="event-card__subtitle">
                             {eventSubtitle}
                         </h4>
-                        {canUpdate()
-                            ?
-                            <EventActions
-                                editUrl={urls.edit}
-                                deleteEvent={deleteEvent}
-                            />
-                            : <></>
+                        {canUpdate() &&
+                        <EventActions
+                            editUrl={urls.edit}
+                            deleteEvent={deleteEvent}
+                        />
                         }
                     </div>
                 </div>

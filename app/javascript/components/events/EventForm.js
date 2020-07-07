@@ -3,7 +3,8 @@ import {Link} from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
-import {EVENT_FORMATS, EVENT_TIERS} from '../constants/EventConstants'
+import {EVENT_FORMATS, EVENT_REQUIRED_EQUIPMENT, EVENT_TIERS} from '../constants/EventConstants'
+import '../../styles/EventForm.scss'
 
 const formatOptions = Object.entries(EVENT_FORMATS).map(([value, label]) => {
     return {value: value, label: label};
@@ -16,6 +17,7 @@ function EventForm({onFormSubmit, event}) {
     });
 
     const [availableTiers, setAvailableTiers] = useState(event?.tiers || []);
+    const [requestedEquipment, setRequestedEquipment] = useState(event?.requested_equipment || []);
 
     const [startDate, setStartDate] = useState(event? new Date(event.start_date) : new Date());
 
@@ -49,10 +51,27 @@ function EventForm({onFormSubmit, event}) {
         setAvailableTiers(currentValues);
     }
 
+    const onEquipmentChange = event => {
+        const target = event.target;
+        const value = target.value;
+
+        let currentValues = requestedEquipment;
+        currentValues = currentValues.filter(item => item !== value)
+        if(target.checked) {
+            currentValues.push(value);
+        }
+
+        setRequestedEquipment(currentValues);
+    }
+
     const onSubmit = (e) => {
         e.preventDefault();
 
-        onFormSubmit({...state, start_date: startDate, format: formatOption?.value, tiers: availableTiers});
+        onFormSubmit({...state,
+            start_date: startDate,
+            format: formatOption?.value,
+            tiers: availableTiers,
+            requested_equipment: requestedEquipment});
     }
 
     return (
@@ -89,14 +108,13 @@ function EventForm({onFormSubmit, event}) {
                 />
             </div>
             <fieldset>
-                <legend>What tiers are available?</legend>
+                <legend>Available tiers</legend>
                 <ul>
                 {Object.entries(EVENT_TIERS).map(([value, label]) => {
                     return (
                         <li key={value}>
                             <input
                                 type="checkbox"
-                                name="eventTiers[]"
                                 value={value}
                                 onChange={onTiersChange}
                                 checked={availableTiers.includes(value)}
@@ -106,6 +124,25 @@ function EventForm({onFormSubmit, event}) {
                     );
                 })
                 }
+                </ul>
+            </fieldset>
+            <fieldset>
+                <legend>Request equipment from players</legend>
+                <ul>
+                    {Object.entries(EVENT_REQUIRED_EQUIPMENT).map(([value, label]) => {
+                        return (
+                            <li key={value}>
+                                <input
+                                    type="checkbox"
+                                    value={value}
+                                    onChange={onEquipmentChange}
+                                    checked={requestedEquipment.includes(value)}
+                                    id={value}/>
+                                <label htmlFor={value}>{label}</label>
+                            </li>
+                        );
+                    })
+                    }
                 </ul>
             </fieldset>
             <div>

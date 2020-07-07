@@ -43,7 +43,7 @@ class Api::V1::EventsController < ApplicationController
 
   def event_params
     # TODO: check user input
-    params.require(:event).permit(:name, :info, :start_date, :format, tiers: [])
+    params.require(:event).permit(:name, :info, :start_date, :format, tiers: [], requested_equipment: [])
   end
 
   def can_destroy?

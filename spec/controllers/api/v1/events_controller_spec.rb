@@ -80,7 +80,8 @@ describe Api::V1::EventsController do
                  info: 'Updated Info',
                  format: 'coed_2s',
                  start_date: '1991-07-09',
-                 tiers: ['intermediate', 'rec']}
+                 tiers: ['intermediate', 'rec'],
+                 requested_equipment: ['balls', 'chairs']}
     } }
 
     let(:event) { create :event }
@@ -93,6 +94,7 @@ describe Api::V1::EventsController do
       expect(event.info).to eq 'Updated Info'
       expect(event.format).to eq 'coed_2s'
       expect(event.tiers).to eq ['intermediate', 'rec']
+      expect(event.requested_equipment).to eq ['balls', 'chairs']
       expect(event.start_date).to eq Date.new(1991, 7, 9)
 
       expect(response).to have_http_status :ok
@@ -111,6 +113,7 @@ describe Api::V1::EventsController do
         expect(event.info).not_to eq 'Updated Info'
         expect(event.format).not_to eq 'coed_2s'
         expect(event.tiers).to eq []
+        expect(event.requested_equipment).to eq []
         expect(event.start_date).not_to eq Date.new(1991, 7, 9)
 
         expect(response).to have_http_status :unprocessable_entity
@@ -124,7 +127,8 @@ describe Api::V1::EventsController do
                  info: 'Join',
                  format: 'coed_3s',
                  start_date: '2020-07-09',
-                 tiers: ['intermediate+', 'rec']} }
+                 tiers: ['intermediate+', 'rec'],
+                 requested_equipment: ['balls', 'chairs']} }
     }
 
     let(:user) { create :user }
@@ -142,6 +146,7 @@ describe Api::V1::EventsController do
       expect(json_response['format']).to eq 'coed_3s'
       expect(json_response['start_date']).to eq '2020-07-09'
       expect(json_response['tiers']).to eq ['intermediate+', 'rec']
+      expect(json_response['requested_equipment']).to eq ['balls', 'chairs']
 
       expect(response).to have_http_status :created
     end

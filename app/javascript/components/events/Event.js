@@ -32,7 +32,8 @@ function Event(props) {
 
     const urls = {
         destroy: `/api/v1/events/${props.event.id}`,
-        edit: `/events/${props.event.id}/edit`
+        edit: `/events/${props.event.id}/edit`,
+        register: `/events/${props.event.id}/register`
     }
 
     const deleteEvent = () => {
@@ -90,6 +91,8 @@ function Event(props) {
                                 <div className='event__details'>
                                     <span>Tiers: </span>{availableTiersDisplay()}
                                 </div>
+
+                                <Link to={urls.register}>Register</Link>
                             </div>
                         </div>
                     </div>

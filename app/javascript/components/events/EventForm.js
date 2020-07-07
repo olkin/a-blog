@@ -6,37 +6,23 @@ import Select from 'react-select';
 import {EVENT_FORMATS, EVENT_REQUIRED_EQUIPMENT, EVENT_TIERS} from '../constants/EventConstants'
 import CheckboxCollection from "../form/CheckboxCollection";
 
-const formatOptions = Object.entries(EVENT_FORMATS).map(([value, label]) => {
-    return {value: value, label: label};
-});
-
 function EventForm({onFormSubmit, event}) {
-    const [state, setState] = useState({
-        name: event?.name,
-        info: event?.info
+    const formatOptions = Object.entries(EVENT_FORMATS).map(([value, label]) => {
+        return {value: value, label: label};
     });
+    const initialFormat = event?.format && formatOptions.find((option) => option.value === event.format);
 
+    const [state, setState] = useState({name: event?.name, info: event?.info});
     const [availableTiers, setAvailableTiers] = useState(event?.tiers || []);
     const [requestedEquipment, setRequestedEquipment] = useState(event?.requested_equipment || []);
-
     const [startDate, setStartDate] = useState(event? new Date(event.start_date) : new Date());
-
-    const initialFormat = event?.format
-        ? formatOptions.find((option) => option.value === event.format )
-        : null;
     const [formatOption, setFormatOption] = useState(initialFormat);
 
-    const onChange = (e) => {
-        setState({...state, [e.target.name]: e.target.value});
-    }
-
-    const onDateChange = date => {
-        setStartDate(date);
-    };
-
-    const onFormatChange = selectedOption => {
-        setFormatOption(selectedOption);
-    };
+    const onChange = (event) => setState({...state, [event.target.name]: event.target.value})
+    const onDateChange = date => setStartDate(date)
+    const onFormatChange = selectedOption => setFormatOption(selectedOption)
+    const onTiersChange = event => onCheckboxChange(event, availableTiers, setAvailableTiers)
+    const onEquipmentChange = event => onCheckboxChange(event, requestedEquipment, setRequestedEquipment)
 
     const onCheckboxChange = (event, currentValues, setValue) => {
         const target = event.target;
@@ -50,9 +36,6 @@ function EventForm({onFormSubmit, event}) {
         setValue(currentValues);
     }
 
-    const onTiersChange = event => onCheckboxChange(event, availableTiers, setAvailableTiers)
-    const onEquipmentChange = event => onCheckboxChange(event, requestedEquipment, setRequestedEquipment)
-
     const onSubmit = (e) => {
         e.preventDefault();
 
@@ -65,14 +48,16 @@ function EventForm({onFormSubmit, event}) {
 
     return (
         <form onSubmit={onSubmit}>
-            <label htmlFor="eventFormat">Game format</label>
-            <Select
-                id='eventFormat'
-                value={formatOption}
-                onChange={onFormatChange}
-                options={formatOptions}
-                placeholder="Choose format"
-            />
+            <div>
+                <label htmlFor="eventFormat">Game format</label>
+                <Select
+                    id='eventFormat'
+                    value={formatOption}
+                    onChange={onFormatChange}
+                    options={formatOptions}
+                    placeholder="Choose format"
+                />
+            </div>
             <div>
                 <label htmlFor="eventName">Name</label>
                 <input
@@ -96,22 +81,26 @@ function EventForm({onFormSubmit, event}) {
                     value={state.info || ''}
                 />
             </div>
-            <fieldset>
-                <legend>Available tiers</legend>
-                <CheckboxCollection
-                    options={EVENT_TIERS}
-                    onChange={onTiersChange}
-                    selectedValues={availableTiers}
-                />
-            </fieldset>
-            <fieldset>
-                <legend>Request equipment from players</legend>
-                <CheckboxCollection
-                    options={EVENT_REQUIRED_EQUIPMENT}
-                    onChange={onEquipmentChange}
-                    selectedValues={requestedEquipment}
-                />
-            </fieldset>
+            <div>
+                <fieldset>
+                    <legend>Available tiers</legend>
+                    <CheckboxCollection
+                        options={EVENT_TIERS}
+                        onChange={onTiersChange}
+                        selectedValues={availableTiers}
+                    />
+                </fieldset>
+            </div>
+            <div>
+                <fieldset>
+                    <legend>Request equipment from players</legend>
+                    <CheckboxCollection
+                        options={EVENT_REQUIRED_EQUIPMENT}
+                        onChange={onEquipmentChange}
+                        selectedValues={requestedEquipment}
+                    />
+                </fieldset>
+            </div>
             <div>
                 <label htmlFor="eventStartDate">Event Date</label>
                 <DatePicker

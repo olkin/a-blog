@@ -38,31 +38,20 @@ function EventForm({onFormSubmit, event}) {
         setFormatOption(selectedOption);
     };
 
-    const onTiersChange = event => {
+    const onCheckboxChange = (event, currentValues, setValue) => {
         const target = event.target;
         const value = target.value;
 
-        let currentValues = availableTiers;
         currentValues = currentValues.filter(item => item !== value)
         if(target.checked) {
             currentValues.push(value);
         }
 
-        setAvailableTiers(currentValues);
+        setValue(currentValues);
     }
 
-    const onEquipmentChange = event => {
-        const target = event.target;
-        const value = target.value;
-
-        let currentValues = requestedEquipment;
-        currentValues = currentValues.filter(item => item !== value)
-        if(target.checked) {
-            currentValues.push(value);
-        }
-
-        setRequestedEquipment(currentValues);
-    }
+    const onTiersChange = event => onCheckboxChange(event, availableTiers, setAvailableTiers)
+    const onEquipmentChange = event => onCheckboxChange(event, requestedEquipment, setRequestedEquipment)
 
     const onSubmit = (e) => {
         e.preventDefault();

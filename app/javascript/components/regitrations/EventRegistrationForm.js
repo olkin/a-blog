@@ -41,6 +41,14 @@ function EventRegistrationForm({onFormSubmit, event, registration}) {
         setValue(currentValues);
     }
 
+    const onPlayerInfoChange = index => evt => {
+        const newPlayers = [...Array(event.players_count)].map((_, playerIndex) => {
+            return index === playerIndex ? evt.target.value : players[playerIndex]
+        });
+
+        setPlayers(newPlayers);
+    }
+
     return (
         <form onSubmit={onSubmit}>
             <div>
@@ -64,10 +72,26 @@ function EventRegistrationForm({onFormSubmit, event, registration}) {
                     value={contactInfo || ''}
                 />
             </div>
+            {
+                [...Array(event.players_count)].map((_, index) => (
+                        <div key={`player_${index}`}>
+                            <label htmlFor={`player_${index}`}>Player {index + 1}</label>
+                            <input
+                                type="text"
+                                id={`player_${index}`}
+                                onChange={onPlayerInfoChange(index)}
+                                placeholder={`Player #${index + 1} name`}
+                                required={index === 0}
+                                value={players[index] || ''}
+                            />
+                        </div>
+                    )
+                )
+            }
             { requiredEquipment.length > 0 &&
                 <div>
                     <fieldset>
-                        <legend>Specify available equipment</legend>
+                        <legend>Available equipment</legend>
                         <CheckboxCollection
                             options={requiredEquipmentOptions}
                             onChange={onEquipmentChange}

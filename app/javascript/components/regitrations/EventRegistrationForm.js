@@ -14,10 +14,11 @@ function EventRegistrationForm({onFormSubmit, event, registration}) {
         return {...obj, [equipment]: EVENT_REQUIRED_EQUIPMENT[equipment]}
         }, {})
 
-    const [contactInfo, setContactInfo] = useState(registration?.contact_info);
+    const [contactInfo, setContactInfo] = useState(registration?.contact_info || '');
     const [tierOption, setTierOption] = useState(initialTierOption);
     const [availableEquipment, setAvailableEquipment] = useState(registration?.available_equipment || []);
     const [players, setPlayers] = useState(registration?.players || []);
+    const [comment, setComment] = useState(registration?.comment || '');
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -25,9 +26,10 @@ function EventRegistrationForm({onFormSubmit, event, registration}) {
         onFormSubmit({players, contact_info: contactInfo, tier, available_equipment: availableEquipment});
     }
 
-    const onContactInfoChange = event => setContactInfo(event.target.value)
-    const onTierOptionChange = selectedOption => setTierOption(selectedOption)
-    const onEquipmentChange = event => onCheckboxChange(event, availableEquipment, setAvailableEquipment)
+    const onContactInfoChange = event => setContactInfo(event.target.value);
+    const onTierOptionChange = selectedOption => setTierOption(selectedOption);
+    const onCommentChange = event => setComment(event.target.value);
+    const onEquipmentChange = event => onCheckboxChange(event, availableEquipment, setAvailableEquipment);
 
     const onCheckboxChange = (event, currentValues, setValue) => {
         const target = event.target;
@@ -69,7 +71,7 @@ function EventRegistrationForm({onFormSubmit, event, registration}) {
                     name='contact_info'
                     onChange={onContactInfoChange}
                     required
-                    value={contactInfo || ''}
+                    value={contactInfo}
                 />
             </div>
             {
@@ -100,6 +102,17 @@ function EventRegistrationForm({onFormSubmit, event, registration}) {
                     </fieldset>
                 </div>
             }
+            <div>
+                <label htmlFor="comment">Comment</label>
+                <textarea
+                    type="text"
+                    id="comment"
+                    placeholder="Anything else we should know about your team?"
+                    rows={4}
+                    onChange={onCommentChange}
+                    value={comment}
+                />
+            </div>
             <button type="submit" className="button">
                 Save
             </button>

@@ -10,6 +10,28 @@ const formatOptions = Object.entries(EVENT_FORMATS).map(([value, label]) => {
     return {value: value, label: label};
 });
 
+function CollectionCheckboxes(props){
+    return (
+        <ul>
+            {
+                Object.entries(props.options).map(([value, label]) => {
+                    return (
+                        <li key={value}>
+                            <input
+                                type="checkbox"
+                                value={value}
+                                onChange={props.onChange}
+                                checked={props.selectedValues.includes(value)}
+                                id={value}/>
+                            <label htmlFor={value}>{label}</label>
+                        </li>
+                    );
+                })
+            }
+        </ul>
+    )
+}
+
 function EventForm({onFormSubmit, event}) {
     const [state, setState] = useState({
         name: event?.name,
@@ -109,41 +131,19 @@ function EventForm({onFormSubmit, event}) {
             </div>
             <fieldset>
                 <legend>Available tiers</legend>
-                <ul>
-                {Object.entries(EVENT_TIERS).map(([value, label]) => {
-                    return (
-                        <li key={value}>
-                            <input
-                                type="checkbox"
-                                value={value}
-                                onChange={onTiersChange}
-                                checked={availableTiers.includes(value)}
-                                id={value}/>
-                            <label htmlFor={value}>{label}</label>
-                        </li>
-                    );
-                })
-                }
-                </ul>
+                <CollectionCheckboxes
+                    options={EVENT_TIERS}
+                    onChange={onTiersChange}
+                    selectedValues={availableTiers}
+                />
             </fieldset>
             <fieldset>
                 <legend>Request equipment from players</legend>
-                <ul>
-                    {Object.entries(EVENT_REQUIRED_EQUIPMENT).map(([value, label]) => {
-                        return (
-                            <li key={value}>
-                                <input
-                                    type="checkbox"
-                                    value={value}
-                                    onChange={onEquipmentChange}
-                                    checked={requestedEquipment.includes(value)}
-                                    id={value}/>
-                                <label htmlFor={value}>{label}</label>
-                            </li>
-                        );
-                    })
-                    }
-                </ul>
+                <CollectionCheckboxes
+                    options={EVENT_REQUIRED_EQUIPMENT}
+                    onChange={onEquipmentChange}
+                    selectedValues={requestedEquipment}
+                />
             </fieldset>
             <div>
                 <label htmlFor="eventStartDate">Event Date</label>

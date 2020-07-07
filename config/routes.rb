@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :events, only: [:index, :destroy, :show, :update, :create] do
-        resources :registrations, only: [:create]
+        resources :registrations, only: [:create, :index]
       end
     end
   end

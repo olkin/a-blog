@@ -1,6 +1,11 @@
 class Api::V1::RegistrationsController < ApplicationController
   before_action :set_event
 
+  def index
+    registrations = @event.registrations.order(:created_at)
+    render json: registrations
+  end
+
   def create
     registration = @event.registrations.build(registration_params)
 

@@ -1,10 +1,11 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import '../../styles/Event.scss'
 import Avatar from "react-avatar";
 import userContext from "../userContext";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import {EVENT_FORMATS, EVENT_TIERS} from "../constants/EventConstants";
+import EventDetails from "./EventDetails";
 
 function EventActions(props) {
     return (
@@ -23,6 +24,9 @@ function EventActions(props) {
 }
 
 function Event(props) {
+    const [detailsVisible, setDetailsVisible] = useState(false);
+    const [registrationsState, setRegistrationsState] = useState({loading: null, registrations: []});
+
     const formattedDate = new Intl.DateTimeFormat('en',
         {weekday: 'short', month: 'short', day: '2-digit', timeZone: 'UTC'})
         .format(new Date(props.event.start_date));
@@ -33,7 +37,18 @@ function Event(props) {
     const urls = {
         destroy: `/api/v1/events/${props.event.id}`,
         edit: `/events/${props.event.id}/edit`,
-        register: `/events/${props.event.id}/register`
+        register: `/events/${props.event.id}/register`,
+        registrations: `/api/v1/events/${props.event.id}/registrations`
+    }
+
+    const loadRegistrations = () => {
+        axios.get(urls.registrations,
+            {withCredentials: true}
+        ).then(response => {
+            setRegistrationsState({loading: false, registrations: response.data});
+        }).catch(error => {
+            console.log("registrations error", error)
+        })
     }
 
     const deleteEvent = () => {
@@ -58,6 +73,13 @@ function Event(props) {
     const eventSubtitle =  props.event.format
         ? `${EVENT_FORMATS[props.event.format]} volleyball`|| 'Volleyball event'
         : 'Volleyball event'
+
+    const detailsClass = () => detailsVisible ? '' : 'hidden'
+
+    const toggleDetails = () => {
+        registrationsState.loading == null && loadRegistrations();
+        setDetailsVisible(!detailsVisible);
+    }
 
     return (
         <div className="event-card">
@@ -91,12 +113,23 @@ function Event(props) {
                                 <div className='event__details'>
                                     <span>Tiers: </span>{availableTiersDisplay()}
                                 </div>
-
+                                <div onClick={toggleDetails}>
+                                    {detailsVisible ? 'Hide registrations' : 'Show registrations'}
+                                </div>
                                 <Link to={urls.register}>Register</Link>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div className={`event-card__registrations ${detailsClass()}`}>
+                {
+                    registrationsState.loading == null || registrationsState.loading
+                    ? <>Loading...</>
+                    : <EventDetails registrations={registrationsState.registrations} />
+                }
+
             </div>
         </div>
     );

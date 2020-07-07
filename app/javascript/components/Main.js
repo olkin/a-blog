@@ -9,6 +9,7 @@ import NewEvent from "./events/NewEvent";
 import EditEvent from "./events/EditEvent";
 import '../styles/Main.scss'
 import NewEventRegistration from "./regitrations/NewEventRegistration";
+import EventDetails from "./events/EventDetails";
 
 function Main(props) {
     return (

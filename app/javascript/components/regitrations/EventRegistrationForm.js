@@ -5,11 +5,11 @@ import {EVENT_REQUIRED_EQUIPMENT, EVENT_TIERS} from "../constants/EventConstants
 import CheckboxCollection from "../form/CheckboxCollection";
 
 function EventRegistrationForm({onFormSubmit, event, registration}) {
-    const eventTiers = ['competitive', 'intermediate'] //|| event.tiers;
+    const eventTiers = event.tiers;
     const tierOptions = eventTiers.map(tier => {return { value: tier, label: EVENT_TIERS[tier] } } )
     const initialTierOption = registration?.tier && tierOptions.find((option) => option.value === registration.tier);
 
-    const requiredEquipment = event.required_equipment
+    const requiredEquipment = event.requested_equipment || []
     const requiredEquipmentOptions = requiredEquipment.reduce((obj, equipment) => {
         return {...obj, [equipment]: EVENT_REQUIRED_EQUIPMENT[equipment]}
         }, {})
@@ -24,7 +24,6 @@ function EventRegistrationForm({onFormSubmit, event, registration}) {
 
         onFormSubmit({players, contact_info: contactInfo, tier, available_equipment: availableEquipment});
     }
-
 
     const onContactInfoChange = event => setContactInfo(event.target.value)
     const onTierOptionChange = selectedOption => setTierOption(selectedOption)

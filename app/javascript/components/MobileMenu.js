@@ -18,10 +18,10 @@ function MobileMenu(props) {
 
     return (
         <ul>
+            <li><Link to="/">Events</Link></li>
             {userInfo.user.email
                 ?
                 <>
-                    {/*<li> Welcome, {userInfo.user.email} </li>*/}
                     <li><Link to="/" onClick={handleLogout}>Sign out</Link></li>
                 </>
                 : <>

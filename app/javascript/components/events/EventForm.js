@@ -10,23 +10,33 @@ const formatOptions = Object.entries(EVENT_FORMATS).map(([value, label]) => {
     return {value: value, label: label};
 });
 
+function CheckboxWithLabel(props) {
+    return (
+        <li>
+            <input
+                type="checkbox"
+                value={props.value}
+                onChange={props.onChange}
+                checked={props.checked}
+                id={props.value}/>
+            <label htmlFor={props.value}>{props.label}</label>
+        </li>
+    )
+}
+
 function CollectionCheckboxes(props){
     return (
         <ul>
             {
-                Object.entries(props.options).map(([value, label]) => {
-                    return (
-                        <li key={value}>
-                            <input
-                                type="checkbox"
-                                value={value}
-                                onChange={props.onChange}
-                                checked={props.selectedValues.includes(value)}
-                                id={value}/>
-                            <label htmlFor={value}>{label}</label>
-                        </li>
-                    );
-                })
+                Object.entries(props.options).map(([value, label]) =>
+                    <CheckboxWithLabel
+                        key={value}
+                        value={value}
+                        onChange={props.onChange}
+                        checked={props.selectedValues.includes(value)}
+                        label={label}
+                    />
+                )
             }
         </ul>
     )

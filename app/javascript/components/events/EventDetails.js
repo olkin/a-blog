@@ -2,13 +2,26 @@ import React from 'react';
 import {EVENT_TIERS} from "../constants/EventConstants";
 
 function EventDetails({registrations}) {
+    const grouppedRegistrations = registrations.reduce((obj, registration) => {
+        obj[registration.tier] = [...obj[registration.tier] || [], registration];
+        return obj;
+    }, {});
+
+    const registrationsList = registrations => {
+        return <ul>
+            {registrations.map(registration => <li key={registration.id}>
+                {registration.players.join('/')}
+            </li>)}
+        </ul>
+    }
+
     return <div>
-        {registrations.map(registration => {
-            return (
-                <ul key={registration.id}>
-                    <li>{EVENT_TIERS[registration.tier] || 'N/A'}: {registration.players.join('/')}</li>
-                </ul>
-            )})}
+        {Object.entries(grouppedRegistrations).map(([tier, registrations])=> {
+            return<div key={tier}>
+                {EVENT_TIERS[tier] || 'Unknown'}
+                {registrationsList(registrations)}
+            </div>
+        })}
     </div>
 }
 

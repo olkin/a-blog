@@ -6,6 +6,22 @@ import {Link} from "react-router-dom";
 import axios from "axios";
 import {EVENT_FORMATS, EVENT_TIERS} from "../constants/EventConstants";
 
+function EventActions(props) {
+    return (
+        <div className='available-actions'>
+            <span>
+                <Link to={props.editUrl}>
+                    <i className="fa fa-edit"/></Link>
+            </span>
+            <span>
+                <a onClick={props.deleteEvent}>
+                    <i className="fa fa-trash"/>
+                </a>
+            </span>
+        </div>
+    )
+}
+
 function Event(props) {
     const formattedDate = new Intl.DateTimeFormat('en',
         {weekday: 'short', month: 'short', day: '2-digit', timeZone: 'UTC'})
@@ -51,19 +67,11 @@ function Event(props) {
                             {eventSubtitle}
                         </h4>
                         {canUpdate()
-                            ? <div className='available-actions'>
-                        <span>
-                            <Link to={urls.edit}>
-                                <i className="fa fa-edit"/>
-                        </Link>
-                        </span>
-                                <span>
-                        <a onClick={deleteEvent}>
-                             <i className="fa fa-trash"/>
-                        </a>
-                        </span>
-                            </div>
-
+                            ?
+                            <EventActions
+                                editUrl={urls.edit}
+                                deleteEvent={deleteEvent}
+                            />
                             : <></>
                         }
                     </div>

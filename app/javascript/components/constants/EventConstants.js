@@ -14,3 +14,9 @@ export const EVENT_TIERS = {
     'intermediate': 'Intermediate',
     'rec': 'Recreational'
 }
+
+export const EVENT_REQUIRED_EQUIPMENT = {
+    'nets': 'Nets',
+    'lines': 'Lines',
+    'balls': 'Balls'
+}

@@ -9,7 +9,7 @@ function EventRegistrationForm({onFormSubmit, event, registration}) {
     const tierOptions = eventTiers.map(tier => {return { value: tier, label: EVENT_TIERS[tier] } } )
     const initialTierOption = registration?.tier && tierOptions.find((option) => option.value === registration.tier);
 
-    const requiredEquipment = ['balls', 'nets']//event.required_equipment
+    const requiredEquipment = event.required_equipment
     const requiredEquipmentOptions = requiredEquipment.reduce((obj, equipment) => {
         return {...obj, [equipment]: EVENT_REQUIRED_EQUIPMENT[equipment]}
         }, {})
@@ -65,16 +65,18 @@ function EventRegistrationForm({onFormSubmit, event, registration}) {
                     value={contactInfo || ''}
                 />
             </div>
-            <div>
-                <fieldset>
-                    <legend>Specify available equipment</legend>
-                    <CheckboxCollection
-                        options={requiredEquipmentOptions}
-                        onChange={onEquipmentChange}
-                        selectedValues={availableEquipment}
-                    />
-                </fieldset>
-            </div>
+            { requiredEquipment.length > 0 &&
+                <div>
+                    <fieldset>
+                        <legend>Specify available equipment</legend>
+                        <CheckboxCollection
+                            options={requiredEquipmentOptions}
+                            onChange={onEquipmentChange}
+                            selectedValues={availableEquipment}
+                        />
+                    </fieldset>
+                </div>
+            }
             <button type="submit" className="button">
                 Save
             </button>

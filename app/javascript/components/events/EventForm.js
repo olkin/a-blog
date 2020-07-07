@@ -4,43 +4,11 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
 import {EVENT_FORMATS, EVENT_REQUIRED_EQUIPMENT, EVENT_TIERS} from '../constants/EventConstants'
-import '../../styles/EventForm.scss'
+import CheckboxCollection from "../form/CheckboxCollection";
 
 const formatOptions = Object.entries(EVENT_FORMATS).map(([value, label]) => {
     return {value: value, label: label};
 });
-
-function CheckboxWithLabel({value, onChange, checked, label}) {
-    return (
-        <li>
-            <input
-                type="checkbox"
-                value={value}
-                onChange={onChange}
-                checked={checked}
-                id={value}/>
-            <label htmlFor={value}>{label}</label>
-        </li>
-    )
-}
-
-function CollectionCheckboxes(props){
-    return (
-        <ul>
-            {
-                Object.entries(props.options).map(([value, label]) =>
-                    <CheckboxWithLabel
-                        key={value}
-                        value={value}
-                        onChange={props.onChange}
-                        checked={props.selectedValues.includes(value)}
-                        label={label}
-                    />
-                )
-            }
-        </ul>
-    )
-}
 
 function EventForm({onFormSubmit, event}) {
     const [state, setState] = useState({
@@ -141,7 +109,7 @@ function EventForm({onFormSubmit, event}) {
             </div>
             <fieldset>
                 <legend>Available tiers</legend>
-                <CollectionCheckboxes
+                <CheckboxCollection
                     options={EVENT_TIERS}
                     onChange={onTiersChange}
                     selectedValues={availableTiers}
@@ -149,7 +117,7 @@ function EventForm({onFormSubmit, event}) {
             </fieldset>
             <fieldset>
                 <legend>Request equipment from players</legend>
-                <CollectionCheckboxes
+                <CheckboxCollection
                     options={EVENT_REQUIRED_EQUIPMENT}
                     onChange={onEquipmentChange}
                     selectedValues={requestedEquipment}

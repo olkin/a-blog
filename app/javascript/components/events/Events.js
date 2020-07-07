@@ -6,12 +6,12 @@ function EventsList({events, onEventDeleted}) {
     return (
         <>
         <h2>Events</h2>
-            {events.map((event) =>
-                <Event key={event.id}
-                       event={event}
-                       onEventDeleted={onEventDeleted}
-                />
-            )}
+        {events.map((event) =>
+            <Event key={event.id}
+                   event={event}
+                   onEventDeleted={onEventDeleted}
+            />
+        )}
         </>
     );
 }

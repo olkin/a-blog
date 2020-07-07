@@ -22,8 +22,13 @@ function EventRegistrationForm({onFormSubmit, event, registration}) {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        console.log(tierOption);
 
-        onFormSubmit({players, contact_info: contactInfo, tier, available_equipment: availableEquipment});
+        onFormSubmit({contact_info: contactInfo,
+            tier: tierOption?.value,
+            available_equipment: availableEquipment,
+            players,
+            comment});
     }
 
     const onContactInfoChange = event => setContactInfo(event.target.value);

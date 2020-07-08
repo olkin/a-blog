@@ -3,15 +3,6 @@
 $event-card-header-font-color: black;
 $event-card-header-background-color: #56524b;
 
-.event-card {
-  .event-card__registration-toggler {
-    &:hover {
-      cursor: pointer;
-      font-weight: bolder;
-    }
-  }
-}
-
 .event-card__header {
   margin-top: 30px;
   background-color: $primary-theme-background-color;

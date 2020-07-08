@@ -116,7 +116,7 @@ function Event(props) {
                                     </div>
                                 </div>
                                 <div onClick={toggleDetails} className="event-card__registration-toggler button secondary hollow">
-                                    <span>{detailsVisible ? 'Hide registrations' : 'Show registrations'} </span>
+                                    {detailsVisible ? 'Hide registrations' : 'Show registrations'}
                                 </div>
                             </div>
 

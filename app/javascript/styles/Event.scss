@@ -158,7 +158,7 @@ $event-card-header-background-color: #56524b;
 .event__details {
   padding-bottom: 25px;
 
-  span {
+  span.details-title {
     font-weight: bold;
   }
 }
@@ -169,4 +169,11 @@ $event-card-header-background-color: #56524b;
 
 .event-card__actions {
   text-align: right;
+}
+
+.event-card__registration-toggler {
+  text-decoration: underline dotted;
+  &:hover {
+    cursor: pointer;
+  }
 }

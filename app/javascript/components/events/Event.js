@@ -112,20 +112,25 @@ function Event(props) {
                                 <p>{props.event.info}</p>
                                 <div className='event__details'>
                                     <div>
-                                        <span>Tiers: </span>{availableTiersDisplay()}
+                                        <span className='details-title'>Tiers: </span>{availableTiersDisplay()}
                                     </div>
-                                </div>
-                                <div onClick={toggleDetails} className="event-card__registration-toggler button secondary hollow">
-                                    {detailsVisible ? 'Hide registrations' : 'Show registrations'}
-                                </div>
 
-                                <div className={`event-card__registrations ${detailsClass()}`}>
-                                    {
-                                        registrationsState.loading == null || registrationsState.loading
-                                            ? <>Loading...</>
-                                            : <EventDetails registrations={registrationsState.registrations} />
-                                    }
+                                    <div>
+                                        <span className='details-title'>Registrations:</span> &nbsp;
+                                        <span onClick={toggleDetails} className="event-card__registration-toggler">
+                                         {detailsVisible ? 'Hide' : 'Show'}
+                                        </span>
+                                    </div>
 
+
+                                    <div className={`event-card__registrations ${detailsClass()}`}>
+                                        {
+                                            registrationsState.loading == null || registrationsState.loading
+                                                ? <>Loading...</>
+                                                : <EventDetails registrations={registrationsState.registrations} />
+                                        }
+
+                                    </div>
                                 </div>
                             </div>
                         </div>

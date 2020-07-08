@@ -118,23 +118,22 @@ function Event(props) {
                                 <div onClick={toggleDetails} className="event-card__registration-toggler button secondary hollow">
                                     {detailsVisible ? 'Hide registrations' : 'Show registrations'}
                                 </div>
-                            </div>
 
+                                <div className={`event-card__registrations ${detailsClass()}`}>
+                                    {
+                                        registrationsState.loading == null || registrationsState.loading
+                                            ? <>Loading...</>
+                                            : <EventDetails registrations={registrationsState.registrations} />
+                                    }
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className="cell small-12 medium-3 columns event-card__actions">
                         <Link to={urls.register} className="button primary">Register</Link>
                     </div>
                 </div>
-            </div>
-
-            <div className={`event-card__registrations ${detailsClass()}`}>
-                {
-                    registrationsState.loading == null || registrationsState.loading
-                    ? <>Loading...</>
-                    : <EventDetails registrations={registrationsState.registrations} />
-                }
-
             </div>
         </div>
     );

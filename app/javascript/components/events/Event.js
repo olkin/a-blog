@@ -4,14 +4,13 @@ import userContext from "../userContext";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import {EVENT_FORMATS, EVENT_TIERS} from "../constants/EventConstants";
-import EventDetails from "./EventDetails";
 import EventEditActions from './EventEditActions'
 
 import '../../styles/Event.scss'
+import EventRegistrations from "./EventRegistrations";
 
 function Event(props) {
     const [detailsVisible, setDetailsVisible] = useState(false);
-    const [registrationsState, setRegistrationsState] = useState({loading: null, registrations: []});
 
     const formattedDate = new Intl.DateTimeFormat('en',
         {weekday: 'short', month: 'short', day: '2-digit', timeZone: 'UTC'})
@@ -23,18 +22,7 @@ function Event(props) {
     const urls = {
         destroy: `/api/v1/events/${props.event.id}`,
         edit: `/events/${props.event.id}/edit`,
-        register: `/events/${props.event.id}/register`,
-        registrations: `/api/v1/events/${props.event.id}/registrations`
-    }
-
-    const loadRegistrations = () => {
-        axios.get(urls.registrations,
-            {withCredentials: true}
-        ).then(response => {
-            setRegistrationsState({loading: false, registrations: response.data});
-        }).catch(error => {
-            console.log("registrations error", error)
-        })
+        register: `/events/${props.event.id}/register`
     }
 
     const deleteEvent = () => {
@@ -58,15 +46,11 @@ function Event(props) {
 
     const eventSubtitle =  props.event.format
         ? `${EVENT_FORMATS[props.event.format]} volleyball`|| 'Volleyball event'
-        : 'Volleyball event'
+        : 'Volleyball event';
 
-    const detailsClass = () => detailsVisible ? '' : 'hidden'
-    const expandRegistrationClass = () => detailsVisible ? 'expanded' : 'expand'
+    const expandRegistrationClass = () => detailsVisible ? 'expanded' : 'expand';
+    const toggleDetails = () => setDetailsVisible(!detailsVisible);
 
-    const toggleDetails = () => {
-        registrationsState.loading == null && loadRegistrations();
-        setDetailsVisible(!detailsVisible);
-    }
 
     return (
         <div className={`event-card event-card--${props.event.format}`}>
@@ -107,15 +91,7 @@ function Event(props) {
                                               onClick={toggleDetails}>
                                             Registrations
                                         </span>
-
-                                        <div className={`event-card__registrations ${detailsClass()}`}>
-                                            {
-                                                registrationsState.loading == null || registrationsState.loading
-                                                    ? <>Loading...</>
-                                                    : <EventDetails registrations={registrationsState.registrations} />
-                                            }
-
-                                        </div>
+                                        <EventRegistrations event={props.event} show={detailsVisible} />
                                     </div>
                                 </div>
                             </div>

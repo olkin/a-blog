@@ -9,6 +9,13 @@ import EventEditActions from './EventEditActions'
 import '../../styles/Event.scss'
 import EventRegistrations from "./EventRegistrations";
 
+const availableTiersDisplay = (tiers) => {
+    const availableTiers = tiers || [];
+    return availableTiers.length > 0
+        ? availableTiers.map(tier => EVENT_TIERS[tier] || 'Unknown').join(', ')
+        : 'N/A'
+}
+
 function Event(props) {
     const [detailsVisible, setDetailsVisible] = useState(false);
 
@@ -37,20 +44,12 @@ function Event(props) {
         })
     }
 
-    const availableTiersDisplay = () => {
-        const availableTiers = props.event.tiers || [];
-        return availableTiers.length > 0
-            ? availableTiers.map(tier => EVENT_TIERS[tier] || 'Unknown').join(', ')
-            : 'N/A'
-    }
-
     const eventSubtitle =  props.event.format
         ? `${EVENT_FORMATS[props.event.format]} volleyball`|| 'Volleyball event'
         : 'Volleyball event';
 
     const expandRegistrationClass = () => detailsVisible ? 'expanded' : 'expand';
     const toggleDetails = () => setDetailsVisible(!detailsVisible);
-
 
     return (
         <div className={`event-card event-card--${props.event.format}`}>
@@ -83,7 +82,7 @@ function Event(props) {
                                 <p>{props.event.info}</p>
                                 <div className='event__details'>
                                     <div>
-                                        <span className='details-title'>Tiers: </span>{availableTiersDisplay()}
+                                        <span className='details-title'>Tiers: </span>{availableTiersDisplay(props.event.tiers)}
                                     </div>
 
                                     <div>

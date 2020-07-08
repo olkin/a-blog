@@ -1,5 +1,6 @@
 import React from 'react';
 import {EVENT_TIERS} from "../constants/EventConstants";
+
 import '../../styles/EventDetails.scss'
 
 function EventDetails({registrations}) {
@@ -9,11 +10,17 @@ function EventDetails({registrations}) {
     }, {});
 
     const registrationsList = registrations => {
-        return <ol>
-            {registrations.map(registration => <li key={registration.id}>
-                {registration.players.join('/')}
-            </li>)}
-        </ol>
+         return (
+             <ol>
+                 {registrations.map(registration => {
+                     return (
+                         <li key={registration.id}>
+                             {registration.players.join('/')}
+                         </li>
+                     )
+                 })}
+             </ol>
+         )
     }
 
     return <div className='registration-groups'>

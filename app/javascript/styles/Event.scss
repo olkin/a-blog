@@ -3,6 +3,15 @@
 $event-card-header-font-color: black;
 $event-card-header-background-color: #56524b;
 
+.event-card {
+  .event-card__registration-toggler {
+    &:hover {
+      cursor: pointer;
+      font-weight: bolder;
+    }
+  }
+}
+
 .event-card__header {
   margin-top: 30px;
   background-color: $primary-theme-background-color;
@@ -66,12 +75,8 @@ $event-card-header-background-color: #56524b;
     background-color: crimson;
   }
 
-  .button {
+  .button.primary {
     background-color: crimson;
-  }
-
-  .event-card__registration-toggler {
-    color: crimson;
   }
 }
 
@@ -80,12 +85,8 @@ $event-card-header-background-color: #56524b;
     background-color: darkcyan;
   }
 
-  .button {
+  .button.primary {
     background-color: darkcyan;
-  }
-
-  .event-card__registration-toggler {
-    color: darkcyan;
   }
 }
 
@@ -94,12 +95,8 @@ $event-card-header-background-color: #56524b;
     background-color: darkolivegreen;
   }
 
-  .button {
+  .button.primary {
     background-color: darkolivegreen;
-  }
-
-  .event-card__registration-toggler {
-    color: darkolivegreen;
   }
 }
 
@@ -108,12 +105,8 @@ $event-card-header-background-color: #56524b;
     background-color: goldenrod;
   }
 
-  .button {
+  .button.primary {
     background-color: goldenrod;
-  }
-
-  .event-card__registration-toggler {
-    color: goldenrod;
   }
 }
 
@@ -122,12 +115,8 @@ $event-card-header-background-color: #56524b;
     background-color: lightseagreen;
   }
 
-  .button {
+  .button.primary {
     background-color: lightseagreen;
-  }
-
-  .event-card__registration-toggler {
-    color: lightseagreen;
   }
 }
 
@@ -136,12 +125,8 @@ $event-card-header-background-color: #56524b;
     background-color: darksalmon;
   }
 
-  .button {
+  .button.primary {
     background-color: darksalmon;
-  }
-
-  .event-card__registration-toggler {
-    color: darksalmon;
   }
 }
 
@@ -180,6 +165,8 @@ $event-card-header-background-color: #56524b;
 }
 
 .event__details {
+  padding-bottom: 25px;
+
   span {
     font-weight: bold;
   }

@@ -1,27 +1,13 @@
 import React, {useContext, useState} from 'react';
-import '../../styles/Event.scss'
 import Avatar from "react-avatar";
 import userContext from "../userContext";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import {EVENT_FORMATS, EVENT_TIERS} from "../constants/EventConstants";
 import EventDetails from "./EventDetails";
+import EventEditActions from './EventEditActions'
 
-function EventActions(props) {
-    return (
-        <div className='available-actions'>
-            <span>
-                <Link to={props.editUrl}>
-                    <i className="fa fa-edit"/></Link>
-            </span>
-            <span>
-                <a onClick={props.deleteEvent}>
-                    <i className="fa fa-trash"/>
-                </a>
-            </span>
-        </div>
-    )
-}
+import '../../styles/Event.scss'
 
 function Event(props) {
     const [detailsVisible, setDetailsVisible] = useState(false);
@@ -91,7 +77,7 @@ function Event(props) {
                             {eventSubtitle}
                         </h4>
                         {canUpdate() &&
-                        <EventActions
+                        <EventEditActions
                             editUrl={urls.edit}
                             deleteEvent={deleteEvent}
                         />

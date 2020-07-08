@@ -61,30 +61,65 @@ $event-card-header-background-color: #56524b;
   }
 }
 
-.event-card__header--women_2s {
-  background-color: crimson;
+.event-card--women_2s {
+  .event-card__header {
+    background-color: crimson;
+  }
+
+  .button {
+    background-color: crimson;
+  }
 }
 
-.event-card__header--men_2s {
-  background-color: darkcyan;
+.event-card--men_2s {
+  .event-card__header {
+    background-color: darkcyan;
+  }
+
+  .button {
+    background-color: darkcyan;
+  }
 }
 
-.event-card__header--coed_2s {
-  background-color: darkolivegreen;
+.event-card--coed_2s {
+  .event-card__header {
+    background-color: darkolivegreen;
+  }
+
+  .button {
+    background-color: darkolivegreen;
+  }
 }
 
-.event-card__header--coed_3s {
-  background-color: goldenrod;
+.event-card--coed_3s {
+  .event-card__header {
+    background-color: goldenrod;
+  }
+
+  .button {
+    background-color: goldenrod;
+  }
 }
 
-.event-card__header--coed_4s {
-  background-color: lightseagreen;
+.event-card--coed_4s {
+  .event-card__header {
+    background-color: lightseagreen;
+  }
+
+  .button {
+    background-color: lightseagreen;
+  }
 }
 
-.event-card__header--kids {
-  background-color: darksalmon;
-}
+.event-card--kids {
+  .event-card__header {
+    background-color: darksalmon;
+  }
 
+  .button {
+    background-color: darksalmon;
+  }
+}
 
 .event-card__image {
   margin-top: 5px;
@@ -128,4 +163,8 @@ $event-card-header-background-color: #56524b;
 
 .hidden {
   display: none;
+}
+
+.event-card__actions {
+  text-align: right;
 }

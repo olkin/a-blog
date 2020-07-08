@@ -82,8 +82,8 @@ function Event(props) {
     }
 
     return (
-        <div className="event-card">
-            <div className={`event-card__header event-card__header--${props.event.format} icon icon-${props.event.format}`}>
+        <div className={`event-card event-card--${props.event.format}`}>
+            <div className={`event-card__header icon icon-${props.event.format}`}>
                 <div className="grid-x">
                     <div className="cell medium-12">
                         <h4 className="event-card__subtitle">
@@ -112,13 +112,16 @@ function Event(props) {
                                 <p>{props.event.info}</p>
                                 <div className='event__details'>
                                     <span>Tiers: </span>{availableTiersDisplay()}
+
+                                    <div onClick={toggleDetails}>
+                                        {detailsVisible ? 'Hide registrations' : 'Show registrations'}
+                                    </div>
                                 </div>
-                                <div onClick={toggleDetails}>
-                                    {detailsVisible ? 'Hide registrations' : 'Show registrations'}
-                                </div>
-                                <Link to={urls.register}>Register</Link>
                             </div>
                         </div>
+                    </div>
+                    <div className="cell small-12 medium-3 columns event-card__actions">
+                        <Link to={urls.register} className="button">Register</Link>
                     </div>
                 </div>
             </div>

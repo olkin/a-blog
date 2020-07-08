@@ -1,7 +1,7 @@
 class Api::V1::EventsController < ApplicationController
   include CurrentUserConcern
 
-  before_action :set_event, only: [:destroy, :show, :update, :register]
+  before_action :set_event, only: [:destroy, :show, :update]
 
   def index
     events = Event.future.order(:start_date, :id)

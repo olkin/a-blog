@@ -19,7 +19,11 @@ class Api::V1::RegistrationsController < ApplicationController
   private
 
   def registration_params
-    params.require(:registration).permit(:tier, :contact_info, :comment, players: [], available_equipment: [])
+    result = params.require(:registration).permit(:tier, :contact_info, :comment,
+                                         players: [], available_equipment: [])
+    result[:players] = result[:players].reject(&:blank?) if result[:players]
+    result[:available_equipment] = result[:available_equipment].reject(&:blank?) if result[:available_equipment]
+    result
   end
 
   def set_event

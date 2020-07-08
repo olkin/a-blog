@@ -21,11 +21,9 @@ $event-card-header-background-color: #56524b;
     color: white;
 
     font-family: "Font Awesome 5 Free";
-    //top:0;
-    //left:-5px;
-    //padding-right:10px;
     content: "\f5ca";
   }
+
 
   &.icon-coed_2s:after {
     content: "\f7bd";
@@ -172,8 +170,25 @@ $event-card-header-background-color: #56524b;
 }
 
 .event-card__registration-toggler {
-  text-decoration: underline dotted;
   &:hover {
     cursor: pointer;
+  }
+
+  &.icon:before {
+    font: normal normal normal 14px/1 FontAwesome;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0 6px 0 0;
+
+    font-family: "Font Awesome 5 Free";
+  }
+
+  &.icon-expand:before {
+    content: "\f0da";
+  }
+
+  &.icon-expanded:before {
+    content: "\f0d7";
   }
 }

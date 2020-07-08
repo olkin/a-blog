@@ -75,6 +75,7 @@ function Event(props) {
         : 'Volleyball event'
 
     const detailsClass = () => detailsVisible ? '' : 'hidden'
+    const expandRegistrationClass = () => detailsVisible ? 'expanded' : 'expand'
 
     const toggleDetails = () => {
         registrationsState.loading == null && loadRegistrations();
@@ -116,20 +117,19 @@ function Event(props) {
                                     </div>
 
                                     <div>
-                                        <span className='details-title'>Registrations:</span> &nbsp;
-                                        <span onClick={toggleDetails} className="event-card__registration-toggler">
-                                         {detailsVisible ? 'Click to hide' : 'Click to show'}
+                                        <span className={`details-title event-card__registration-toggler icon icon-${expandRegistrationClass()}`}
+                                              onClick={toggleDetails}>
+                                            Registrations
                                         </span>
-                                    </div>
 
+                                        <div className={`event-card__registrations ${detailsClass()}`}>
+                                            {
+                                                registrationsState.loading == null || registrationsState.loading
+                                                    ? <>Loading...</>
+                                                    : <EventDetails registrations={registrationsState.registrations} />
+                                            }
 
-                                    <div className={`event-card__registrations ${detailsClass()}`}>
-                                        {
-                                            registrationsState.loading == null || registrationsState.loading
-                                                ? <>Loading...</>
-                                                : <EventDetails registrations={registrationsState.registrations} />
-                                        }
-
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -111,13 +111,18 @@ function Event(props) {
                                 <h6 className="event-card__title">{props.event.name}</h6>
                                 <p>{props.event.info}</p>
                                 <div className='event__details'>
-                                    <span>Tiers: </span>{availableTiersDisplay()}
+                                    <p>
+                                        <div>
+                                            <span>Tiers: </span>{availableTiersDisplay()}
+                                        </div>
+                                    </p>
 
-                                    <div onClick={toggleDetails}>
+                                    <div onClick={toggleDetails} className="event-card__registration-toggler">
                                         {detailsVisible ? 'Hide registrations' : 'Show registrations'}
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                     <div className="cell small-12 medium-3 columns event-card__actions">

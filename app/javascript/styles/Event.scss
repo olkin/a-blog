@@ -21,6 +21,7 @@ $event-card-header-background-color: #56524b;
     color: white;
 
     font-family: "Font Awesome 5 Free";
+    font-weight: 900; // needed to display in Chrome
     content: "\f5ca";
   }
 
@@ -169,6 +170,7 @@ $event-card-header-background-color: #56524b;
     margin: 0 6px 0 0;
 
     font-family: "Font Awesome 5 Free";
+    font-weight: 900; // needed to display in Chrome
   }
 
   &.icon-expand:before {

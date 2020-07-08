@@ -17,12 +17,15 @@ function EventDetails({registrations}) {
     }
 
     return <div className='registration-groups'>
-        {Object.entries(grouppedRegistrations).map(([tier, registrations])=> {
+        {Object.keys(grouppedRegistrations).length > 0
+            ? Object.entries(grouppedRegistrations).map(([tier, registrations])=> {
             return<div key={tier}>
                 <span>{EVENT_TIERS[tier] || 'Unknown'}</span>
                 {registrationsList(registrations)}
             </div>
-        })}
+        })
+            : 'Nobody registered yet :( Be the first one!'
+        }
     </div>
 }
 

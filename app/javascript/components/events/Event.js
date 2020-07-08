@@ -118,7 +118,7 @@ function Event(props) {
                                     <div>
                                         <span className='details-title'>Registrations:</span> &nbsp;
                                         <span onClick={toggleDetails} className="event-card__registration-toggler">
-                                         {detailsVisible ? 'Hide' : 'Show'}
+                                         {detailsVisible ? 'Click to hide' : 'Click to show'}
                                         </span>
                                     </div>
 

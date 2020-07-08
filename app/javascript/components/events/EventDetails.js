@@ -1,5 +1,6 @@
 import React from 'react';
 import {EVENT_TIERS} from "../constants/EventConstants";
+import '../../styles/EventDetails.scss'
 
 function EventDetails({registrations}) {
     const grouppedRegistrations = registrations.reduce((obj, registration) => {
@@ -8,17 +9,17 @@ function EventDetails({registrations}) {
     }, {});
 
     const registrationsList = registrations => {
-        return <ul>
+        return <ol>
             {registrations.map(registration => <li key={registration.id}>
                 {registration.players.join('/')}
             </li>)}
-        </ul>
+        </ol>
     }
 
-    return <div>
+    return <div className='registration-groups'>
         {Object.entries(grouppedRegistrations).map(([tier, registrations])=> {
             return<div key={tier}>
-                {EVENT_TIERS[tier] || 'Unknown'}
+                <span>{EVENT_TIERS[tier] || 'Unknown'}</span>
                 {registrationsList(registrations)}
             </div>
         })}

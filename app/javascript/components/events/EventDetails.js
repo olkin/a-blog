@@ -23,17 +23,20 @@ function EventDetails({registrations}) {
          )
     }
 
-    return <div className='registration-groups'>
-        {Object.keys(grouppedRegistrations).length > 0
-            ? Object.entries(grouppedRegistrations).map(([tier, registrations])=> {
-            return<div key={tier}>
-                <span>{EVENT_TIERS[tier] || 'Unknown'}</span>
-                {registrationsList(registrations)}
-            </div>
-        })
-            : 'Nobody registered yet :( Be the first one!'
-        }
-    </div>
+    return <>
+        <h4>Registrations</h4>
+        <div className='registration-groups'>
+            {Object.keys(grouppedRegistrations).length > 0
+                ? Object.entries(grouppedRegistrations).map(([tier, registrations])=> {
+                return<div key={tier}>
+                    <span>{EVENT_TIERS[tier] || 'Unknown'}</span>
+                    {registrationsList(registrations)}
+                </div>
+            })
+                : 'Nobody registered yet :( Be the first one!'
+            }
+        </div>
+        </>
 }
 
 export default EventDetails;

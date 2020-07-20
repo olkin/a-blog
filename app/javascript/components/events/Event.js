@@ -17,8 +17,6 @@ const availableTiersDisplay = (tiers) => {
 }
 
 function Event(props) {
-    const [detailsVisible, setDetailsVisible] = useState(false);
-
     const formattedDate = new Intl.DateTimeFormat('en',
         {weekday: 'short', month: 'short', day: '2-digit', timeZone: 'UTC'})
         .format(new Date(props.event.start_date));
@@ -47,9 +45,6 @@ function Event(props) {
     const eventSubtitle =  props.event.format
         ? `${EVENT_FORMATS[props.event.format]} volleyball`|| 'Volleyball event'
         : 'Volleyball event';
-
-    const expandRegistrationClass = () => detailsVisible ? 'expanded' : 'expand';
-    const toggleDetails = () => setDetailsVisible(!detailsVisible);
 
     return (
         <div className={`event-card event-card--${props.event.format}`}>
@@ -86,11 +81,7 @@ function Event(props) {
                                     </div>
 
                                     <div>
-                                        <span className={`details-title event-card__registration-toggler icon icon-${expandRegistrationClass()}`}
-                                              onClick={toggleDetails}>
-                                            Registrations
-                                        </span>
-                                        <EventRegistrations event={props.event} show={detailsVisible} />
+                                        <EventRegistrations event={props.event} />
                                     </div>
                                 </div>
                             </div>

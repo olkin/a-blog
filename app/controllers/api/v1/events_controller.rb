@@ -42,10 +42,14 @@ class Api::V1::EventsController < ApplicationController
   # TODO: maybe own controller/service
   def register_all
     # TODO: put into transactions
-    @event.registrations.not_participating.each do |registration|
+    registrations_to_convert = @event.registrations.not_participating
+    number_of_registrations_to_convert = registrations_to_convert.size
+    registrations_to_convert.each do |registration|
       participant = @event.participants.create!(tier: registration.tier)
       registration.update(participant: participant)
     end
+
+    render json: { message: "#{number_of_registrations_to_convert} registrations created" }, status: :created
   end
 
   private

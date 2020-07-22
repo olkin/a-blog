@@ -11,15 +11,16 @@ function EventActions(props) {
         registerTeams: `/api/v1/events/${props.match.params.id}/register_all`
     };
 
-    const registerAllTeams = () => {
+    const registerAllTeams = (e) => {
+        e.preventDefault()
         axios.post(
             eventsUrls.registerTeams,
             {},
             {withCredentials: true}
-        ).then(() => {
-            props.history.push(`/`);
+        ).then(response => {
+            console.log("Registration success:", response.data.message)
         }).catch(error => {
-            console.log("create error", error)
+            console.log("register teams error", error)
         })
     }
 

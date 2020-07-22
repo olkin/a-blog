@@ -7,8 +7,10 @@ import Registration from "./auth/Registration";
 import Actions from "./Actions";
 import NewEvent from "./events/NewEvent";
 import EditEvent from "./events/EditEvent";
-import '../styles/Main.scss'
 import NewEventRegistration from "./regitrations/NewEventRegistration";
+import EventActions from "./events/EventActions";
+
+import '../styles/Main.scss'
 
 function Main(props) {
     return (
@@ -39,7 +41,11 @@ function Main(props) {
                         </Switch>
                     </div>
                     <div className="cell large-4">
-                        <Actions />
+                        <Switch>
+                            <Route path="/posts" exact component={Actions}/>
+                            <Route path="/" exact component={Actions}/>
+                            <Route path="/events/:id/edit" exact component={EventActions}/>
+                        </Switch>
                     </div>
                 </div>
             </div>

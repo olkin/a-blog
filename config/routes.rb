@@ -20,6 +20,9 @@ Rails.application.routes.draw do
       resources :events, only: [:index, :destroy, :show, :update, :create] do
         resources :registrations, only: [:create, :index]
         resources :event_teams, path: :teams, only: :index
+        resources :matches do
+          post :generate
+        end
 
         member do
           post :accept_all

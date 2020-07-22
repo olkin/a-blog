@@ -35,9 +35,9 @@ class ScheduleGeneratorService
 
     formula.each do |game_number, schedule|
       schedule.each_with_index do |(team1_index, team2_index), court_index|
-        result << { game: game_number,
-                    team1: teams[team1_index],
-                    team2: teams[team2_index],
+        result << { number: game_number,
+                    team1_reference: teams[team1_index],
+                    team2_reference: teams[team2_index],
                     court: courts[court_index] }
       end
     end

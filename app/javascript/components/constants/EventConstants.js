@@ -9,10 +9,10 @@ export const EVENT_FORMATS = {
 }
 
 export const EVENT_TIERS = {
-    'competitive': 'Competitive',
-    'intermediate_plus': 'Intermediate+',
-    'intermediate': 'Intermediate',
-    'rec': 'Recreational'
+    'competitive': 'Tier 1',
+    'intermediate_plus': 'Tier 2',
+    'intermediate': 'Tier 3',
+    'rec': 'Tier 4'
 }
 
 export const EVENT_REQUIRED_EQUIPMENT = {

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :events, to: 'home#index' do
+    resources :event_teams, path: :teams, only: :index
+    
     member do
       get :register
     end
@@ -17,6 +19,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :events, only: [:index, :destroy, :show, :update, :create] do
         resources :registrations, only: [:create, :index]
+        resources :event_teams, path: :teams, only: :index
 
         member do
           post :accept_all

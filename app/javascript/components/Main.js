@@ -9,6 +9,7 @@ import NewEvent from "./events/NewEvent";
 import EditEvent from "./events/EditEvent";
 import NewEventRegistration from "./regitrations/NewEventRegistration";
 import EventActions from "./events/EventActions";
+import EventTeams from "./event_teams/EventTeams";
 
 import '../styles/Main.scss'
 
@@ -38,6 +39,7 @@ function Main(props) {
                             <Route path="/events/new" exact component={NewEvent}/>
                             <Route path="/events/:id/edit" exact component={EditEvent}/>
                             <Route path="/events/:id/register" exact component={NewEventRegistration}/>
+                            <Route path="/events/:id/teams" exact component={EventTeams}/>
                         </Switch>
                     </div>
                     <div className="cell large-4">

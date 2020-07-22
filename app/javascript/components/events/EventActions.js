@@ -10,7 +10,7 @@ function EventActions(props) {
 
     const eventsUrls = {
         registerTeams: `/api/v1/events/${props.match.params.id}/accept_all`,
-        manageTeams: `/api/v1/events/${props.match.params.id}/teams`
+        manageTeams: `/events/${props.match.params.id}/teams`
     };
 
     const registerAllTeams = (e) => {

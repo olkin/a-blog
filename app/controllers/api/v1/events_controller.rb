@@ -1,7 +1,7 @@
 class Api::V1::EventsController < ApplicationController
   include CurrentUserConcern
 
-  before_action :set_event, only: [:destroy, :show, :update]
+  before_action :set_event, only: [:destroy, :show, :update, :register_all]
 
   def index
     events = Event.future.order(:start_date, :id)
@@ -36,6 +36,15 @@ class Api::V1::EventsController < ApplicationController
       render json: @event, status: :ok
     else
       render json: { }, status: :unprocessable_entity
+    end
+  end
+
+  # TODO: maybe own controller/service
+  def register_all
+    # TODO: put into transactions
+    @event.registrations.not_participating.each do |registration|
+      participant = @event.participants.create!(tier: registration.tier)
+      registration.update(participant: participant)
     end
   end
 

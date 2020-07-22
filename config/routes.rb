@@ -17,6 +17,10 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :events, only: [:index, :destroy, :show, :update, :create] do
         resources :registrations, only: [:create, :index]
+
+        member do
+          post :register_all
+        end
       end
     end
   end

@@ -15,6 +15,16 @@ ActiveRecord::Schema.define(version: 2020_07_22_171441) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "event_teams", force: :cascade do |t|
+    t.bigint "event_id"
+    t.string "tier"
+    t.integer "points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "reference"
+    t.index ["event_id"], name: "index_event_teams_on_event_id"
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.bigint "user_id"
@@ -29,16 +39,6 @@ ActiveRecord::Schema.define(version: 2020_07_22_171441) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
-  create_table "participants", force: :cascade do |t|
-    t.bigint "event_id"
-    t.string "tier"
-    t.integer "points"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "reference"
-    t.index ["event_id"], name: "index_participants_on_event_id"
-  end
-
   create_table "registrations", force: :cascade do |t|
     t.bigint "event_id"
     t.string "tier"
@@ -48,9 +48,9 @@ ActiveRecord::Schema.define(version: 2020_07_22_171441) do
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "participant_id"
+    t.bigint "event_team_id"
     t.index ["event_id"], name: "index_registrations_on_event_id"
-    t.index ["participant_id"], name: "index_registrations_on_participant_id"
+    t.index ["event_team_id"], name: "index_registrations_on_event_team_id"
   end
 
   create_table "users", force: :cascade do |t|

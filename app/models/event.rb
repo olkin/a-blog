@@ -3,7 +3,7 @@ class Event < ApplicationRecord
 
   belongs_to :user
   has_many :registrations
-  has_many :participants
+  has_many :event_teams
 
   validates :name, :start_date, :info, presence: true
   validates :format, inclusion: {in: FORMATS}, allow_blank: true

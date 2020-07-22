@@ -45,8 +45,8 @@ class Api::V1::EventsController < ApplicationController
     registrations_to_convert = @event.registrations.not_participating
     number_of_registrations_to_convert = registrations_to_convert.size
     registrations_to_convert.each do |registration|
-      participant = @event.participants.create!(tier: registration.tier)
-      registration.update(participant: participant)
+      event_team = @event.event_teams.create!(tier: registration.tier)
+      registration.update(event_team: event_team)
     end
 
     render json: { message: "#{number_of_registrations_to_convert} registrations created" }, status: :created

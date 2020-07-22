@@ -1,6 +1,6 @@
-class CreateParticipants < ActiveRecord::Migration[5.2]
+class CreateEventTeams < ActiveRecord::Migration[5.2]
   def change
-    create_table :participants do |t|
+    create_table :event_teams do |t|
       t.references :event
       t.string :tier
       t.integer :points

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import EventTeam from "./EventTeam";
+import Schedule from "../Schedule";
 
 function TeamsList({teams, onTeamDeleted}) {
     return (
@@ -45,7 +46,16 @@ function EventTeams(props) {
 
     if (teamsState.loading == null || teamsState.loading) return <>Loading...</>;
     if (teamsState.teams.length === 0) return <>No scheduled teams</>;
-    return <TeamsList teams={teamsState.teams} onTeamDeleted={onTeamDeleted}/>;
+    return (
+        <div className="grid-x">
+            <div className="cell small-8">
+                <Schedule />
+            </div>
+            <div className="cell small-4">
+                <TeamsList teams={teamsState.teams} onTeamDeleted={onTeamDeleted}/>
+            </div>
+        </div>
+    );
 }
 
 export default EventTeams;

@@ -9,7 +9,7 @@ function EventActions(props) {
     const userInfo = useContext(userContext);
 
     const eventsUrls = {
-        registerTeams: `/api/v1/events/${props.match.params.id}/register_all`,
+        registerTeams: `/api/v1/events/${props.match.params.id}/accept_all`,
         manageTeams: `/api/v1/events/${props.match.params.id}/teams`
     };
 

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
         resources :registrations, only: [:create, :index]
 
         member do
-          post :register_all
+          post :accept_all
         end
       end
     end

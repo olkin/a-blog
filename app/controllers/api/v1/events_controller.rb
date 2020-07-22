@@ -1,7 +1,7 @@
 class Api::V1::EventsController < ApplicationController
   include CurrentUserConcern
 
-  before_action :set_event, only: [:destroy, :show, :update, :register_all]
+  before_action :set_event, only: [:destroy, :show, :update, :accept_all]
 
   def index
     events = Event.future.order(:start_date, :id)
@@ -40,7 +40,7 @@ class Api::V1::EventsController < ApplicationController
   end
 
   # TODO: maybe own controller/service
-  def register_all
+  def accept_all
     # TODO: put into transactions
     registrations_to_convert = @event.registrations.not_participating
     number_of_registrations_to_convert = registrations_to_convert.size

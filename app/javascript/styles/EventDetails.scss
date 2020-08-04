@@ -7,7 +7,7 @@
   }
 }
 
-.registration--accepted {
+.registration {
 
   position: relative;
 
@@ -19,11 +19,16 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    color: green;
     padding-left: 2px;
 
+    color: red;
     font-family: "Font Awesome 5 Free";
     font-weight: 900; // needed to display in Chrome
+    content: "\f128"
+  }
+
+  &.registration--accepted.icon:after {
+    color: green;
     content: "\f00c";
   }
 }

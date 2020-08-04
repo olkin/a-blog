@@ -27,16 +27,14 @@ function EventDetails({registrations, event}) {
     }
 
     const registrationsList = registrations => {
-         const acceptedClass = (registration) => {
-             if (registration.event_team_id)
-                 return 'registration--accepted';
-         }
+         const acceptedClass = (registration) =>
+             registration.event_team_id ? 'registration--accepted' : ''
 
          return (
              <ol>
                  {registrations.map(registration => {
                      return (
-                         <li key={registration.id} className={`icon ${acceptedClass(registration)}`}>
+                         <li key={registration.id} className={`icon registration ${acceptedClass(registration)}`}>
                              {registration.players.join('/')}
                          </li>
                      )

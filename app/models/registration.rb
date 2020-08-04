@@ -1,6 +1,6 @@
 class Registration < ApplicationRecord
   belongs_to :event
-  belongs_to :event_team
+  belongs_to :event_team, optional: true
 
   validates :players, :tier, presence: true
 

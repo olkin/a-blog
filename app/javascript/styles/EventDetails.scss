@@ -6,3 +6,24 @@
     font-weight: bold;
   }
 }
+
+.registration--accepted {
+
+  position: relative;
+
+  &.icon:after {
+    font: normal normal normal 14px/1 FontAwesome;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: green;
+    padding-left: 2px;
+
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900; // needed to display in Chrome
+    content: "\f00c";
+  }
+}

@@ -1,15 +1,21 @@
-class MatchesController < ApplicationController
+class Api::V1::MatchesController < ApplicationController
   before_action :set_event
+
+  def index
+    @matches = @event.matches
+
+    render json: @matches, status: :ok
+  end
 
   def generate
     matches = ScheduleGeneratorService.new(teams: params[:teams].split('\s*,\s*'),
-                                           courts: params[courts].split('\s*,\s*')).generate
+                                           courts: params[:courts].split('\s*,\s*')).generate
     # TODO: transaction
-    matches.each do |match_formula|
+    new_matches = matches.each do |match_formula|
       @event.matches.create!(match_formula)
     end
 
-    render json: { message: "#{matches.size} created" }, status: :ok
+    render json: { message: "#{matches.size} created", matches: new_matches }, status: :created
   end
 
   private

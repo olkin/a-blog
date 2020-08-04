@@ -33,15 +33,15 @@ function EventRegistrations(props) {
 
     return (
         <>
-            <span className={`details-title event-card__registration-toggler button hollow ${detailsClass(!detailsVisible)}`}
+            <div className={`details-title event-card__registration-toggler button hollow ${detailsClass(!detailsVisible)}`}
                   onClick={showDetails}>
                 More info
-            </span>
+            </div>
             <div className={`event-card__registrations ${detailsClass(detailsVisible)}`}>
                 {
                     isLoading()
                         ? <>Loading...</>
-                        : <EventDetails registrations={registrationsState.registrations} />
+                        : <EventDetails registrations={registrationsState.registrations} event={props.event} />
                 }
 
             </div>

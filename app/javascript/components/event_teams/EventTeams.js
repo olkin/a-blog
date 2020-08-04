@@ -21,7 +21,7 @@ function EventTeams(props) {
     const [teamsState, setTeamsState] = useState({teams: [], loading: null});
 
     const teamsUrl = {
-        index: `/api/v1/events/${props.match.params.id}/teams`
+        index: `/api/v1/events/${props.event.id || props.match.params.id}/teams`
     };
 
     const loadTeams = () => {
@@ -49,7 +49,7 @@ function EventTeams(props) {
     return (
         <div className="grid-x">
             <div className="cell small-8">
-                <Schedule />
+                <Schedule event={props.event}/>
             </div>
             <div className="cell small-4">
                 <TeamsList teams={teamsState.teams} onTeamDeleted={onTeamDeleted}/>

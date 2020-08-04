@@ -8,6 +8,7 @@ import EventEditActions from './EventEditActions'
 
 import '../../styles/Event.scss'
 import EventRegistrations from "./EventRegistrations";
+import EventTeams from "../event_teams/EventTeams";
 
 const availableTiersDisplay = (tiers) => {
     const availableTiers = tiers || [];
@@ -79,10 +80,8 @@ function Event(props) {
                                     <div>
                                         <span className='details-title'>Tiers: </span>{availableTiersDisplay(props.event.tiers)}
                                     </div>
-
-                                    <div>
-                                        <EventRegistrations event={props.event} />
-                                    </div>
+                                    <EventRegistrations event={props.event} />
+                                    <EventTeams event={props.event} />
                                 </div>
                             </div>
                         </div>

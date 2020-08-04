@@ -7,7 +7,7 @@ import Registration from "./auth/Registration";
 import Actions from "./Actions";
 import NewEvent from "./events/NewEvent";
 import EditEvent from "./events/EditEvent";
-import NewEventRegistration from "./regitrations/NewEventRegistration";
+import NewEventRegistration from "./registrations/NewEventRegistration";
 import EventActions from "./events/EventActions";
 import EventTeams from "./event_teams/EventTeams";
 
